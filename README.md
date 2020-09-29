@@ -2,7 +2,13 @@
 
 
 ## RDV1 24-09-2020
-
+Discussion et découverte approfondie du sujet. 
+Description de Lasp et approche des CRDTs, de ses avantages, de ses utilisations et des projets liés.
+Le mémoire consiste, si possible, à améliorer Lasp.
+Lasp est fonctionnel et permet de faire du programme distribué de façon très facile car il converge toujours.
+Mais Lasp n'offre pas, pour l'instant, d'outils permettant pour le programmeur de visualiser le degré de convergence de son système distribué.
+Il sait que Lasp convergera et que les données seront cohérentes mais il ne sait pas combien de temps cela prendra, si un noeud a déjà convergé ou à l'inverse si un noeud est plus lent, etc...
+L'idée serait donc d'ajouter cette fonctionnalité (de visualisation de la convergence des noeuds) sans impacter le coté fonctionnel.
 
 ## RDV2 30-09-2020
 J'ai lu pas mal de documentations (pas d'articles détaillés sur les CRDTs pour l'instant, plutôt de la documentation technique, des API et des bouts de codes).
