@@ -19,9 +19,12 @@ Pour le lancer:
 En ouvrant un terminal dans le dossier lasp, on peut entrer la commande
 ./myScript
 Cela crée un certain nombre de lasp nodes runnant dans des terminaux différents.
-Pour l'instant, on peut modifier le nombre de nodes manuelle dans myScript mais je ferai en sorte que ce soit un argument.
+Pour l'instant, on peut modifier le nombre de nodes manuellement dans myScript mais je ferai en sorte que ce soit un argument.
 Les nodes sont automatiquement créés avec des noms "nodeX" où X est un nombre croissant partant de 1.
-Le node1 mettra à jour une variable distribuée (pour l'instant un or_set en y mettant la valeur 5) et les autres nodes boucleront en query jusqu'à obtenir la bonne valeur.
+Le node1 mettra à jour une variable distribuée (pour l'instant un or_set en y mettant la valeur 5) et les autres nodes boucleront en query jusqu'à obtenir la bonne valeur, affichant le temps que cela leur a pris.
+Il semblerait qu'en augmentant le nombre de node, le temps requis pour qu'ils aient convergé augmente légèrement. Mais ces mesures sont faites sur des nodes qui tournent tous en local sur une même machine du coup les performances de la machine (que je comparerai à du bruit vis-à-vis des mesures que je veux réaliser) prennent trop d'importance.
+J'ai essayé de lancer des nodes et de mesurer le temps qu'ils mettent pour exécuter de bêtes opérations (non-liées à leur convergence) et on voit effectivement qu'au plus il y a de noeuds au plus c'est lent. Il s'agit donc en partie d'une mesure des performances de ma machine (lié à la quantité de RAM, fréquence du processeur, nombre de coeurs du CPU, threads logiques, etc...).
+
 
 
 ## RDV3 Date à définir
