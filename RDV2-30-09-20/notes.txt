@@ -52,4 +52,36 @@ Quand le nombre de nodes devient important, c'est clairement les performances de
 Quand le nombre de nodes est plus petit, il est difficile de dire, pour l'instant, s'il s'agit de l'influence de la taille du cluster ou des performances de l'ordinateur.
 Il va falloir faire un grand nombre de run sur des machines différentes (dockers/VM en cloud) pour avoir de réels échantillons.
 
+Faisons un script qui lance des nodes mais qui ne mesure pas leur vitesse de convergence, leur fait simplement calculer des trucs inutiles. Ainsi regardons si on obtient le même genre de courbe.
+Ca signifierait clairement que ce que je visualisais n'était pas dû à l'influence de la taille du cluster mais du nombre de nodes en local (performances du pc).
+
+2 nodes:
+8090 ms
+
+3nodes:
+8800 ms
+
+4nodes:
+8935 ms
+
+5nodes:
+9001 ms
+
+6nodes:
+9200 ms
+
+7nodes:
+9350 ms
+
+8nodes:
+9600 ms
+
+9nodes:
+9851 ms
+
+10nodes:
+10184 ms
+
+11nodes:
+10451 ms
 
