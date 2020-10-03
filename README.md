@@ -30,3 +30,4 @@ Lire des articles sur les CRDTs.
 Faire run des nodes Lasp en dehors de mon ordinateur.
 
 ## RDV3 07-10-2020 16h
+

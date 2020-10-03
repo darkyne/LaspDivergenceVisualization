@@ -85,3 +85,6 @@ Ca signifierait clairement que ce que je visualisais n'était pas dû à l'influ
 11nodes:
 10451 ms
 
+Ma façon de mesurer la vitesse de convergence n'est pas très appropriée. Il y a une trop grande influence dûe aux performances de ma machine.
+Je devrais coder le test de façon à éviter de faire une while. Un atomic read style "read untill you get value X" existe apparemment déjà dans Lasp.
+
