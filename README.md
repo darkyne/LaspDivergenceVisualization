@@ -2,6 +2,7 @@
 
 
 ## RDV1 24-09-2020 15h
+voir /RDV1/notes.txt pour plus de détails.
 Discussion et découverte approfondie du sujet. 
 Description de Lasp et approche des CRDTs, de ses avantages, de ses utilisations et des projets liés.
 Le mémoire consiste, si possible, à améliorer Lasp.
@@ -11,6 +12,7 @@ Il sait que Lasp convergera et que les données seront cohérentes mais il ne sa
 L'idée serait donc d'ajouter cette fonctionnalité (de visualisation de la convergence des noeuds) sans impacter le coté fonctionnel.
 
 ## RDV2 30-09-2020 16h
+voir /RDV2/notes.txt pour plus de détails
 J'ai lu pas mal de documentations (pas d'articles détaillés sur les CRDTs pour l'instant, plutôt de la documentation technique, des API et des bouts de codes).
 J'ai suivi quelques petits tutos erlang.
 J'ai créé un premier script de mesures fonctionnel mais peu précis et probblement biaisé par ma machine.
@@ -31,3 +33,11 @@ Faire run des nodes Lasp en dehors de mon ordinateur.
 
 ## RDV3 07-10-2020 16h
 
+Articles lus:
+Tout sauf le master thesis sur Lasp on Grisp.
+J'ai également visualisé le MOOC fournis (super intéressant !).
+
+J'ai parcouru une partie du code de Lasp afin de regarder (même si pas tout compris encore) l'implémentation des fonctions détaillées dans les articles/vidéos.
+Je dispose désormais d'un accès SSH vers une VM qui m'est attribuée.
+
+Voir /RDV3/notes.txt pour mes notes de lectures, remarques et questions.
