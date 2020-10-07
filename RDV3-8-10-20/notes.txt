@@ -40,7 +40,14 @@ Les flags des nodes ont également l'air super intéressants ! Le W-CRDT permet 
 
 -----------------------------------------------------------------------
 
-5) MOOC:
+5) Master thesis Lasp on Grisp:
+Pas lu en entier mais la partie qui parle de la convergence et de la façon expérimentale dont ils ont mesuré cette convergence est super intéressante !
+Regarder la documentation de achlys est aussi très intéressant et il y a un peu plus de détails/tutoriels/explications que sur le site de lasp.
+
+
+-----------------------------------------------------------------------
+
+6) MOOC:
 
 1: (11)
 Grosse différence par rapport à eventual consistency! Strong Eventual Consistency = Si N replicas deliver les mêmes updates mais pas spécialement dans le même ordre, elles obtiennent toutes le même state. (De plus, dans le cas de Lasp, la synchronisation se fait de replica en replica du coup c'est peu contraignant au niveau synchronisation). Ce compromis permet une weak synchronisation tout en gardant de très bonnes propriétés rendant la programmation facile (proche du strong consistency).
@@ -146,7 +153,7 @@ Pour Lasp, ils ont décidé que c'est le add qui win si on a un add et un remove
 ======================================================================
 
 Ce que j'ai fait:
-1)Lire les articles. Seul celui Lasp or Grisp (de 138pages).
+1)Lire les articles. Seul celui Lasp or Grisp (de 138pages) que j'ai seulement survolé.
 
 2)Me plonger dans le code source de Lasp (lire tout le code source et noter ce qui pourrait me servir)
 
