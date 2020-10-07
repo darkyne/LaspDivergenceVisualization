@@ -79,14 +79,26 @@ Bref c'est clair dans la vidéo.
 Explication du ads-counter.
 
 9: (26)
+Anabranch is for state dissemination and cluster topology/membership.
+Ca essaye d'envoyer des updates les plus minimalistes possibles afin de ne pas surcharger la taille des sets qui pourraient devenir énorme. Du coup ça met uniquement les données intéressantes/qui ont changé et pas tout ce qui reste inchangé.
 
 10: (31)
+Explication du cas general de cloud classique avec quelques datacenters répliqués.
+Rappel du CAP theorem. CP >< AP
 
 11: (32)
+Importance du causal order. Principe de transaction.
 
 12: (33)
+Introduction de antidote.
+C'est AP tout en étant le plus consistent possible. Transactional causal consistency. Ca utilise des CRDT.
 
 13: (41)
+Récap, résumé des idées précédentes.
+On peut pas faire CAP mais on peut faire AP et Convergent (convergent au lieu de consistent).
+Lasp est bien pour edge-computing. Ca demande pas de lourde synchronisation, c'est fault tolerant.
+Dans le système lui-même, tout est synchronization-free et il n'y a qu'aux limites (entrées/sorties) du système qu'on a besoin de synchronization. 
+Tous les services à l'intérieur du système doivent avoir un asynchronous stream in/out et les internal states obéissent au SEC property.
 
 
 
