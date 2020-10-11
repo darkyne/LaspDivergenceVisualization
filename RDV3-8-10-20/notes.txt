@@ -115,30 +115,48 @@ Questions:
 
 1) Qu'est-ce qu'un "lattice" ? Je n'ai pas vraiment compris l'équivalent en français. Une propriété?
 
+Question1 => OK Ensemble qui ne fait que croitre
+
 2) Appliquer add sur un or-set, je ne vois pas ce que représente le "u" (constante unique gérée par le add).
 C'est à la page3 définition 2.6 du fichier ppdp-2015.pdf. On définit add(s_i,v) et ça implique d'ajouter u dans l'ensemble a. Mais je ne vois pas d'où sort ce u.
 J'ai un peu de mal avec les définitions de add et remove. Ce serait intéressant de revenir brièvement dessus.
 Pareil pour la différence entre internal représentation et external representation de la value.
 Si j'ai bien compris, ce qu'on appelle "value" n'est pas vraiment la valeur de la variable qui va être retournée et utilisée par le programmeur mais plutôt sa value dans le sens ordinal.
 
+Question2 => Ok le u est un token unique lié à la value ajouée et à la replica source.
+
 3) A propos du monotonic read, il faut passer en argument une value et ça bloquera tant que ça n'aura pas lu une valeur plus grande. C'est à dire un truc plus récent. Mais comment spécifier l'argument (quelle valeur donner) ?
+
+Question3 => Pas encore de solution claire
 
 4) Functionnal programming: map, filter, fold. Set-theoric functions: product, union, intersection. A chaque ça fois, ça dit que ça ne termine jamais. Exemple: The product function defines a process that never
 terminates... Qu'est-ce que ça veut dire exactement?
 
+Question4 => Voir MOOD vidéo5. En fait on process un stream d'input vers un stream output de façon à ce que à tout moment si un élément change, nos données changent.
+
 5) Définition de delivery, je ne comprends. Ce serait pas i' plutôt que i dans la phrase? J'ai du mal à comprendre cette définition.
+
+Question5 => Toujours pas très clair.
 
 6) Deux conditions pour garantir déterminisme peu importe le merge schedule:
 -Remove(v) que s'il y a d'abord un add(v).
 -Pas de add(v) avec la même value sur deux réplicas différents.
 Ok mais que représente exactement value.
 
+Question6 => Toujours pas très clair.
+
 7) Dans la vidéo 2 du MOOC, je n'ai pas bien compris la valeur de retour de la fonction "value" mais je ne pense pas que ce soit bien grave. Enfait ok.
+
+Question7 => ok Le "." signifiait simplelement indice
 
 8) Vu que la synchronisation se fait de replica-en-replica lorsqu'ils envoient leur state pour merge... Par exemple si un node update le CRDT puis c'est tout. Ne devrait-on pas avoir par exemple un node a convergé puis deux puis trois puis 4...? Au lieu de ça, d'après les premières mesures, que j'avais faites de façon naïves, j'avais tous les nodes convergés d'un coup au bout de 8 secondes... Est-ce normal ? 
 
+Question8 => Probablement un broadcast dès qu'un node a la valeur.
+
 9) Pourquoi ne pas donner ce MOC à la fin du cours de distributed algo? C'est super intéressant, bien expliqué, compréhensible facilement avec les bases du cours de Distrbuted Algo...
 Par exemple ça pourrait être donné vers la fin du cours (S12-13), c'est 13 vidéos qui dépassent pas 10min, honnêtement ça pourrait les intéreser, je pense.
+
+Question9 => Droits.
 
 ======================================================================
 

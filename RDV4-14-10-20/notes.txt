@@ -1,0 +1,32 @@
+Ce que je dois faire:
+
+1) Cloturer mes questions du RDV3
+2) Faire tourner des nodes sur un serveur externe
+3) Comprendre le concept de ORSWOT
+
+=========================================================================================================
+
+1) Questions restantes:
+
+A) Dans l'article ppdp-2015 (Lasp: A Language for Distributed, Coordination-Free Programming), à la page 6, vous définissez "delivery"
+Voir image. Je n'arrive pas à comprendre cette définition.
+
+B) Dans l'article ppdp-2015 (Lasp: A Language for Distributed, Coordination-Free Programming), à la page 7, on voit un exemple de 
+merge scheduler qui cause un non-déterminisme. Vous indiquez ensuite deux conditions à imposer pour éviter ce non-déterminisme.
+L'exemple et les deux conditions à imposer sont indiquées sur l'image.
+J'ai du mal à bien comprendre ces conditions, ne sont-elles pas très restrictives?
+
+=========================================================================================================
+
+2) Nodes sur serveur externe:
+
+
+
+
+
+
+
+=========================================================================================================
+
+3) ORSWOT
+
