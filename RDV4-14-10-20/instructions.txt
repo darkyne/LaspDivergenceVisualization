@@ -1,0 +1,17 @@
+How to launch a node from my VM:
+
+
+
+1) How to access the vm:
+Open a terminal
+Enter ssh ucl
+Inside studssh, enter ssh tfe
+enter cd lasp
+enter ~/rebar3 shell --name tfe1@130.104.229.105
+
+
+2) On my machine: enter lasp folder
+enter rebar3 shell --name lasp1@192.168.1.39
+
+Error when trying to cluster them together.
+
