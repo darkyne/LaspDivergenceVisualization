@@ -38,6 +38,20 @@ VM IP:  130.104.229.25
 Home routeur IP: 109.132.2.179
 Home computer IP: 192.168.1.39
 
+Clusters nodes de la VM ensemble: OK
+Cluster node local avec node de la VM: erreur.
+lasp_peer_service:join('tfe1@130.104.229.25'). Depuis node local:
+[error] gen_server partisan_pluggable_peer_service_manager terminated with reason: no function clause matching lists:foldl(#Fun<partisan...
+
+lasp_peer_service:join(#{name => tfe2@130.104.229.25, listen_addrs => [#{ip => {130,104,229,25}, port => 40421}]}). Depuis node local:
+syntax error before: '.'
+lasp_peer_service:join(#{name => tfe2, listen_addrs => [#{ip => {130,104,229,25}, port => 40421}]}). Depuis node local:
+ok.
+Ca dit ok mais quand je regarde members ça n'est pas bon. Et peu importe l'adresse ip que je mets ou le port, ça met toujours "ok".
+
+
+
+
 
 
 
