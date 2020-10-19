@@ -1,0 +1,303 @@
+RDV5 20-10-20
+
+Objectifs:
+
+Communication entre nodes sur deux machines différentes.
+Implémentation du ORSWOT.
+
+
+ETAT ACTUEL:
+
+REMOTE NODES:
+Node lasp sur mon ordi et node lasp sur raspi:
+Attempt received from disallowed node.
+Problème de sécurité.
+RESOLU !
+Il fallait avoir le même erlang_cookie sur les deux machines.
+Maintenant j'arrive à les cluster correctement !
+
+
+ORSWOT:
+Il y a déjà vector clock implémenté en Lasp. Voir fichier lasp_vclock.erl
+
+Il faut faire un fichier state_orswot_ext.erl pour y définir les méthodes intersect, map, union, product et filter.
+
+J'ai du mal à comprendre la structure du projet (dans le code).
+Où définir le ORSWOT, la façon d'ajouter/retirer un élément et le merge?
+J'essaye de trouver où c'est fait pour le orset mais je ne trouve nulle part !
+
+=============================================================
+Compréhension actuelle du code:
+=============================================================
+
+lasp.app.src:
+Structure du projet avec modules à lancer pour rebar3.
+
+=============================================================
+lasp_app.erl:
+Définition du start et stop.
+
+=============================================================
+lasp.hrl (utilise en "include" dans d'autres fichiers):
+Pas certain de ce que représente ce fichier.
+On dirait la définition d'un setup pour une simulation?
+
+=============================================================
+lasp.erl:
+include lasp.hrl (why?)
+Définit et export une multitude de méthodes:
+stream, query, declare, declare_dynamic, update, bind, bind_to, read, read_any, filter, map, product, union, ...
+Toutes ces définitions sont de la forme: functionX(...) -> do(functionX,...).
+Définition de do: 
+do(Function, Args) ->
+    Backend = lasp_config:get(distribution_backend,
+                              lasp_distribution_backend),
+    erlang:apply(Backend, Function, Args).
+
+=============================================================
+lasp_config.erl:
+include lasp.hrl (why?)
+Définit et export dispatch, set, get, peer_service_manager et web_config.
+Définition set et get:
+get(Key, Default) ->
+    lasp_mochiglobal:get(Key, Default).
+
+set(Key, Value) ->
+    application:set_env(?APP, Key, Value),
+    lasp_mochiglobal:put(Key, Value).
+
+
+=============================================================
+lasp_console.erl:
+-module(lasp_console).
+-export([join/1]).
+Définition du join: appelle JoinFn et affiche un texte en fonction de la valeur de retour.
+
+=============================================================
+lasp_core.erl:
+include lasp.hrl (why?)
+Définition et export d'une multitude de méthodes:
+-export([bind/3,
+         bind/4,
+         bind_to/3,
+         read/2,
+         read/3,
+         read_any/2,
+         declare/1,
+         declare/2,
+         declare/3,
+         declare/4,
+         declare/5,
+         declare_dynamic/4,
+         query/2,
+         stream/3,
+         update/4,
+         update/6,
+         update_metadata/5,
+         thread/4,
+         filter/4,
+         map/4,
+         product/4,
+         union/4,
+         intersection/4,
+         fold/4,
+         wait_needed/2,
+         wait_needed/3,
+         reply_to_all/2,
+         reply_to_all/3,
+         receive_value/2,
+         receive_delta/2]).
+//Dynamic:
+-export([bind_to/4,
+         bind_to/5,
+         wait_needed/6,
+         read/6,
+         filter/6,
+         map/6,
+         product/7,
+         union/7,
+         intersection/7,
+         fold/6]).
+-export([read_var/3,
+         bind_var/3]).
+-export([storage_backend_reset/1]).
+-export([enforce_once/4]).
+A noter que certaines méthodes font appel à lasp_type:uneAutreMethode et cette autreMethode, dans le fichier lasp_type.erl, a elle-même un comportement qui dépend du type du crdt qu'il détecte en appliquant, par exemple:
+Mode = get_mode(),
+T = get_type(remove_args(Type), Mode)
+T représente probablement quelque chose comme orset, awmap, etc...
+
+Globalement la plupart des méthodes qui sont définies font appel à ?MODULE:uneMethode. Que fait exactement la macro liée à MODULE ? Je ne trouve pas où c'est défini.
+Dans bind_var on utilise un appel à lasp_type:merge. Ce merge, lui-même dans lasp_type, fait appel à T:merge avec T le type du crdt. Mais où est défini ce merge? Je ne trouve pas. Pareil pour T:query.
+Je ne trouve pas le fichier qui définit les méthodes genre add, remove, merge, etc pour les différents types de crdt.
+
+=============================================================
+lasp_delta_based_synchronization_backend.erl:
+include lasp.hrl (why?)
+-export([init/1,
+         handle_call/3,
+         handle_cast/2,
+         handle_info/2,
+         terminate/2,
+         code_change/3]).
+Incompréhensible
+
+=============================================================
+lasp_dependence_dag.erl:
+-include("lasp.hrl").(why?)
+-behaviour(gen_server). (what does it mean?)
+-export([start_link/0,
+         will_form_cycle/2,
+         is_root/1,
+         vertices/0,
+         add_edges/6,
+         add_vertex/1,
+         add_vertices/1]).
+-export([init/1,
+         handle_call/3,
+         handle_cast/2,
+         handle_info/2,
+         terminate/2,
+         code_change/3]).
+Incompréhensible. Semble se charger de la création d'un graphe ?
+
+=============================================================
+lasp_dets_storage_backend.erl:
+-behaviour(gen_server).
+-behaviour(lasp_storage_backend). ??
+-export([start_link/1,
+         put/3,
+         update/3,
+         update_all/2,
+         get/2,
+         reset/1,
+         fold/3]).
+-export([init/1,
+         handle_call/3,
+         handle_cast/2,
+         handle_info/2,
+         terminate/2,
+         code_change/3]).
+pas clair. Quel est le but ?
+Pourquoi ça redéfinit les mêmes methodes à export que dans lasp_dependence_dag.erl ?
+
+=============================================================
+lasp_distribution_backend.erl:
+-export([reset/0, 
+         propagate/1]).
+-export([start_link/0,
+         start_link/1]).
+-export([declare/2,
+         declare_dynamic/2,
+         stream/2,
+         query/1,
+         update/3,
+         bind/2,
+         bind_to/2,
+         read/2,
+         read_any/1,
+         filter/3,
+         map/3,
+         product/3,
+         union/3,
+         intersection/3,
+         fold/3,
+         wait_needed/2,
+         thread/3,
+         enforce_once/3]).
+-export([interested/1,
+         disinterested/1,
+         set_topic/2,
+         remove_topic/2]).
+-export([init/1,
+         handle_call/3,
+         handle_cast/2,
+         handle_info/2,
+         terminate/2,
+         code_change/3]).
+Pourquoi on redéfinit des méthodes déjà définies dans d'autres fichiers?
+Qu'est-ce que gen_server ?
+
+=============================================================
+lasp_divergence_client.erl:
+-export([init/1,
+         handle_call/3,
+         handle_cast/2,
+         handle_info/2,
+         terminate/2,
+         code_change/3]).
+Je ne comprends pas trop ce fichier.
+A noter qu'à la fin la méthode perform_update a l'air d'appliquer le update différemment pour chaque type de crdt.
+Il y a plein d'utilsations de macro mais je ne vois pas où elles sont définies. 
+
+=============================================================
+lasp_divergence_server.erl:
+-export([init/1,
+         handle_call/3,
+         handle_cast/2,
+         handle_info/2,
+         terminate/2,
+         code_change/3]).
+Ca a l'air de tester la convergence. On a notamment le workflow qui est completed quand ça a convergé, je crois...?
+
+=============================================================
+lasp_dt.erl:
+Pas compris le but.
+
+=============================================================
+lasp_eqc.erl:
+Pas trop compris mais ça a l'air de se lancer uniquement si si on est en mode TEST et EQC. (que veut dire EQC ?)
+
+=============================================================
+lasp_ets_storage_backend.erl:
+-export([start_link/1,
+         put/3,
+         update/3,
+         update_all/2,
+         get/2,
+         reset/1,
+         fold/3]).
+-export([init/1,
+         handle_call/3,
+         handle_cast/2,
+         handle_info/2,
+         terminate/2,
+         code_change/3]).
+A nouveua, on redéfinit pour la xème fois les mêmes méthodes à export...
+Pour la plupart des méthodes, ça fait appel à gen_server.
+
+=============================================================
+lasp_logger:
+Sert à simplement à écrire des messages d'information.
+
+=============================================================
+lasp_marathon_simulation.erl:
+-export([stop/0,
+         log_message_queue_size/1]).
+Aucune idée de ce que ça fait.
+
+=============================================================
+lasp_membership.erl:
+
+
+=============================================================
+
+=============================================================
+
+=============================================================
+QUESTIONS:
+1) Serait-il possible d'avoir, quelque part, un genre de résumé de la structure? Style pour chaque fichier l'idée générale/à quoi il sert. Car là, j'ai beau avoir parcouru l'ensemble de tout le code, pour une bonne partie des fichiers, je n'ai aucune idée de ce qu'ils représentent ou de leur but.
+
+2) Pourquoi des méthodes exports (style bind, fold, read, map,...) sont redéfinies PLEIN de fois dans des fichiers différents?
+
+3) Il y a plein de macros utilisées (?MODULE par exemple) mais je ne trouve pas où elles sont définies.
+
+4) Pourquoi à peu près tous les fichiers.erl ont "include lasp.hrl" ? Je ne comprends pas ce que représente ce fichier.
+
+5) Pourquoi dans le code je retrouve beaucoup la notion de serveur et de client? Alors que le principe est justement d'avoir du peer-to-peer sans serveur principal, non ?
+
+6) Où se trouve l'implémentation pour le orset? C'est à dire pour add, remove et merge. Car je ne trouve ça nulle part !
+
+
+
+
