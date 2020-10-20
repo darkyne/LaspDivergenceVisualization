@@ -746,7 +746,8 @@ QUESTIONS:
 
 1) Serait-il possible d'avoir, quelque part, un genre de résumé de la structure? Style pour chaque fichier l'idée générale/à quoi il sert. Car là, j'ai beau avoir parcouru l'ensemble de tout le code, pour une bonne partie des fichiers, je n'ai aucune idée de ce qu'ils représentent ou de leur but.
 
-2) Pourquoi des méthodes exports (style bind, fold, read, map,...) sont redéfinies PLEIN de fois dans des fichiers différents?
+2) Pourquoi des méthodes exports (style bind, fold, read, map,...) sont redéfinies PLEIN de fois dans des fichiers différents? Par exemple fold est dans les export des fichiers:
+lasp.erl, lasp_core.erl, lasp_dets_storage_backend.erl, lasp_distribution_backend.erl, lasp_ets_storage_backend.erl, lasp_redis_storage_backend.erl...
 
 3) Il y a plein de macros utilisées (?MODULE par exemple) mais je ne trouve pas où elles sont définies. Une bonne partie sont définies dans lasp.hrl
 
@@ -766,4 +767,28 @@ Il y un mode client-serveur et un mode peer-to-peer ?
 
 10) J'ai l'impression que plein de fichiers ne font pas partie de l'implémentation de lasp mais plutôt d'outils pour tester/simuler etc.
 
+11) Il y a plusieurs fichiers .erl dans lesquels apparaissent des strings tels que gcreupelandt/home/... (des path). 
+Ces fichiers seraient donc générés lors du build? Je pensais que tous les fichiers dans le dossier src avaient été codés manuellement.
 
+12) J'ai vu que Christopher Meiklejohn avait essayé d'implémenter ORSWOT dans lasp mais avait abandonné car ça s'avérait plus compliqué qu'il ne l'avait prévu...
+issue#35 J'ai jeté un coup d'oeil aux fichiers liés (qui ont été retirés) et j'avoue ne pas comprendre certaines parties. Par ailleurs, il n'y aucun détail sur ce qui aurait rendu
+cette tâche si hardue. J'ai remarqué qu'il avait codé (avant de retirer) le fichier lasp_orswot.erl dans le dossier /lasp/src mais je ne trouve pas l'équivalent, par exemple lasp_orset.erl dans le dossier /src. Je ne comprends pas pourquoi.
+Issue: https://github.com/lasp-lang/lasp/issues/35?fbclid=IwAR2_9HjD0-SR25ExL1BkexHvN7tJ5dMUT2HnhMRur6WvHIzGnSIyNehkRU8
+
+
+REMARQUES:
+Il y a plusieurs fichiers .erl dans lesquels apparaissent des strings tels que gcreupelandt/home/... (des path). 
+Ces fichiers seraient donc générés lors du build? Je pensais que tous les fichiers dans le dossier src avaient été codés manuellement.
+
+dag = graphe sans cycle
+
+
+Implémenter mon propre vector clock pour être sûr qu'il compte les bonnes choses et pas d'autres choses.
+
+
+
+Pour la semaine prochaine: (mardi 27 14h)
+
+Un script qui peut injecter une partition.
+Une fake application qui tournerait sur les nodes et génère des valeurs. Le plus paramétrable possible.
+Implémenter orswot sur base du orset.

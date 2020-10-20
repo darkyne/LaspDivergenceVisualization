@@ -1,0 +1,6 @@
+TODO:
+
+-Fake app qui peut run sur les nodes pour générer des valeurs et utiliser un CRDT.
+-Script permettant de simuler des partitions.
+-Implémentation du ORSWOT sur base du ORSET.
+
