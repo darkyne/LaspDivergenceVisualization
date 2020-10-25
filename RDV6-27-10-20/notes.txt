@@ -10,7 +10,7 @@ FAKE APP:
 Remarque: le node sur lequel on join aura tendance à converger plus vite que les autres.
 
 J'ai une fonction 			
-launchExperiment(ExperimentNumber, NodeToJoin, CRDT_Id, CRDT_Type, CRDT_Type_String, TotalNumberOfNodes, SendingSpeed, NumberOfValues, GeneratingUnderPartition)
+launchExperiment(ExperimentNumber, NodeToJoin, CRDT_Id, TotalNumberOfNodes, SendingSpeed, NumberOfValues, GeneratingUnderPartition)
 
 Voici sa spec:
 
@@ -19,8 +19,6 @@ Voici sa spec:
 %Specify a number for the experiment (used to write the result file)
 %Specify the node to join to create the cluster
 %Specify a CRDT_ID (format as <<"setX">>)
-%Specify a CRDT_Type (ex: state_orset)
-%Specify the CRDT_Type as a string (ex: "state_orset", it's used to write the result file)
 %Specify the Total Number of Nodes taking part of the experiment
 %Specify the Sending Speed (as the number of ms between each send, considering one node), 0 means the fastest possible
 %Specify the Number of Values each node will have to generate and send on the CRDT
@@ -59,4 +57,49 @@ Le fait de jouer sur le fait de join ou quit le cluster permet, je pense, de sim
 
 
 
+WHAT I HAVE:
+==================================================================================================================================
+==================================================================================================================================
+launchExperimentAdding:
 
+launchExperimentAdding(ExperimentNumber, NodeToJoin, CRDT_Id, TotalNumberOfNodes, SendingSpeed, NumberOfValues, GeneratingUnderPartition)
+
+On commence avec un aw_set vide.
+Tous les nodes vont ajouter des values dedans.
+On détecte lorsqu'un node a détecté l'ensemble des values.
+Ex: On a 10 nodes, chaque node produit 10 values, quand un node détecte 100 values, il a convergé.
+Mesure qu'on peut calculer et qui m'a l'air intéressante:
+le temps entre le moment où le node le plus lent a fini d'add ses 10 values et le moment où on détecte les 100 values.
+Avec les paramètres on peut jouer sur plusieurs facteurs.
+
+TODO: Permettre de faire un add_all ou des add normaux. En gros est-ce qu'on peut tout add d'un coup ou progressivement avec une certaine vitesse ?
+==================================================================================================================================
+==================================================================================================================================
+launchingExperimentRemoving:
+
+
+On commence avec un aw_set déjà rempli avec un nombre connu de values, ex 100values.
+Comment faire en sorte que tous les nodes commencent avec ce même CRDT déjà rempli?
+Idée1: 	Ils commencent tous par add les values. Ensuite on attend un certain temps ex:10secondes
+		Puis ils commencent à retirer les values. Exemple il y a 100 values 1,2,3,4,...100. Et chaque node va retire 10 values (ex node1 retire 1,2,3...10).
+		Et on détecte quand on a 0 values dans le set.
+		Ca peut être bien mais: 
+		-Il faut être sûr qu'ils aient tous convergés avant de commencer à retirer des valeurs. Sinon on pourrait avoir des adds et des removes et ça foutrait le bordel.
+		Régler ça: 	Attendre suffisemment de temps après avoir add les valeurs pour être sûr qu'ils ont tous convergé. Mais c'est pas ouf.
+					Add toutes les valeurs d'un coup. A voir si c'est possible d'add un grand nombre de valeurs d'un coup en un seul add. Pour ça: add_all plutôt que add
+					Le mieux: Hardcoder le set dès le début. Style: {state_awset, {[{"a", [{a, 2}]}],{[{a, 2}], []}}},
+				
+		-Il faut savoir quand le node le plus lent a finit de retirer ses 10 valeurs. C'est le temps entre ce moment et le moment où on détecte 0 valeurs qui est intéressant.
+		
+pareil que pour launchExperimentAdding permettre de retirer un par un ou tout d'un coup.
+
+
+
+PROBLEME ACTUEL:
+
+
+Comment faire pour lancer des experiences les unes derrières les autres?
+Car je dois attendre que l'expérience soit terminée sur TOUS les nodes pour pouvoir lancer l'expérience suivante.
+Afin d'éviter des décallages.
+Comment envoyer un signal style à tel moment vous démarez.
+Se baser sur erlang:system_time ?

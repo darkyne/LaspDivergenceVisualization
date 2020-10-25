@@ -37,8 +37,16 @@
 start(_StartType, _StartArgs) ->
     case lasp_sup:start_link() of
         {ok, Pid} ->
-			launchExperiment(1, 'node1@127.0.0.1', <<"set1">>, state_awset, "state_awset", 10, 10, 100, true),
-			%launchExperiment(ExperimentNumber, NodeToJoin, CRDT_Id, CRDT_Type, CRDT_Type_String, TotalNumberOfNodes, SendingSpeed, NumberOfValues, GeneratingUnderPartition)
+
+
+
+			launchExperimentAdding(1, 'node1@127.0.0.1', <<"set1">>, 5, true, 10, 100, false),
+			%launchExperimentAdding(ExperimentNumber, NodeToJoin, CRDT_Id, TotalNumberOfNodes, All_At_Once, SendingSpeed, NumberOfValues, GeneratingUnderPartition)
+			
+			timer:sleep(10000),
+
+			launchExperimentRemoving(2, 'node1@127.0.0.1', <<"set2">>, 5, true, 10, 100, false),
+			
 		    {ok, Pid};
 
         {error, Reason} ->
@@ -50,6 +58,9 @@ stop(_State) ->
     ok.
 
 
+%% ===================================================================
+%% launchExperimentAdding:
+%% ===================================================================
 
 
 %Launch an experiment for the current node
@@ -57,21 +68,29 @@ stop(_State) ->
 %Specify a number for the experiment (used to write the result file)
 %Specify the node to join to create the cluster
 %Specify a CRDT_ID (format as <<"setX">>)
-%Specify a CRDT_Type (ex: state_orset)
-%Specify the CRDT_Type as a string (ex: "state_orset", it's used to write the result file)
 %Specify the Total Number of Nodes taking part of the experiment
 %Specify the Sending Speed (as the number of ms between each send, considering one node), 0 means the fastest possible
 %Specify the Number of Values each node will have to generate and send on the CRDT
 %Specify (with a boolean) if you want the node to join the cluster then generate and send values. Or rather generate and send values on the isolated CRDT (as if it was under partition) then join.
+%Specify (with a boolean) if you want all the values to be added at once or gradually via All_At_Once. If set to false, it will use SendingSpeed to send gradually the values.
 % OUT:
 %The node will generate the number of values and send them, trying to achieve the specified Sending Speed.
 %It will join the cluster before or after sending the values based on GeneratingUnderPartition
 %The time required to generate and send the values, the time required after the generation to reach convergence and all the paramters are written to a file
 %The file name will be in the folder /lasp/Memoire/Mesures with the name Exp+ExperimentNumber+_Node+TheActualNodeId
-launchExperiment(ExperimentNumber, NodeToJoin, CRDT_Id, CRDT_Type, CRDT_Type_String, TotalNumberOfNodes, SendingSpeed, NumberOfValues, GeneratingUnderPartition) -> 
+launchExperimentAdding(ExperimentNumber, NodeToJoin, CRDT_Id, TotalNumberOfNodes, All_At_Once, SendingSpeed, NumberOfValues, GeneratingUnderPartition) -> 
+	%---------------------------------------	
 	%Little setup
+	%---------------------------------------
+	
 	Id = list_to_integer( lists:nth(2,string:split(lists:nth(1,string:split(atom_to_list(erlang:node()),"@")), "e")) ),
+	io:format("EXPERIMENT ~p ", [ExperimentNumber]),
+	io:format("Node ~p ~n", [Id]),
 	Threshold = (TotalNumberOfNodes*NumberOfValues),
+
+	%---------------------------------------	
+	%Join cluster before adding values
+	%---------------------------------------
 	case (GeneratingUnderPartition) of
 	false -> 
 		lasp_peer_service:join(NodeToJoin),
@@ -80,10 +99,18 @@ launchExperiment(ExperimentNumber, NodeToJoin, CRDT_Id, CRDT_Type, CRDT_Type_Str
 		ok
 	end,
 
+	%---------------------------------------	
+	%Generate Values
+	%---------------------------------------
+	CRDT_Type = state_awset,
+	CRDT_Type_String = "state_awset",	
 
 	lasp:declare({CRDT_Id, CRDT_Type}, CRDT_Type),
-	SendingTime = generateValues(CRDT_Id, NumberOfValues, 10*NumberOfValues, SendingSpeed,Id*10*NumberOfValues, CRDT_Type),
+	SendingTime = generateValues(CRDT_Id, NumberOfValues, 10*NumberOfValues, SendingSpeed,Id*10*NumberOfValues, CRDT_Type, All_At_Once),
 
+	%---------------------------------------	
+	%Or Join cluster after adding values
+	%---------------------------------------
 	case (GeneratingUnderPartition) of
 	true -> 
 		lasp_peer_service:join(NodeToJoin),
@@ -92,24 +119,37 @@ launchExperiment(ExperimentNumber, NodeToJoin, CRDT_Id, CRDT_Type, CRDT_Type_Str
 		ok
 	end,
 
-	%Start timer
+	%---------------------------------------	
+	%Start Timer for convergence
+	%---------------------------------------
+	io:format("Waiting for convergence... ~n"),
 	InitialTimer = erlang:system_time(1000),	
 	lasp:read({CRDT_Id, CRDT_Type}, {cardinality, Threshold}),	
 	ConvergedTimer = erlang:system_time(1000),
-	%End timer
+	%---------------------------------------	
+	%End Timer for convergence
+	%---------------------------------------
 
+	%---------------------------------------	
 	%Write to file
+	%---------------------------------------
 	EllapsedTime = ConvergedTimer - InitialTimer,
-	io:format("Correct number of values in the set reached! (~p values) ~n ", [Threshold]),
-	io:format("It took ~p milliseconds ~n", [EllapsedTime]),
-	generateFile(ExperimentNumber, Id, NodeToJoin, CRDT_Type_String, TotalNumberOfNodes, SendingSpeed, NumberOfValues, Threshold, EllapsedTime, GeneratingUnderPartition, SendingTime),
-	timer:sleep(1000). %Pause after finished experiment
+	io:format("Correct number of elements in the set reached! (~p elements) ~n", [Threshold]),
+	io:format("Convergence took ~p milliseconds ~n", [EllapsedTime]),
+	io:format("Writting output file ~n"),
+	io:format("Done. ~n"),
+	io:format("~n"),
+	generateFile(ExperimentNumber, Id, NodeToJoin, CRDT_Type_String, TotalNumberOfNodes, SendingSpeed, NumberOfValues, Threshold, EllapsedTime, GeneratingUnderPartition, SendingTime, All_At_Once).
 
 
+
+%% ===================================================================
+%% Helpers
+%% ===================================================================
 
 
 %Generate the file to save measurements
-generateFile (ExperimentNumber, Id, NodeToJoin, CRDT_Type_String, TotalNumberOfNodes, SendingSpeed, NumberOfValues, Threshold, EllapsedTime, GeneratingUnderPartition, SendingTime) ->
+generateFile (ExperimentNumber, Id, NodeToJoin, CRDT_Type_String, TotalNumberOfNodes, SendingSpeed, NumberOfValues, Threshold, EllapsedTime, GeneratingUnderPartition, SendingTime, All_At_Once) ->
 
 	{ok, File} = file:open("Memoire/Mesures/Exp"++integer_to_list(ExperimentNumber)++"_Node"++integer_to_list(Id), [write]),
 	case (GeneratingUnderPartition) of
@@ -119,8 +159,7 @@ generateFile (ExperimentNumber, Id, NodeToJoin, CRDT_Type_String, TotalNumberOfN
 		Partition = "false"
 	end,
 	ExperimentName = "Launching " ++integer_to_list(TotalNumberOfNodes) ++ " nodes at the same time, each generating a total of "
-							   ++integer_to_list(NumberOfValues)++ " values at the speed of one every "++integer_to_list(SendingSpeed) 
-							   ++ " ms (while under partition = " ++ Partition ++ ") " ++" then start timer and wait until all the values converged",
+							   ++integer_to_list(NumberOfValues)++  " values (while under partition = " ++ Partition ++ ") " ++" then start timer and wait until all the values converged",
 	io:format(File, "~s~n", [ExperimentName]),
 	io:format(File, "~s~n", [""]), 
 	io:format(File, "~s~n", ["============"]), 
@@ -138,7 +177,9 @@ generateFile (ExperimentNumber, Id, NodeToJoin, CRDT_Type_String, TotalNumberOfN
 	io:format(File, "~s~n", [integer_to_list(TotalNumberOfNodes)]),
 	io:format(File, "~s~n", ["Number of values generated by each node: "]),
 	io:format(File, "~s~n", [integer_to_list(NumberOfValues)]),
-	io:format(File, "~s~n", ["Theoretical time (ms) between each value sending, for each node: "]),
+	io:format(File, "~s~n", ["Sending all at once: "]),
+	io:format(File, "~s~n", [All_At_Once]),
+	io:format(File, "~s~n", ["Theoretical time (ms) between each value sending, for each node, valuable only if not sending all at once: "]),
 	io:format(File, "~s~n", [integer_to_list(SendingSpeed)]),
 	io:format(File, "~s~n", ["Time (ms) required (for this node) to generate and send all the values: "]),
 	io:format(File, "~s~n", [integer_to_list(SendingTime)]),
@@ -162,13 +203,19 @@ generateFile (ExperimentNumber, Id, NodeToJoin, CRDT_Type_String, TotalNumberOfN
 %% Period is the time in ms between each value generation
 %% Example: generateValues (10, 100, 1000) will generate a total of 10 values (numbers between 0 and 100) at speed of 1/sec
 
-generateValues(CRDT_Id, Limit, MaxValue, Period, Margin, CRDT_Type) ->
+generateValues(CRDT_Id, Limit, MaxValue, Period, Margin, CRDT_Type, All_At_Once) ->
 	io:format("Generating ~p values ~n", [Limit]),
-	Values = generateValues_helper1([0], Limit, MaxValue, Margin, 1),	
-	io:format("Adding these elements ~p ", [Values]),
-	io:format("at speed of one every ~p milliseconds ~n", [Period]),
 	StartSending = erlang:system_time(1000),
-	generateValues_helper2(CRDT_Id, Values, Period, 2, Limit, CRDT_Type), %start counter at 2 to avoid sending the initial 0
+	Values = generateValues_helper1([0], Limit, MaxValue, Margin, 1),	
+	case (All_At_Once) of
+	false ->
+		io:format("Adding the ~p generated elements, ", [Limit]),
+		io:format("at speed of one every ~p milliseconds ~n", [Period]);
+	true ->
+		io:format("Adding the ~p generated elements, ", [Limit]),
+		io:format("all at once ~n")
+	end,
+	generateValues_helper2(CRDT_Id, Values, Period, 2, Limit, CRDT_Type, All_At_Once), %start counter at 2 to avoid sending the initial 0
 	EndSending = erlang:system_time(1000),
 	RequiredTimeToSendDatas = EndSending - StartSending,
 	RequiredTimeToSendDatas.
@@ -191,14 +238,117 @@ generateValues_helper1 (Values, Limit, MaxValue, Margin, Counter) ->
 	end.
 
 %Helper2 to generate values (used to send them)
-generateValues_helper2(CRDT_Id, ValuesArray, PeriodMs, Counter, Limit, CRDT_Type) ->
-	if (Counter =< Limit+1) ->
-		CurrentValue = lists:nth(Counter, ValuesArray),
-		lasp:update({CRDT_Id, CRDT_Type}, {add, CurrentValue}, self()),
-		timer:sleep(PeriodMs),
-		generateValues_helper2(CRDT_Id, ValuesArray, PeriodMs, Counter+1, Limit, CRDT_Type);
+generateValues_helper2(CRDT_Id, ValuesArray, PeriodMs, Counter, Limit, CRDT_Type, All_At_Once) ->
+	case (All_At_Once) of
 	true -> 
-	io:format("Finished adding values to CRDT ~n")
+		lasp:update({CRDT_Id, CRDT_Type}, {add_all, ValuesArray}, self());
+	false ->
+		if (Counter =< Limit+1) ->
+			CurrentValue = lists:nth(Counter, ValuesArray),
+			lasp:update({CRDT_Id, CRDT_Type}, {add, CurrentValue}, self()),
+			timer:sleep(PeriodMs),
+			generateValues_helper2(CRDT_Id, ValuesArray, PeriodMs, Counter+1, Limit, CRDT_Type, All_At_Once);
+		true -> 
+			io:format("Finished adding values to CRDT ~n")
+		end
 	end.
+
+
+
+%% ===================================================================
+%% launchExperimentRemoving:
+%% ===================================================================
+
+launchExperimentRemoving(ExperimentNumber, NodeToJoin, CRDT_Id, TotalNumberOfNodes, All_At_Once, RemovingSpeed, NumberOfValues, RemovingUnderPartition) -> 
+	%---------------------------------------	
+	%Little setup (putting initial elements)
+	%---------------------------------------
+	Id = list_to_integer( lists:nth(2,string:split(lists:nth(1,string:split(atom_to_list(erlang:node()),"@")), "e")) ),
+	io:format("EXPERIMENT ~p ", [ExperimentNumber]),
+	io:format("Node ~p ~n", [Id]),
+	Threshold = 0,
+	CRDT_Type = state_awset,
+	CRDT_Type_String = "state_awset",	
+	ValuesArray = lists:seq(0, ((TotalNumberOfNodes*NumberOfValues)-1) ),  % Valeurs de 0 à XX9 dont les indices vont de 1 à 1XX
+	lasp:declare({CRDT_Id, CRDT_Type}, CRDT_Type),
+	lasp:update({CRDT_Id, CRDT_Type}, {add_all, ValuesArray}, <<04760>>), %They consider all the initial values are from the same actor, that way they start with exactly the same CRDT
+	io:format("Initial ~p values are set ~n", [TotalNumberOfNodes*NumberOfValues]),
+	%TODO: Ideally they should all be added by the same node not from "self()". Maybe check what is self and hardcode a similar value.
+
+	%---------------------------------------	
+	%Join cluster before removing values
+	%---------------------------------------
+	case (RemovingUnderPartition) of
+	false -> 
+		lasp_peer_service:join(NodeToJoin),
+		io:format("Clustering is done ~n");
+	true ->
+		ok
+	end,
+
+	%---------------------------------------	
+	%Removing values
+	%---------------------------------------
+	RemovingTime = removeValues(Id, CRDT_Id, CRDT_Type, NumberOfValues, All_At_Once, RemovingSpeed),
+	io:format("Removing values took ~p ms ~n", [RemovingTime]),
+	%---------------------------------------	
+	%Or Join cluster after removing values
+	%---------------------------------------
+	case (RemovingUnderPartition) of
+	true -> 
+		lasp_peer_service:join(NodeToJoin),
+		io:format("Clustering is done ~n");
+	false ->
+		ok
+	end,
+	
+	%---------------------------------------	
+	%Start Timer for convergence
+	%---------------------------------------
+	io:format("Waiting for convergence... ~n"),
+	InitialTimer = erlang:system_time(1000),	
+	lasp:read({CRDT_Id, CRDT_Type}, {cardinality, Threshold}),	%Ajouter une fonction dans state_awset pour cardinalityG et cardinalityS (bigger et smaller)
+	EndTimer = erlang:system_time(1000),
+	ConvergedTime = EndTimer - InitialTimer,
+	io:format("Correct number of elements in the set reached! (~p elements) ~n", [Threshold]),
+	io:format("Convergence took ~p ms ~n", [ConvergedTime]),
+	%---------------------------------------	
+	%End Timer for convergence
+	%---------------------------------------
+	io:format("CRDT_Type was : ~p ~n", [CRDT_Type_String]).
+
+
+%% ===================================================================
+%% Helpers
+%% ===================================================================
+
+removeValues(Id, CRDT_Id, CRDT_Type, NumberOfValues, All_At_Once, RemovingSpeed) ->
+	ValuesToRemove = lists:seq( (Id-1)*NumberOfValues , (Id*NumberOfValues)-1 ),
+	io:format("Removing unique ~p elements, ",[NumberOfValues]),
+	StartRemovingTime = erlang:system_time(1000),
+	case (All_At_Once) of
+	true -> 
+		io:format("all at once ~n"),
+		lasp:update({CRDT_Id, CRDT_Type}, {rmv_all, ValuesToRemove}, self());
+	false ->
+		io:format("at speed of one every ~p ms ~n", [RemovingSpeed]),
+		removeValues_helper(CRDT_Id, CRDT_Type, NumberOfValues, ValuesToRemove, RemovingSpeed, 1)
+	end,
+	EndRemovingTime = erlang:system_time(1000),
+	RemovingTime = EndRemovingTime - StartRemovingTime,
+	io:format("Removing elements is done ~n"),
+	RemovingTime.
+
+
+removeValues_helper(CRDT_Id, CRDT_Type, NumberOfValues ,ValuesToRemove, RemovingSpeed, Counter) ->
+	if (Counter =< NumberOfValues) ->
+		CurrentValue = lists:nth(Counter, ValuesToRemove),
+		lasp:update({CRDT_Id, CRDT_Type}, {rmv, CurrentValue}, self()),
+		timer:sleep(RemovingSpeed),
+		removeValues_helper(CRDT_Id, CRDT_Type, NumberOfValues ,ValuesToRemove, RemovingSpeed, Counter+1);
+	true ->
+		io:format("Finished removing values to CRDT ~n")
+	end.
+
 
 
