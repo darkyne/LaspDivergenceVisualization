@@ -95,11 +95,34 @@ pareil que pour launchExperimentAdding permettre de retirer un par un ou tout d'
 
 
 
-PROBLEME ACTUEL:
+PROBLEMES ACTUELS:
 
 
+1) Synchronization pour lancer les expériences
 Comment faire pour lancer des experiences les unes derrières les autres?
 Car je dois attendre que l'expérience soit terminée sur TOUS les nodes pour pouvoir lancer l'expérience suivante.
 Afin d'éviter des décallages.
 Comment envoyer un signal style à tel moment vous démarez.
 Se baser sur erlang:system_time ?
+
+2) Lecture des fichiers d'output et analyse
+Des conseils?
+Combien d'itérrations pour chaque expérience (pour des mêmes paramètres) ?
+Que calculer sur base des fichiers? Le temps de convergence, ok. Mais d'autres choses aussi ? (exemple essayer d'analyser l'utilisation réseau durant l'expérience via wireshard ou autre ?)
+Il faut que je m'informe vite fait aussi sur les statistiques, quelles formules utiliser et que calculer en plus de la moyenne (variance, écart type ?)
+
+
+3) Partition
+Le fait de join ou quit le cluster, est-ce approprié pour simuler une partition?
+
+4) Apps
+Comment spécifier quelle app lancer ?
+
+5) Modules
+Comment faire en sorte que mes fonctions launchExperiment soient export et puissent être appelées ailleurs?
+
+6) SSH
+Comment faire en sorte que mon script qui lance X nodes puisse en lancer Y depuis mon ordi et Z sur le raspberry pi ?
+
+
+
