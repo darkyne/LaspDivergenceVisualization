@@ -10,7 +10,7 @@ FAKE APP:
 Remarque: le node sur lequel on join aura tendance à converger plus vite que les autres.
 
 J'ai une fonction 			
-launchExperiment(ExperimentNumber, NodeToJoin, CRDT_Id, TotalNumberOfNodes, SendingSpeed, NumberOfValues, GeneratingUnderPartition)
+launchExperimentAdding(ExperimentNumber, NodeToJoin, CRDT_Id, TotalNumberOfNodes, All_At_Once, SendingSpeed, NumberOfValues, GeneratingUnderPartition)
 
 Voici sa spec:
 
@@ -23,6 +23,7 @@ Voici sa spec:
 %Specify the Sending Speed (as the number of ms between each send, considering one node), 0 means the fastest possible
 %Specify the Number of Values each node will have to generate and send on the CRDT
 %Specify (with a boolean) if you want the node to join the cluster then generate and send values. Or rather generate and send values on the isolated CRDT (as if it was under partition) then join.
+%Specify (with a boolean) if you want all the elements to be sent at once or gradually (if gradually, it will use SendingSpeed)
 % OUT:
 %The node will generate the number of values and send them, trying to achieve the specified Sending Speed.
 %It will join the cluster before or after sending the values based on GeneratingUnderPartition
@@ -53,7 +54,7 @@ Faire en sorte que ça ne fasse que du aw_set. Il n'y a pas besoin de considére
 Injection de partition:
 Je join avant de générer et envoyer les values pour faire qu'il n'y ai pas de partition.
 Je peux aussi générer et envoyer les values puis join, ce qui revient à être sous partition pendant l'envoi des données.
-Le fait de jouer sur le fait de join ou quit le cluster permet, je pense, de simuler une partition.
+Le fait de jouer sur le fait de join ou leave le cluster permet, je pense, de simuler une partition.
 
 
 
@@ -113,16 +114,56 @@ Il faut que je m'informe vite fait aussi sur les statistiques, quelles formules 
 
 
 3) Partition
-Le fait de join ou quit le cluster, est-ce approprié pour simuler une partition?
+Le fait de join ou leave le cluster, est-ce approprié pour simuler une partition? C'est ce que je fais pour l'instant.
 
 4) Apps
-Comment spécifier quelle app lancer ?
+Comment spécifier quelle app lancer ? Je pense que ce n'est pas compliqué, demande probablement juste un peu de configuration de certaines fichiers et mettre la bonne commande dans le terminal.
 
 5) Modules
-Comment faire en sorte que mes fonctions launchExperiment soient export et puissent être appelées ailleurs?
+Comment créer un module qui embarquerait mon code et pourrait être lancé ou non au lancement de lasp (comme les autres modules).
+Ce module pourrait export les fonctions de test pour qu'elles soient utilisées n'importe où.
 
 6) SSH
 Comment faire en sorte que mon script qui lance X nodes puisse en lancer Y depuis mon ordi et Z sur le raspberry pi ?
+
+
+
+Mesures utilisation réseau et mémoire du CRDT.
+Vérifier que la taille du CRDT n'augmente pas quand on ajoute et enlève des éléments.
+Regarder si je peux congestionner volontairement le réseau.
+
+Idéal:
+Ce serait sur le long terme d'avoir un graphe avec al vitesse du CRDT et la vitesse de convergence.
+Vitesse du CRDT étant le nombre de changement par seconde.
+
+
+Pour des données générées en continue:
+Monter (incrémenter) puis décrémenter et boucle sur une plage de valeurs propre à chaque node.
+
+
+
+RDV Suivant:
+Mardi prochain à 14h
+
+Avoir la fonction qui ajoute et retire. (pas que ajouter ou que retirer)
+Ajouter mesure du réseau et de la mémoire utisliée par le CRDT.
+Avoir un programme qui analyse les outputs.
+Résoudre le programme d'orchestrage (pour démarer les expériences en même temps).
+
+
+Idée pour orchestrage:
+Quand un node a fini l'expérience il le met dans un CRDT spécial.
+Tous les un certain unix time + 10secondes:
+	If tous les nodes ont finis (info connue via le CRDT spécial):
+		Do: Start experience suivante.
+
+Et première étape dans l'expérience serait de retirer dans le CRDT_special pour dire qu'on est occupé. Et à la fin de l'expérience, remettre dans le CRDT spécial. En gros avoir son ID dedans veut dire "JE suis dispo".
+Ca permet d'être sûr que tous les nodes ont finis avant de lancer l'expérience. Et pour lancer l'expérience, ça se base sur un unix time pour être sûr que ça lance en même temps.
+
+Genre:
+
+If (unixtime==X & EveryNodeFinished() ) 
+	Start xp2
 
 
 
