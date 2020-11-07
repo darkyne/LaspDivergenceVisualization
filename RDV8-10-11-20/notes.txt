@@ -1,0 +1,16 @@
+TO DO:
+
+Mesures:
+5nodes: +10,100,1000 -10,100,1000 OK
+10nodes: +10,100,1000 -10,100,1000
+20nodes: +10,100,1000 -10,100,1000
+
+Analyse:
+5nodes: +10,100,1000 -10,100,1000 OK
+10nodes: +10,100,1000 -10,100,1000
+20nodes: +10,100,1000 -10,100,1000
+
+Algorithme qui ajoute élément, attend time to leave, retire élément. A priori: loop: add element, remove element, query, print
+Savoir comment tourner un module en tâche de fond.
+Pour les mesures 20nodes, il faudra peut-être run sur le serveur UCL. A voir.
+
