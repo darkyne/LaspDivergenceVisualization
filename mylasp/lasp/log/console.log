@@ -30065,3 +30065,313 @@
 2020-11-07 13:47:02.087 [info] <0.477.0>@lasp_sup:divergence_child_specs:570 DivergenceServerEnabled: false
 2020-11-07 13:47:02.104 [info] <0.526.0>@lasp_ets_storage_backend:init:106 Backend initialized with pid: <0.526.0>
 2020-11-07 13:47:02.104 [info] <0.525.0>@lasp_storage_backend:init:121 Backend lasp_ets_storage_backend initialized: <0.526.0>
+2020-11-07 14:47:50.770 [info] <0.409.0>@partisan_config:init:61 Using node name: 'node6@192.168.1.39'
+2020-11-07 14:47:50.811 [info] <0.411.0>@partisan_config:get_node_address:235 Resolving "192.168.1.39"...
+2020-11-07 14:47:50.841 [info] <0.411.0>@partisan_config:get_node_address:238 Resolved "node6@192.168.1.39" to {192,168,1,39}
+2020-11-07 14:47:50.841 [info] <0.409.0>@partisan_config:get_node_address:255 Resolved "192.168.1.39" to {192,168,1,39}
+2020-11-07 14:47:51.106 [info] <0.409.0>@partisan_sup:init:66 Partisan listening on {192,168,1,39}:43897 listen_addrs: [#{ip => {192,168,1,39},port => 43897}]
+2020-11-07 14:47:51.167 [info] <0.461.0>@partisan_orchestration_backend:init:115 Not using container orchestration; disabling.
+2020-11-07 14:47:51.219 [info] <0.462.0>@partisan_config:seed:160 node 'node6@192.168.1.39' choosing random seed: {33570526,-576460746832144772,-576460752303423454}
+2020-11-07 14:47:51.454 [info] <0.465.0>@partisan_config:seed:160 node 'node6@192.168.1.39' choosing random seed: {33570526,-576460746832144772,-576460752303423454}
+2020-11-07 14:47:51.649 [info] <0.490.0>@lasp_sup:configure_defaults:219 Setting jitter: false
+2020-11-07 14:47:51.659 [info] <0.490.0>@lasp_sup:configure_defaults:224 Setting jitter percent: 1
+2020-11-07 14:47:51.664 [info] <0.490.0>@lasp_sup:configure_defaults:229 Setting event interval: 0
+2020-11-07 14:47:51.671 [info] <0.490.0>@lasp_sup:configure_defaults:234 Setting max events: 1000
+2020-11-07 14:47:51.674 [info] <0.490.0>@lasp_sup:configure_defaults:239 Setting extended logging: false
+2020-11-07 14:47:51.678 [info] <0.490.0>@lasp_sup:configure_defaults:244 Setting mailbox logging: false
+2020-11-07 14:47:51.682 [info] <0.490.0>@lasp_sup:configure_defaults:249 Setting operation mode: state_based
+2020-11-07 14:47:51.684 [info] <0.490.0>@lasp_sup:configure_defaults:254 Setting set type: orset
+2020-11-07 14:47:51.688 [info] <0.490.0>@lasp_sup:configure_defaults:267 Setting broadcast: false
+2020-11-07 14:47:51.764 [info] <0.490.0>@lasp_sup:init:88 Membership: false
+2020-11-07 14:47:51.771 [info] <0.490.0>@lasp_sup:init:106 Workflow: false
+2020-11-07 14:47:50.894 [info] <0.408.0>@partisan_config:init:61 Using node name: 'node9@192.168.1.39'
+2020-11-07 14:47:50.919 [info] <0.410.0>@partisan_config:get_node_address:235 Resolving "192.168.1.39"...
+2020-11-07 14:47:50.956 [info] <0.410.0>@partisan_config:get_node_address:238 Resolved "node9@192.168.1.39" to {192,168,1,39}
+2020-11-07 14:47:50.956 [info] <0.408.0>@partisan_config:get_node_address:255 Resolved "192.168.1.39" to {192,168,1,39}
+2020-11-07 14:47:51.138 [info] <0.408.0>@partisan_sup:init:66 Partisan listening on {192,168,1,39}:40891 listen_addrs: [#{ip => {192,168,1,39},port => 40891}]
+2020-11-07 14:47:51.175 [info] <0.460.0>@partisan_orchestration_backend:init:115 Not using container orchestration; disabling.
+2020-11-07 14:47:51.260 [info] <0.461.0>@partisan_config:seed:160 node 'node9@192.168.1.39' choosing random seed: {46218598,-576460746751560383,-576460752303423455}
+2020-11-07 14:47:51.459 [info] <0.464.0>@partisan_config:seed:160 node 'node9@192.168.1.39' choosing random seed: {46218598,-576460746751560383,-576460752303423455}
+2020-11-07 14:47:51.621 [info] <0.489.0>@lasp_sup:configure_defaults:219 Setting jitter: false
+2020-11-07 14:47:51.630 [info] <0.489.0>@lasp_sup:configure_defaults:224 Setting jitter percent: 1
+2020-11-07 14:47:51.635 [info] <0.489.0>@lasp_sup:configure_defaults:229 Setting event interval: 0
+2020-11-07 14:47:51.637 [info] <0.489.0>@lasp_sup:configure_defaults:234 Setting max events: 1000
+2020-11-07 14:47:51.640 [info] <0.489.0>@lasp_sup:configure_defaults:239 Setting extended logging: false
+2020-11-07 14:47:51.643 [info] <0.489.0>@lasp_sup:configure_defaults:244 Setting mailbox logging: false
+2020-11-07 14:47:51.645 [info] <0.489.0>@lasp_sup:configure_defaults:249 Setting operation mode: state_based
+2020-11-07 14:47:51.648 [info] <0.489.0>@lasp_sup:configure_defaults:254 Setting set type: orset
+2020-11-07 14:47:51.652 [info] <0.489.0>@lasp_sup:configure_defaults:267 Setting broadcast: false
+2020-11-07 14:47:51.757 [info] <0.489.0>@lasp_sup:init:88 Membership: false
+2020-11-07 14:47:51.759 [info] <0.489.0>@lasp_sup:init:106 Workflow: false
+2020-11-07 14:47:51.772 [info] <0.489.0>@lasp_sup:advertisement_counter_child_specs:388 AdClientEnabled: false
+2020-11-07 14:47:51.778 [info] <0.489.0>@lasp_sup:advertisement_counter_child_specs:421 AdServerEnabled: false
+2020-11-07 14:47:51.780 [info] <0.489.0>@lasp_sup:game_tournament_child_specs:451 TournClientEnabled: false
+2020-11-07 14:47:51.783 [info] <0.489.0>@lasp_sup:game_tournament_child_specs:470 TournServerEnabled: false
+2020-11-07 14:47:51.789 [info] <0.489.0>@lasp_sup:throughput_child_specs:493 ThroughputType: gset
+2020-11-07 14:47:51.794 [info] <0.489.0>@lasp_sup:throughput_child_specs:501 ThroughputClientEnabled: false
+2020-11-07 14:47:51.800 [info] <0.489.0>@lasp_sup:throughput_child_specs:520 ThroughputServerEnabled: false
+2020-11-07 14:47:51.806 [info] <0.489.0>@lasp_sup:divergence_child_specs:543 DivergenceType: gcounter
+2020-11-07 14:47:51.809 [info] <0.489.0>@lasp_sup:divergence_child_specs:551 DivergenceClientEnabled: false
+2020-11-07 14:47:51.811 [info] <0.489.0>@lasp_sup:divergence_child_specs:570 DivergenceServerEnabled: false
+2020-11-07 14:47:51.025 [info] <0.408.0>@partisan_config:init:61 Using node name: 'node10@192.168.1.39'
+2020-11-07 14:47:51.044 [info] <0.410.0>@partisan_config:get_node_address:235 Resolving "192.168.1.39"...
+2020-11-07 14:47:51.082 [info] <0.410.0>@partisan_config:get_node_address:238 Resolved "node10@192.168.1.39" to {192,168,1,39}
+2020-11-07 14:47:51.082 [info] <0.408.0>@partisan_config:get_node_address:255 Resolved "192.168.1.39" to {192,168,1,39}
+2020-11-07 14:47:51.261 [info] <0.408.0>@partisan_sup:init:66 Partisan listening on {192,168,1,39}:51771 listen_addrs: [#{ip => {192,168,1,39},port => 51771}]
+2020-11-07 14:47:51.314 [info] <0.460.0>@partisan_orchestration_backend:init:115 Not using container orchestration; disabling.
+2020-11-07 14:47:51.382 [info] <0.461.0>@partisan_config:seed:160 node 'node10@192.168.1.39' choosing random seed: {19251170,-576460746826675764,-576460752303423455}
+2020-11-07 14:47:51.653 [info] <0.464.0>@partisan_config:seed:160 node 'node10@192.168.1.39' choosing random seed: {19251170,-576460746826675764,-576460752303423455}
+2020-11-07 14:47:51.877 [info] <0.489.0>@lasp_sup:configure_defaults:219 Setting jitter: false
+2020-11-07 14:47:51.889 [info] <0.489.0>@lasp_sup:configure_defaults:224 Setting jitter percent: 1
+2020-11-07 14:47:51.891 [info] <0.489.0>@lasp_sup:configure_defaults:229 Setting event interval: 0
+2020-11-07 14:47:51.893 [info] <0.489.0>@lasp_sup:configure_defaults:234 Setting max events: 1000
+2020-11-07 14:47:51.901 [info] <0.489.0>@lasp_sup:configure_defaults:239 Setting extended logging: false
+2020-11-07 14:47:51.903 [info] <0.489.0>@lasp_sup:configure_defaults:244 Setting mailbox logging: false
+2020-11-07 14:47:51.905 [info] <0.489.0>@lasp_sup:configure_defaults:249 Setting operation mode: state_based
+2020-11-07 14:47:51.907 [info] <0.489.0>@lasp_sup:configure_defaults:254 Setting set type: orset
+2020-11-07 14:47:51.920 [info] <0.489.0>@lasp_sup:configure_defaults:267 Setting broadcast: false
+2020-11-07 14:47:51.111 [info] <0.409.0>@partisan_config:init:61 Using node name: 'node2@192.168.1.39'
+2020-11-07 14:47:51.121 [info] <0.411.0>@partisan_config:get_node_address:235 Resolving "192.168.1.39"...
+2020-11-07 14:47:51.161 [info] <0.411.0>@partisan_config:get_node_address:238 Resolved "node2@192.168.1.39" to {192,168,1,39}
+2020-11-07 14:47:51.161 [info] <0.409.0>@partisan_config:get_node_address:255 Resolved "192.168.1.39" to {192,168,1,39}
+2020-11-07 14:47:51.288 [info] <0.409.0>@partisan_sup:init:66 Partisan listening on {192,168,1,39}:54709 listen_addrs: [#{ip => {192,168,1,39},port => 54709}]
+2020-11-07 14:47:51.325 [info] <0.461.0>@partisan_orchestration_backend:init:115 Not using container orchestration; disabling.
+2020-11-07 14:47:51.399 [info] <0.462.0>@partisan_config:seed:160 node 'node2@192.168.1.39' choosing random seed: {18487003,-576460746593559543,-576460752303423455}
+2020-11-07 14:47:51.678 [info] <0.465.0>@partisan_config:seed:160 node 'node2@192.168.1.39' choosing random seed: {18487003,-576460746593559543,-576460752303423455}
+2020-11-07 14:47:51.947 [info] <0.490.0>@lasp_sup:configure_defaults:219 Setting jitter: false
+2020-11-07 14:47:51.956 [info] <0.490.0>@lasp_sup:configure_defaults:224 Setting jitter percent: 1
+2020-11-07 14:47:51.958 [info] <0.490.0>@lasp_sup:configure_defaults:229 Setting event interval: 0
+2020-11-07 14:47:51.969 [info] <0.490.0>@lasp_sup:configure_defaults:234 Setting max events: 1000
+2020-11-07 14:47:51.973 [info] <0.490.0>@lasp_sup:configure_defaults:239 Setting extended logging: false
+2020-11-07 14:47:51.977 [info] <0.490.0>@lasp_sup:configure_defaults:244 Setting mailbox logging: false
+2020-11-07 14:47:51.980 [info] <0.490.0>@lasp_sup:configure_defaults:249 Setting operation mode: state_based
+2020-11-07 14:47:51.983 [info] <0.490.0>@lasp_sup:configure_defaults:254 Setting set type: orset
+2020-11-07 14:47:51.988 [info] <0.490.0>@lasp_sup:configure_defaults:267 Setting broadcast: false
+2020-11-07 14:47:52.043 [info] <0.490.0>@lasp_sup:init:88 Membership: false
+2020-11-07 14:47:52.045 [info] <0.490.0>@lasp_sup:init:106 Workflow: false
+2020-11-07 14:47:52.054 [info] <0.490.0>@lasp_sup:advertisement_counter_child_specs:388 AdClientEnabled: false
+2020-11-07 14:47:52.059 [info] <0.490.0>@lasp_sup:advertisement_counter_child_specs:421 AdServerEnabled: false
+2020-11-07 14:47:52.061 [info] <0.490.0>@lasp_sup:game_tournament_child_specs:451 TournClientEnabled: false
+2020-11-07 14:47:52.063 [info] <0.490.0>@lasp_sup:game_tournament_child_specs:470 TournServerEnabled: false
+2020-11-07 14:47:52.066 [info] <0.490.0>@lasp_sup:throughput_child_specs:493 ThroughputType: gset
+2020-11-07 14:47:52.068 [info] <0.490.0>@lasp_sup:throughput_child_specs:501 ThroughputClientEnabled: false
+2020-11-07 14:47:52.071 [info] <0.490.0>@lasp_sup:throughput_child_specs:520 ThroughputServerEnabled: false
+2020-11-07 14:47:52.074 [info] <0.490.0>@lasp_sup:divergence_child_specs:543 DivergenceType: gcounter
+2020-11-07 14:47:52.080 [info] <0.490.0>@lasp_sup:divergence_child_specs:551 DivergenceClientEnabled: false
+2020-11-07 14:47:52.084 [info] <0.490.0>@lasp_sup:divergence_child_specs:570 DivergenceServerEnabled: false
+2020-11-07 14:47:51.265 [info] <0.409.0>@partisan_config:init:61 Using node name: 'node1@192.168.1.39'
+2020-11-07 14:47:51.298 [info] <0.411.0>@partisan_config:get_node_address:235 Resolving "192.168.1.39"...
+2020-11-07 14:47:51.333 [info] <0.411.0>@partisan_config:get_node_address:238 Resolved "node1@192.168.1.39" to {192,168,1,39}
+2020-11-07 14:47:51.333 [info] <0.409.0>@partisan_config:get_node_address:255 Resolved "192.168.1.39" to {192,168,1,39}
+2020-11-07 14:47:51.483 [info] <0.409.0>@partisan_sup:init:66 Partisan listening on {192,168,1,39}:60493 listen_addrs: [#{ip => {192,168,1,39},port => 60493}]
+2020-11-07 14:47:51.526 [info] <0.461.0>@partisan_orchestration_backend:init:115 Not using container orchestration; disabling.
+2020-11-07 14:47:51.587 [info] <0.462.0>@partisan_config:seed:160 node 'node1@192.168.1.39' choosing random seed: {119384327,-576460746311051223,-576460752303423455}
+2020-11-07 14:47:51.880 [info] <0.465.0>@partisan_config:seed:160 node 'node1@192.168.1.39' choosing random seed: {119384327,-576460746311051223,-576460752303423455}
+2020-11-07 14:47:52.053 [info] <0.490.0>@lasp_sup:configure_defaults:219 Setting jitter: false
+2020-11-07 14:47:52.061 [info] <0.490.0>@lasp_sup:configure_defaults:224 Setting jitter percent: 1
+2020-11-07 14:47:52.066 [info] <0.490.0>@lasp_sup:configure_defaults:229 Setting event interval: 0
+2020-11-07 14:47:52.076 [info] <0.490.0>@lasp_sup:configure_defaults:234 Setting max events: 1000
+2020-11-07 14:47:52.079 [info] <0.490.0>@lasp_sup:configure_defaults:239 Setting extended logging: false
+2020-11-07 14:47:52.081 [info] <0.490.0>@lasp_sup:configure_defaults:244 Setting mailbox logging: false
+2020-11-07 14:47:52.084 [info] <0.490.0>@lasp_sup:configure_defaults:249 Setting operation mode: state_based
+2020-11-07 14:47:52.094 [info] <0.490.0>@lasp_sup:configure_defaults:254 Setting set type: orset
+2020-11-07 14:47:52.098 [info] <0.490.0>@lasp_sup:configure_defaults:267 Setting broadcast: false
+2020-11-07 14:47:52.161 [info] <0.490.0>@lasp_sup:init:88 Membership: false
+2020-11-07 14:47:52.163 [info] <0.490.0>@lasp_sup:init:106 Workflow: false
+2020-11-07 14:47:52.171 [info] <0.490.0>@lasp_sup:advertisement_counter_child_specs:388 AdClientEnabled: false
+2020-11-07 14:47:52.176 [info] <0.490.0>@lasp_sup:advertisement_counter_child_specs:421 AdServerEnabled: false
+2020-11-07 14:47:52.179 [info] <0.490.0>@lasp_sup:game_tournament_child_specs:451 TournClientEnabled: false
+2020-11-07 14:47:52.181 [info] <0.490.0>@lasp_sup:game_tournament_child_specs:470 TournServerEnabled: false
+2020-11-07 14:47:52.183 [info] <0.490.0>@lasp_sup:throughput_child_specs:493 ThroughputType: gset
+2020-11-07 14:47:52.186 [info] <0.490.0>@lasp_sup:throughput_child_specs:501 ThroughputClientEnabled: false
+2020-11-07 14:47:52.188 [info] <0.490.0>@lasp_sup:throughput_child_specs:520 ThroughputServerEnabled: false
+2020-11-07 14:47:52.191 [info] <0.490.0>@lasp_sup:divergence_child_specs:543 DivergenceType: gcounter
+2020-11-07 14:47:52.194 [info] <0.490.0>@lasp_sup:divergence_child_specs:551 DivergenceClientEnabled: false
+2020-11-07 14:47:52.196 [info] <0.490.0>@lasp_sup:divergence_child_specs:570 DivergenceServerEnabled: false
+2020-11-07 14:47:52.231 [info] <0.539.0>@lasp_ets_storage_backend:init:106 Backend initialized with pid: <0.539.0>
+2020-11-07 14:47:52.231 [info] <0.538.0>@lasp_storage_backend:init:121 Backend lasp_ets_storage_backend initialized: <0.539.0>
+2020-11-07 14:47:51.310 [info] <0.408.0>@partisan_config:init:61 Using node name: 'node8@192.168.1.39'
+2020-11-07 14:47:51.348 [info] <0.410.0>@partisan_config:get_node_address:235 Resolving "192.168.1.39"...
+2020-11-07 14:47:51.367 [info] <0.410.0>@partisan_config:get_node_address:238 Resolved "node8@192.168.1.39" to {192,168,1,39}
+2020-11-07 14:47:51.367 [info] <0.408.0>@partisan_config:get_node_address:255 Resolved "192.168.1.39" to {192,168,1,39}
+2020-11-07 14:47:51.585 [info] <0.408.0>@partisan_sup:init:66 Partisan listening on {192,168,1,39}:43219 listen_addrs: [#{ip => {192,168,1,39},port => 43219}]
+2020-11-07 14:47:51.630 [info] <0.460.0>@partisan_orchestration_backend:init:115 Not using container orchestration; disabling.
+2020-11-07 14:47:51.685 [info] <0.461.0>@partisan_config:seed:160 node 'node8@192.168.1.39' choosing random seed: {88161898,-576460746315378749,-576460752303423454}
+2020-11-07 14:47:51.961 [info] <0.464.0>@partisan_config:seed:160 node 'node8@192.168.1.39' choosing random seed: {88161898,-576460746315378749,-576460752303423454}
+2020-11-07 14:47:52.185 [info] <0.489.0>@lasp_sup:configure_defaults:219 Setting jitter: false
+2020-11-07 14:47:52.192 [info] <0.489.0>@lasp_sup:configure_defaults:224 Setting jitter percent: 1
+2020-11-07 14:47:52.195 [info] <0.489.0>@lasp_sup:configure_defaults:229 Setting event interval: 0
+2020-11-07 14:47:52.198 [info] <0.489.0>@lasp_sup:configure_defaults:234 Setting max events: 1000
+2020-11-07 14:47:52.201 [info] <0.489.0>@lasp_sup:configure_defaults:239 Setting extended logging: false
+2020-11-07 14:47:52.204 [info] <0.489.0>@lasp_sup:configure_defaults:244 Setting mailbox logging: false
+2020-11-07 14:47:52.207 [info] <0.489.0>@lasp_sup:configure_defaults:249 Setting operation mode: state_based
+2020-11-07 14:47:52.210 [info] <0.489.0>@lasp_sup:configure_defaults:254 Setting set type: orset
+2020-11-07 14:47:52.214 [info] <0.489.0>@lasp_sup:configure_defaults:267 Setting broadcast: false
+2020-11-07 14:47:52.268 [info] <0.489.0>@lasp_sup:init:88 Membership: false
+2020-11-07 14:47:52.270 [info] <0.489.0>@lasp_sup:init:106 Workflow: false
+2020-11-07 14:47:52.279 [info] <0.489.0>@lasp_sup:advertisement_counter_child_specs:388 AdClientEnabled: false
+2020-11-07 14:47:52.283 [info] <0.489.0>@lasp_sup:advertisement_counter_child_specs:421 AdServerEnabled: false
+2020-11-07 14:47:52.285 [info] <0.489.0>@lasp_sup:game_tournament_child_specs:451 TournClientEnabled: false
+2020-11-07 14:47:52.287 [info] <0.489.0>@lasp_sup:game_tournament_child_specs:470 TournServerEnabled: false
+2020-11-07 14:47:52.290 [info] <0.489.0>@lasp_sup:throughput_child_specs:493 ThroughputType: gset
+2020-11-07 14:47:52.292 [info] <0.489.0>@lasp_sup:throughput_child_specs:501 ThroughputClientEnabled: false
+2020-11-07 14:47:52.301 [info] <0.489.0>@lasp_sup:throughput_child_specs:520 ThroughputServerEnabled: false
+2020-11-07 14:47:52.306 [info] <0.489.0>@lasp_sup:divergence_child_specs:543 DivergenceType: gcounter
+2020-11-07 14:47:52.309 [info] <0.489.0>@lasp_sup:divergence_child_specs:551 DivergenceClientEnabled: false
+2020-11-07 14:47:52.311 [info] <0.489.0>@lasp_sup:divergence_child_specs:570 DivergenceServerEnabled: false
+2020-11-07 14:47:51.404 [info] <0.408.0>@partisan_config:init:61 Using node name: 'node7@192.168.1.39'
+2020-11-07 14:47:51.434 [info] <0.410.0>@partisan_config:get_node_address:235 Resolving "192.168.1.39"...
+2020-11-07 14:47:51.445 [info] <0.410.0>@partisan_config:get_node_address:238 Resolved "node7@192.168.1.39" to {192,168,1,39}
+2020-11-07 14:47:51.445 [info] <0.408.0>@partisan_config:get_node_address:255 Resolved "192.168.1.39" to {192,168,1,39}
+2020-11-07 14:47:51.594 [info] <0.408.0>@partisan_sup:init:66 Partisan listening on {192,168,1,39}:57555 listen_addrs: [#{ip => {192,168,1,39},port => 57555}]
+2020-11-07 14:47:51.616 [info] <0.460.0>@partisan_orchestration_backend:init:115 Not using container orchestration; disabling.
+2020-11-07 14:47:51.711 [info] <0.461.0>@partisan_config:seed:160 node 'node7@192.168.1.39' choosing random seed: {14086501,-576460746400507808,-576460752303423454}
+2020-11-07 14:47:51.955 [info] <0.464.0>@partisan_config:seed:160 node 'node7@192.168.1.39' choosing random seed: {14086501,-576460746400507808,-576460752303423454}
+2020-11-07 14:47:52.137 [info] <0.489.0>@lasp_sup:configure_defaults:219 Setting jitter: false
+2020-11-07 14:47:52.143 [info] <0.489.0>@lasp_sup:configure_defaults:224 Setting jitter percent: 1
+2020-11-07 14:47:52.145 [info] <0.489.0>@lasp_sup:configure_defaults:229 Setting event interval: 0
+2020-11-07 14:47:52.150 [info] <0.489.0>@lasp_sup:configure_defaults:234 Setting max events: 1000
+2020-11-07 14:47:52.152 [info] <0.489.0>@lasp_sup:configure_defaults:239 Setting extended logging: false
+2020-11-07 14:47:52.154 [info] <0.489.0>@lasp_sup:configure_defaults:244 Setting mailbox logging: false
+2020-11-07 14:47:52.157 [info] <0.489.0>@lasp_sup:configure_defaults:249 Setting operation mode: state_based
+2020-11-07 14:47:52.160 [info] <0.489.0>@lasp_sup:configure_defaults:254 Setting set type: orset
+2020-11-07 14:47:52.166 [info] <0.489.0>@lasp_sup:configure_defaults:267 Setting broadcast: false
+2020-11-07 14:47:52.217 [info] <0.489.0>@lasp_sup:init:88 Membership: false
+2020-11-07 14:47:52.224 [info] <0.489.0>@lasp_sup:init:106 Workflow: false
+2020-11-07 14:47:52.233 [info] <0.489.0>@lasp_sup:advertisement_counter_child_specs:388 AdClientEnabled: false
+2020-11-07 14:47:52.238 [info] <0.489.0>@lasp_sup:advertisement_counter_child_specs:421 AdServerEnabled: false
+2020-11-07 14:47:52.241 [info] <0.489.0>@lasp_sup:game_tournament_child_specs:451 TournClientEnabled: false
+2020-11-07 14:47:52.243 [info] <0.489.0>@lasp_sup:game_tournament_child_specs:470 TournServerEnabled: false
+2020-11-07 14:47:52.245 [info] <0.489.0>@lasp_sup:throughput_child_specs:493 ThroughputType: gset
+2020-11-07 14:47:52.248 [info] <0.489.0>@lasp_sup:throughput_child_specs:501 ThroughputClientEnabled: false
+2020-11-07 14:47:52.250 [info] <0.489.0>@lasp_sup:throughput_child_specs:520 ThroughputServerEnabled: false
+2020-11-07 14:47:52.253 [info] <0.489.0>@lasp_sup:divergence_child_specs:543 DivergenceType: gcounter
+2020-11-07 14:47:52.256 [info] <0.489.0>@lasp_sup:divergence_child_specs:551 DivergenceClientEnabled: false
+2020-11-07 14:47:52.258 [info] <0.489.0>@lasp_sup:divergence_child_specs:570 DivergenceServerEnabled: false
+2020-11-07 14:47:52.301 [info] <0.538.0>@lasp_ets_storage_backend:init:106 Backend initialized with pid: <0.538.0>
+2020-11-07 14:47:52.301 [info] <0.537.0>@lasp_storage_backend:init:121 Backend lasp_ets_storage_backend initialized: <0.538.0>
+2020-11-07 14:47:51.416 [info] <0.408.0>@partisan_config:init:61 Using node name: 'node5@192.168.1.39'
+2020-11-07 14:47:51.444 [info] <0.410.0>@partisan_config:get_node_address:235 Resolving "192.168.1.39"...
+2020-11-07 14:47:51.485 [info] <0.410.0>@partisan_config:get_node_address:238 Resolved "node5@192.168.1.39" to {192,168,1,39}
+2020-11-07 14:47:51.486 [info] <0.408.0>@partisan_config:get_node_address:255 Resolved "192.168.1.39" to {192,168,1,39}
+2020-11-07 14:47:51.764 [info] <0.408.0>@partisan_sup:init:66 Partisan listening on {192,168,1,39}:49877 listen_addrs: [#{ip => {192,168,1,39},port => 49877}]
+2020-11-07 14:47:51.842 [info] <0.460.0>@partisan_orchestration_backend:init:115 Not using container orchestration; disabling.
+2020-11-07 14:47:51.927 [info] <0.461.0>@partisan_config:seed:160 node 'node5@192.168.1.39' choosing random seed: {123324364,-576460746232331791,-576460752303423455}
+2020-11-07 14:47:52.160 [info] <0.464.0>@partisan_config:seed:160 node 'node5@192.168.1.39' choosing random seed: {123324364,-576460746232331791,-576460752303423455}
+2020-11-07 14:47:52.288 [info] <0.489.0>@lasp_sup:configure_defaults:219 Setting jitter: false
+2020-11-07 14:47:52.293 [info] <0.489.0>@lasp_sup:configure_defaults:224 Setting jitter percent: 1
+2020-11-07 14:47:52.296 [info] <0.489.0>@lasp_sup:configure_defaults:229 Setting event interval: 0
+2020-11-07 14:47:52.298 [info] <0.489.0>@lasp_sup:configure_defaults:234 Setting max events: 1000
+2020-11-07 14:47:52.301 [info] <0.489.0>@lasp_sup:configure_defaults:239 Setting extended logging: false
+2020-11-07 14:47:52.303 [info] <0.489.0>@lasp_sup:configure_defaults:244 Setting mailbox logging: false
+2020-11-07 14:47:52.305 [info] <0.489.0>@lasp_sup:configure_defaults:249 Setting operation mode: state_based
+2020-11-07 14:47:52.308 [info] <0.489.0>@lasp_sup:configure_defaults:254 Setting set type: orset
+2020-11-07 14:47:52.312 [info] <0.489.0>@lasp_sup:configure_defaults:267 Setting broadcast: false
+2020-11-07 14:47:52.349 [info] <0.489.0>@lasp_sup:init:88 Membership: false
+2020-11-07 14:47:52.351 [info] <0.489.0>@lasp_sup:init:106 Workflow: false
+2020-11-07 14:47:52.357 [info] <0.489.0>@lasp_sup:advertisement_counter_child_specs:388 AdClientEnabled: false
+2020-11-07 14:47:52.360 [info] <0.489.0>@lasp_sup:advertisement_counter_child_specs:421 AdServerEnabled: false
+2020-11-07 14:47:52.362 [info] <0.489.0>@lasp_sup:game_tournament_child_specs:451 TournClientEnabled: false
+2020-11-07 14:47:52.363 [info] <0.489.0>@lasp_sup:game_tournament_child_specs:470 TournServerEnabled: false
+2020-11-07 14:47:52.365 [info] <0.489.0>@lasp_sup:throughput_child_specs:493 ThroughputType: gset
+2020-11-07 14:47:52.366 [info] <0.489.0>@lasp_sup:throughput_child_specs:501 ThroughputClientEnabled: false
+2020-11-07 14:47:52.368 [info] <0.489.0>@lasp_sup:throughput_child_specs:520 ThroughputServerEnabled: false
+2020-11-07 14:47:52.370 [info] <0.489.0>@lasp_sup:divergence_child_specs:543 DivergenceType: gcounter
+2020-11-07 14:47:52.371 [info] <0.489.0>@lasp_sup:divergence_child_specs:551 DivergenceClientEnabled: false
+2020-11-07 14:47:52.373 [info] <0.489.0>@lasp_sup:divergence_child_specs:570 DivergenceServerEnabled: false
+2020-11-07 14:47:52.393 [info] <0.538.0>@lasp_ets_storage_backend:init:106 Backend initialized with pid: <0.538.0>
+2020-11-07 14:47:52.393 [info] <0.537.0>@lasp_storage_backend:init:121 Backend lasp_ets_storage_backend initialized: <0.538.0>
+2020-11-07 14:47:51.519 [info] <0.408.0>@partisan_config:init:61 Using node name: 'node3@192.168.1.39'
+2020-11-07 14:47:51.545 [info] <0.410.0>@partisan_config:get_node_address:235 Resolving "192.168.1.39"...
+2020-11-07 14:47:51.567 [info] <0.410.0>@partisan_config:get_node_address:238 Resolved "node3@192.168.1.39" to {192,168,1,39}
+2020-11-07 14:47:51.567 [info] <0.408.0>@partisan_config:get_node_address:255 Resolved "192.168.1.39" to {192,168,1,39}
+2020-11-07 14:47:51.723 [info] <0.408.0>@partisan_sup:init:66 Partisan listening on {192,168,1,39}:37069 listen_addrs: [#{ip => {192,168,1,39},port => 37069}]
+2020-11-07 14:47:51.761 [info] <0.460.0>@partisan_orchestration_backend:init:115 Not using container orchestration; disabling.
+2020-11-07 14:47:51.848 [info] <0.461.0>@partisan_config:seed:160 node 'node3@192.168.1.39' choosing random seed: {32576084,-576460746460522741,-576460752303423455}
+2020-11-07 14:47:52.010 [info] <0.464.0>@partisan_config:seed:160 node 'node3@192.168.1.39' choosing random seed: {32576084,-576460746460522741,-576460752303423455}
+2020-11-07 14:47:52.161 [info] <0.489.0>@lasp_sup:configure_defaults:219 Setting jitter: false
+2020-11-07 14:47:52.168 [info] <0.489.0>@lasp_sup:configure_defaults:224 Setting jitter percent: 1
+2020-11-07 14:47:52.170 [info] <0.489.0>@lasp_sup:configure_defaults:229 Setting event interval: 0
+2020-11-07 14:47:52.172 [info] <0.489.0>@lasp_sup:configure_defaults:234 Setting max events: 1000
+2020-11-07 14:47:52.175 [info] <0.489.0>@lasp_sup:configure_defaults:239 Setting extended logging: false
+2020-11-07 14:47:52.178 [info] <0.489.0>@lasp_sup:configure_defaults:244 Setting mailbox logging: false
+2020-11-07 14:47:52.180 [info] <0.489.0>@lasp_sup:configure_defaults:249 Setting operation mode: state_based
+2020-11-07 14:47:52.182 [info] <0.489.0>@lasp_sup:configure_defaults:254 Setting set type: orset
+2020-11-07 14:47:52.187 [info] <0.489.0>@lasp_sup:configure_defaults:267 Setting broadcast: false
+2020-11-07 14:47:52.231 [info] <0.489.0>@lasp_sup:init:88 Membership: false
+2020-11-07 14:47:52.234 [info] <0.489.0>@lasp_sup:init:106 Workflow: false
+2020-11-07 14:47:52.244 [info] <0.489.0>@lasp_sup:advertisement_counter_child_specs:388 AdClientEnabled: false
+2020-11-07 14:47:52.248 [info] <0.489.0>@lasp_sup:advertisement_counter_child_specs:421 AdServerEnabled: false
+2020-11-07 14:47:52.251 [info] <0.489.0>@lasp_sup:game_tournament_child_specs:451 TournClientEnabled: false
+2020-11-07 14:47:52.253 [info] <0.489.0>@lasp_sup:game_tournament_child_specs:470 TournServerEnabled: false
+2020-11-07 14:47:52.255 [info] <0.489.0>@lasp_sup:throughput_child_specs:493 ThroughputType: gset
+2020-11-07 14:47:52.258 [info] <0.489.0>@lasp_sup:throughput_child_specs:501 ThroughputClientEnabled: false
+2020-11-07 14:47:52.260 [info] <0.489.0>@lasp_sup:throughput_child_specs:520 ThroughputServerEnabled: false
+2020-11-07 14:47:52.262 [info] <0.489.0>@lasp_sup:divergence_child_specs:543 DivergenceType: gcounter
+2020-11-07 14:47:52.264 [info] <0.489.0>@lasp_sup:divergence_child_specs:551 DivergenceClientEnabled: false
+2020-11-07 14:47:52.266 [info] <0.489.0>@lasp_sup:divergence_child_specs:570 DivergenceServerEnabled: false
+2020-11-07 14:47:52.297 [info] <0.538.0>@lasp_ets_storage_backend:init:106 Backend initialized with pid: <0.538.0>
+2020-11-07 14:47:52.297 [info] <0.537.0>@lasp_storage_backend:init:121 Backend lasp_ets_storage_backend initialized: <0.538.0>
+2020-11-07 14:47:51.648 [info] <0.408.0>@partisan_config:init:61 Using node name: 'node4@192.168.1.39'
+2020-11-07 14:47:51.670 [info] <0.410.0>@partisan_config:get_node_address:235 Resolving "192.168.1.39"...
+2020-11-07 14:47:51.695 [info] <0.410.0>@partisan_config:get_node_address:238 Resolved "node4@192.168.1.39" to {192,168,1,39}
+2020-11-07 14:47:51.695 [info] <0.408.0>@partisan_config:get_node_address:255 Resolved "192.168.1.39" to {192,168,1,39}
+2020-11-07 14:47:51.875 [info] <0.408.0>@partisan_sup:init:66 Partisan listening on {192,168,1,39}:55431 listen_addrs: [#{ip => {192,168,1,39},port => 55431}]
+2020-11-07 14:47:51.920 [info] <0.460.0>@partisan_orchestration_backend:init:115 Not using container orchestration; disabling.
+2020-11-07 14:47:51.958 [info] <0.461.0>@partisan_config:seed:160 node 'node4@192.168.1.39' choosing random seed: {24435378,-576460746061909442,-576460752303423487}
+2020-11-07 14:47:52.156 [info] <0.464.0>@partisan_config:seed:160 node 'node4@192.168.1.39' choosing random seed: {24435378,-576460746061909442,-576460752303423487}
+2020-11-07 14:47:52.318 [info] <0.489.0>@lasp_sup:configure_defaults:219 Setting jitter: false
+2020-11-07 14:47:52.322 [info] <0.489.0>@lasp_sup:configure_defaults:224 Setting jitter percent: 1
+2020-11-07 14:47:52.324 [info] <0.489.0>@lasp_sup:configure_defaults:229 Setting event interval: 0
+2020-11-07 14:47:52.326 [info] <0.489.0>@lasp_sup:configure_defaults:234 Setting max events: 1000
+2020-11-07 14:47:52.328 [info] <0.489.0>@lasp_sup:configure_defaults:239 Setting extended logging: false
+2020-11-07 14:47:52.330 [info] <0.489.0>@lasp_sup:configure_defaults:244 Setting mailbox logging: false
+2020-11-07 14:47:52.333 [info] <0.489.0>@lasp_sup:configure_defaults:249 Setting operation mode: state_based
+2020-11-07 14:47:52.335 [info] <0.489.0>@lasp_sup:configure_defaults:254 Setting set type: orset
+2020-11-07 14:47:52.339 [info] <0.489.0>@lasp_sup:configure_defaults:267 Setting broadcast: false
+2020-11-07 14:47:52.376 [info] <0.489.0>@lasp_sup:init:88 Membership: false
+2020-11-07 14:47:52.378 [info] <0.489.0>@lasp_sup:init:106 Workflow: false
+2020-11-07 14:47:52.383 [info] <0.489.0>@lasp_sup:advertisement_counter_child_specs:388 AdClientEnabled: false
+2020-11-07 14:47:52.386 [info] <0.489.0>@lasp_sup:advertisement_counter_child_specs:421 AdServerEnabled: false
+2020-11-07 14:47:52.388 [info] <0.489.0>@lasp_sup:game_tournament_child_specs:451 TournClientEnabled: false
+2020-11-07 14:47:52.390 [info] <0.489.0>@lasp_sup:game_tournament_child_specs:470 TournServerEnabled: false
+2020-11-07 14:47:52.391 [info] <0.489.0>@lasp_sup:throughput_child_specs:493 ThroughputType: gset
+2020-11-07 14:47:52.393 [info] <0.489.0>@lasp_sup:throughput_child_specs:501 ThroughputClientEnabled: false
+2020-11-07 14:47:52.395 [info] <0.489.0>@lasp_sup:throughput_child_specs:520 ThroughputServerEnabled: false
+2020-11-07 14:47:52.397 [info] <0.489.0>@lasp_sup:divergence_child_specs:543 DivergenceType: gcounter
+2020-11-07 14:47:52.398 [info] <0.489.0>@lasp_sup:divergence_child_specs:551 DivergenceClientEnabled: false
+2020-11-07 14:47:52.400 [info] <0.489.0>@lasp_sup:divergence_child_specs:570 DivergenceServerEnabled: false
+2020-11-07 14:47:52.417 [info] <0.538.0>@lasp_ets_storage_backend:init:106 Backend initialized with pid: <0.538.0>
+2020-11-07 14:47:52.417 [info] <0.537.0>@lasp_storage_backend:init:121 Backend lasp_ets_storage_backend initialized: <0.538.0>
+2020-11-07 14:47:51.786 [info] <0.490.0>@lasp_sup:advertisement_counter_child_specs:388 AdClientEnabled: false
+2020-11-07 14:47:51.795 [info] <0.490.0>@lasp_sup:advertisement_counter_child_specs:421 AdServerEnabled: false
+2020-11-07 14:47:51.799 [info] <0.490.0>@lasp_sup:game_tournament_child_specs:451 TournClientEnabled: false
+2020-11-07 14:47:51.804 [info] <0.490.0>@lasp_sup:game_tournament_child_specs:470 TournServerEnabled: false
+2020-11-07 14:47:51.808 [info] <0.490.0>@lasp_sup:throughput_child_specs:493 ThroughputType: gset
+2020-11-07 14:47:51.818 [info] <0.490.0>@lasp_sup:throughput_child_specs:501 ThroughputClientEnabled: false
+2020-11-07 14:47:51.820 [info] <0.490.0>@lasp_sup:throughput_child_specs:520 ThroughputServerEnabled: false
+2020-11-07 14:47:51.824 [info] <0.490.0>@lasp_sup:divergence_child_specs:543 DivergenceType: gcounter
+2020-11-07 14:47:51.827 [info] <0.490.0>@lasp_sup:divergence_child_specs:551 DivergenceClientEnabled: false
+2020-11-07 14:47:51.830 [info] <0.490.0>@lasp_sup:divergence_child_specs:570 DivergenceServerEnabled: false
+2020-11-07 14:47:51.910 [info] <0.539.0>@lasp_ets_storage_backend:init:106 Backend initialized with pid: <0.539.0>
+2020-11-07 14:47:51.911 [info] <0.538.0>@lasp_storage_backend:init:121 Backend lasp_ets_storage_backend initialized: <0.539.0>
+2020-11-07 14:47:51.907 [info] <0.538.0>@lasp_ets_storage_backend:init:106 Backend initialized with pid: <0.538.0>
+2020-11-07 14:47:51.908 [info] <0.537.0>@lasp_storage_backend:init:121 Backend lasp_ets_storage_backend initialized: <0.538.0>
+2020-11-07 14:47:52.037 [info] <0.489.0>@lasp_sup:init:88 Membership: false
+2020-11-07 14:47:52.041 [info] <0.489.0>@lasp_sup:init:106 Workflow: false
+2020-11-07 14:47:52.049 [info] <0.489.0>@lasp_sup:advertisement_counter_child_specs:388 AdClientEnabled: false
+2020-11-07 14:47:52.054 [info] <0.489.0>@lasp_sup:advertisement_counter_child_specs:421 AdServerEnabled: false
+2020-11-07 14:47:52.066 [info] <0.489.0>@lasp_sup:game_tournament_child_specs:451 TournClientEnabled: false
+2020-11-07 14:47:52.068 [info] <0.489.0>@lasp_sup:game_tournament_child_specs:470 TournServerEnabled: false
+2020-11-07 14:47:52.070 [info] <0.489.0>@lasp_sup:throughput_child_specs:493 ThroughputType: gset
+2020-11-07 14:47:52.072 [info] <0.489.0>@lasp_sup:throughput_child_specs:501 ThroughputClientEnabled: false
+2020-11-07 14:47:52.075 [info] <0.489.0>@lasp_sup:throughput_child_specs:520 ThroughputServerEnabled: false
+2020-11-07 14:47:52.077 [info] <0.489.0>@lasp_sup:divergence_child_specs:543 DivergenceType: gcounter
+2020-11-07 14:47:52.079 [info] <0.489.0>@lasp_sup:divergence_child_specs:551 DivergenceClientEnabled: false
+2020-11-07 14:47:52.082 [info] <0.489.0>@lasp_sup:divergence_child_specs:570 DivergenceServerEnabled: false
+2020-11-07 14:47:52.118 [info] <0.538.0>@lasp_ets_storage_backend:init:106 Backend initialized with pid: <0.538.0>
+2020-11-07 14:47:52.118 [info] <0.537.0>@lasp_storage_backend:init:121 Backend lasp_ets_storage_backend initialized: <0.538.0>
+2020-11-07 14:47:52.123 [info] <0.539.0>@lasp_ets_storage_backend:init:106 Backend initialized with pid: <0.539.0>
+2020-11-07 14:47:52.123 [info] <0.538.0>@lasp_storage_backend:init:121 Backend lasp_ets_storage_backend initialized: <0.539.0>
+2020-11-07 14:47:52.345 [info] <0.538.0>@lasp_ets_storage_backend:init:106 Backend initialized with pid: <0.538.0>
+2020-11-07 14:47:52.345 [info] <0.537.0>@lasp_storage_backend:init:121 Backend lasp_ets_storage_backend initialized: <0.538.0>

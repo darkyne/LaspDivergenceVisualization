@@ -1,4 +1,4 @@
-TO DO:
+DONE:
 
 Mesures:
 5nodes: +10,100,1000 -10,100,1000 OK
@@ -14,3 +14,13 @@ Algorithme qui ajoute élément, attend time to leave, retire élément. A prior
 Savoir comment tourner un module en tâche de fond.
 Pour les mesures 20nodes, il faudra peut-être run sur le serveur UCL. A voir.
 
+
+Finished:
+Mesures pour ADD et REMOVE.
+Finition script d'analyse.
+
+
+TODO:
+Algrithme qui add et remove avec un time to live.
+Comprendre comment lancer une application en tâche de fond (regarder comment c'est fait pr lancer partisan etc et se baser sur ce modèle).
+Savoir modifier la vitesse de convergence.
