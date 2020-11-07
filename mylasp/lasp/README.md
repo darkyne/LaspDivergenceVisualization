@@ -3,8 +3,8 @@ Lasp
 
 For general information about the original project, see https://github.com/lasp-lang/lasp
 
-#My Scripts
-###LaunchExp.sh
+# My Scripts
+### LaunchExp.sh
 Ce script permet de lancer un set d'expériences pour générer des mesures.
 Les dossiers et fichiers d'outputs seront automatiquement placés dans le dossier /Memoire/Mesures.
 Le script lancera un certain nombre d'expériences différentes, ces expériences (les fichiers lasp_app.erl) doivent être placés au préalable dans le dossier /Memoire/AppsToLaunch.
@@ -17,34 +17,34 @@ Veuillez lire la partie **Exemple concret** ci-dessous si vous souhaitez plus d'
 
 
 
-###clean_mesures.sh
+### clean_mesures.sh
 Ce script permet de supprimer les fichiers d'outputs qui ont été générés dans le dossier /Memoire/Mesures.
 
-###analyse.sh
+### analyse.sh
 Ce script permet de lancer l'analyse des fichiers d'outputs afin de générer des fichiers de résulstats qui sont automatiquement placés dans le dossier Results.
 A noter qu'il est conseillé d'utiliser ce script dans un environnement séparé afin d'éviter tout risque de corrompre de précédents résultats. C'est pourquoi il se trouve dans un dossier à part (appelé analyse).
 
-#Important folders
+# Important folders
 
-##src
+## src
 Contient les fichiers source de lasp.
 Contient notamment lasp_app.erl qui définit ce que fera le node à son lancement.
 Ce fichiers (lasp_app.erl) sera automatiquement remplacé par le fichier adéquat par le script LaunchExp.sh
 Contient également lasp_convergence_measure.erl qui implémente certaines fonctions permettant de réaliser des mesures.
 
-##Memoire
+## Memoire
 Ce dossier comporte 3 sous-dossier importants:
 
-###AppsToLaunch
+### AppsToLaunch
 Ce dossier contient les expériences (sous forme de lasp_app.erl) à lancer par le script LaunchExp.sh
 Autrement dit, pour lancer un set d'expériences différentes, il suffit de placer les bons fichiers dans ce dossier.
 Les expériences réalisées ou encore à réalisées sont déjà préréglées et disponnibles dans le dossier /Memoire/Saved_measures/CorrectMeasures/measures_info mais cela sera détaillé plus bas.
 
-###Mesures
+### Mesures
 Ce dossier contient les mesures qui viennent d'être réalisées (liées au dernier lancement du script).
 A noter qu'il peut être judicieux de sauvegarder ces données avant de relancer le script LaunchExp car ce dernier supprime automatiquement les précédentes mesures afin de ne pas mélanger les outputs des différentes expériences.
 
-###Saved_measures
+### Saved_measures
 Ce dossier a pour but de conserver les précédentes mesures qui ont déjà été correctement réalisées. Pour cela, il faut regarder dans le sous-dossier CorrectMeasures.
 Le sous-dossier **measures_info** donne des informations concernant le type d'expérience mené pour chaque set de données. Il contient notamment le fichier lasp_app.erl utilisé pour l'expérience.
 Autrement dit, pour relancer un set d'expériences (par exemple le premier), il suffit d'aller dans /Memoire/Saved_measured/CorrectMeasures/measures_info/info_saved_1 et de copier coller tout le contenu vers /Memoire/AppsToLaunch puis de lancer le script LaunchExp.sh. Cela chargera progressivement les fichiers lasp_app.erl et réalisera automatiquement les expériences. A noter que cela peut, selon le type d'expérience, prendra de nombreuses heures dû au nombre d'itération élevé par défaut.
@@ -52,7 +52,7 @@ Autrement dit, pour relancer un set d'expériences (par exemple le premier), il 
 Le sous-dossier **measures_datas** contient les données qui ont été sauvegardées pour de précédentes expériences. Les noms correspondent aux expériences repreises dans measures_info. A noter que si ces expériences ont  déjà été analysées, un dossier Results sera également présent donnant des informations statistiques.
 
 
-#Exemple concret
+# Exemple concret
 
 Prenons un exemple concret de lancement du script de mesures:
 Les expériences que vous voulez lancer doivent être placés au préalable dans le dossier /Memoire/AppsToLaunch. 
