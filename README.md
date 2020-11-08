@@ -1,24 +1,24 @@
 # Lasp Divergence Visualization
 
-#mylasp
+# mylasp
 Ce dossier contient l'implémentation de lasp, tirée de la page github officielle.
 A cela s'ajoute toutes mes modifications, nouveaux modules, scripts de test, etc.
 Voir readme dans le dossier pour plus de détails.
 
-#Analyse
+# Analyse
 Ce dossier contient mon script d'analyse de données ainsi que quelques exemples de données et de résultats.
 
-#Ressources
+# Ressources
 Ce dossier compote quelques documents et articles intéressants sur les CRDT en général ou sur Lasp.
 Certains documents utilisés (ou MOOC) ne sont pas disponnibles ici car assez lourds.
 
-#Uncompleted_measures
+# Uncompleted_measures
 Ce dossier contient quelques-unes de mes premières mesures.
 Ces dernières étaient généralement incomplètes ou non-significatives.
 Par exemple, il se peut qu'une des expériences concernée était trop longue par rapport à la plage temporelle accordée et n'a donc pas produit de résultats.
 Ces données ne sont donc pas déterminantes mais peuvent tout de même donner une idée de certains essais d'expériences.
 
-#Les RDV
+# Les RDV
 Chaque semaine, j'ai écrit un compte-rendu de ce que je réalisais chaque jour, progressivement.
 Chaque RDV s'est donc en partie basé sur des notes disponnibles dans le fichier notes.txt correspondant.
 Ces notes contiennent également un résumé de ce qui a été débattu pendant le rdv hebdomadaire.
