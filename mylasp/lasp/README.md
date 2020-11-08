@@ -11,6 +11,8 @@ Ce premier set d'expérience concerne la création de 5 nodes qui vont générer
 Plus de détails sur ces mesures, les paramètres utilisés, le nombre de valeurs générées, etc... Sont disponnibles directement dans les fichiers d'outputs.
 
 Bien entendu, il en va de même pour les scripts LaunchSet2.sh, LaunchSet3.sh, etc... Qui lancent chacun un set d'expériences différent dont les informations sont décrites dans /Memoire/Saved_measures/measures_info. 
+
+
 **IMPORTANT**: 
 Avant de lancer tout script, pensez à écrire votre adresse IPV4 dans le fichier "/Memoire/AppsToLaunch/IpAddress.txt". Bien-entendu, si vous souhaitez uniquement run des simulations locales sans rejoindre le cluster avec des appareils à distance, vous pouvez simplement entrer "127.0.0.1".
  Les fichiers d'outputs et de résults sont placés dans le dossier "/Memoire/Mesures". Si des fichiers précédemment générés vous sont importants, pensez donc à les sauvegarder ailleurs avant de lancer une nouvelle exécution car le script commence automatiquement par nettoyer le dossier "/Memoire/Mesures". 
