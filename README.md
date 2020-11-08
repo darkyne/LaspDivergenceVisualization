@@ -104,9 +104,11 @@ Scritp d'analyse achevé.
 Génération de mesures et d'analyse pour les cas:
 5nodes: add 10,100,1000 et remove 10,100,1000
 10nodes: add 10,100,1000 et remove 10,100,1000
-20nodes: add 10,100,1000 et remove 10,100,1000
+20nodes: add 10,100 et remove 10,100
 Accès à un serveur UCL 10 coeurs 10Go RAM.
 Mise au point d'un algorithme capable de run des mesures en tâche de fond.
+En cours: comprendre comment faire pour lancer cela en tâche de fond.
+
 
 
 

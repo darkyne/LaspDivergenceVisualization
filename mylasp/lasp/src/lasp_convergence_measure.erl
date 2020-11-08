@@ -38,10 +38,9 @@ launchExperimentAdding(ExperimentNumber, NodeToJoin, CRDT_Id, TotalNumberOfNodes
 	ExperimentStartTime = erlang:system_time(1000),
 	timer:sleep(1000), %start with a little sleep to allow NodeToJoin to be booted in case it is a bit slower than this node
 	Id = list_to_integer( lists:nth(2,string:split(lists:nth(1,string:split(atom_to_list(erlang:node()),"@")), "e")) ),
-	NetworkPath="Memoire/Mesures/Exp"++integer_to_list(ExperimentNumber)++"/Network/Node"++integer_to_list(Id)++".txt",
+	NetworkPath="Memoire/Mesures/Network/Node"++integer_to_list(Id)++".txt",
+	NetworkPath2="Memoire/Mesures/Network/Node"++integer_to_list(Id)++"_Final.txt",
 	file:write_file(NetworkPath,"NEW \n",[append]),
-	ets:new(mytable, [named_table, set]),
-	ets:insert(mytable, {exp, ExperimentNumber}),
 	CRDT_Type = state_awset,
 	CRDT_Type_String = "state_awset",
 	io:format("EXPERIMENT ~p ", [ExperimentNumber]),
@@ -87,12 +86,11 @@ launchExperimentAdding(ExperimentNumber, NodeToJoin, CRDT_Id, TotalNumberOfNodes
 	%Start Timer for convergence
 	%---------------------------------------
 	io:format("Waiting for convergence... ~n"),
-	InitialTimer = erlang:system_time(1000),
-	ets:new(start_table, [named_table, set]),
-	ets:insert(start_table, {start, InitialTimer}),	
+	InitialTimer = erlang:system_time(1000),	
 	lasp:read({CRDT_Id, CRDT_Type}, {cardinality, Threshold}),	
 	ConvergedTimer = erlang:system_time(1000),
-	ets:new(convergence_Table, [named_table, set]),
+	file:copy(NetworkPath, NetworkPath2),
+	
 	Final_CRDT_Size = erts_debug:flat_size(  lasp:query({CRDT_Id, CRDT_Type})  ),
 	io:format("Final CRDT size: ~p (words) ~n", [Final_CRDT_Size]),
 	%---------------------------------------	
@@ -115,7 +113,7 @@ launchExperimentAdding(ExperimentNumber, NodeToJoin, CRDT_Id, TotalNumberOfNodes
 	generateFileAdd(ExperimentNumber, Id, NodeToJoin, CRDT_Type_String, TotalNumberOfNodes, SendingSpeed, NumberOfValues, Threshold, EllapsedTime, GeneratingUnderPartition, SendingTime, All_At_Once, Initial_CRDT_Size, Final_CRDT_Size),
 	io:format("Done. ~n"),
 	io:format("~n"),
-	ets:delete(mytable),
+	file:delete(NetworkPath),
 	timer:sleep(15000), %wait before stopping.
 	partisan_peer_service:stop().
 
@@ -177,8 +175,8 @@ generateFileAdd (ExperimentNumber, Id, NodeToJoin, CRDT_Type_String, TotalNumber
 
 
 	%Network measure file
-	NetworkPath="Memoire/Mesures/Exp"++integer_to_list(ExperimentNumber)++"/Network/Node"++integer_to_list(Id)++".txt",
-	ReceivedMessages = count_line(NetworkPath)-1, %-1 because of the initial "NEW"
+	NetworkPath2="Memoire/Mesures/Network/Node"++integer_to_list(Id)++"_Final.txt",
+	ReceivedMessages = count_line(NetworkPath2)-1, %-1 because of the initial "NEW"
 	io:format("number of received messages ~p ~n", [ReceivedMessages]),
 	io:format(File, "~s~n", ["Number of message received before convergence : "]),
 	io:format(File, "~s~n", [integer_to_list(ReceivedMessages)]),
@@ -189,7 +187,7 @@ generateFileAdd (ExperimentNumber, Id, NodeToJoin, CRDT_Type_String, TotalNumber
 	io:format(File, "~s~n", ["======================================================================================="]),
 	io:format(File, "~s~n", [""]),
 	file:close(File),
-	file:delete(NetworkPath).
+	file:delete(NetworkPath2).
 	
 
 	
@@ -246,10 +244,9 @@ launchExperimentRemoving(ExperimentNumber, NodeToJoin, CRDT_Id, TotalNumberOfNod
 	ExperimentStartTime = erlang:system_time(1000),
 	timer:sleep(1000), %start with a little sleep to allow NodeToJoin to be booted in case it is a bit slower than this node
 	Id = list_to_integer( lists:nth(2,string:split(lists:nth(1,string:split(atom_to_list(erlang:node()),"@")), "e")) ),
-	NetworkPath="Memoire/Mesures/Exp"++integer_to_list(ExperimentNumber)++"/Network/Node"++integer_to_list(Id)++".txt",
+	NetworkPath="Memoire/Mesures/Network/Node"++integer_to_list(Id)++".txt",
+	NetworkPath2="Memoire/Mesures/Network/Node"++integer_to_list(Id)++"_Final.txt",
 	file:write_file(NetworkPath,"NEW \n",[append]),
-	ets:new(mytable, [named_table, set]),
-	ets:insert(mytable, {exp, ExperimentNumber}),
 	CRDT_Type = state_awset,
 	CRDT_Type_String = "state_awset",
 	case (Id) of
@@ -297,16 +294,14 @@ launchExperimentRemoving(ExperimentNumber, NodeToJoin, CRDT_Id, TotalNumberOfNod
 	%---------------------------------------
 	io:format("Waiting for convergence... ~n"),
 	InitialTimer = erlang:system_time(1000),
-	ets:new(start_table, [named_table, set]),
-	ets:insert(start_table, {start, InitialTimer}),	
 	lasp:read({CRDT_Id, CRDT_Type}, {cardinality, -1}),	%Ajouter une fonction dans state_awset pour cardinalityG et cardinalityS (bigger et smaller)
 	EndTimer = erlang:system_time(1000),
 	ConvergedTime = EndTimer - InitialTimer,
+	file:copy(NetworkPath, NetworkPath2),
 	io:format("Correct number of elements in the set reached! (~p elements) ~n", [Threshold]),
 	Final_CRDT_Size = erts_debug:flat_size(  lasp:query({CRDT_Id, CRDT_Type})  ),
 	io:format("Final CRDT size: ~p (words) ~n", [Final_CRDT_Size]),
 	io:format("Convergence took ~p ms ~n", [ConvergedTime]),
-	ets:new(convergence_Table, [named_table, set]),
 	%---------------------------------------	
 	%End Timer for convergence
 	%---------------------------------------
@@ -324,7 +319,7 @@ launchExperimentRemoving(ExperimentNumber, NodeToJoin, CRDT_Id, TotalNumberOfNod
 	generateFileRmv (ExperimentNumber, Id, NodeToJoin, CRDT_Type_String, TotalNumberOfNodes, RemovingSpeed, NumberOfValues, Threshold, ConvergedTime, RemovingUnderPartition, RemovingTime, All_At_Once, Initial_CRDT_Size, Final_CRDT_Size),
 	io:format("Done. ~n"),
 	io:format("~n"),
-	ets:delete(mytable),
+	file:delete(NetworkPath),
 	timer:sleep(15000), %wait before stopping.
 	partisan_peer_service:stop().
 
@@ -412,8 +407,8 @@ generateFileRmv (ExperimentNumber, Id, NodeToJoin, CRDT_Type_String, TotalNumber
 	io:format(File, "~s~n", [integer_to_list(EllapsedTime)]),
 	
 	%Network measure file
-	NetworkPath="Memoire/Mesures/Exp"++integer_to_list(ExperimentNumber)++"/Network/Node"++integer_to_list(Id)++".txt",
-	ReceivedMessages = count_line(NetworkPath)-1, %-1 because of the initial "NEW"
+	NetworkPath2="Memoire/Mesures/Network/Node"++integer_to_list(Id)++"_Final.txt",
+	ReceivedMessages = count_line(NetworkPath2)-1, %-1 because of the initial "NEW"
 	io:format("number of received messages ~p ~n", [ReceivedMessages]),
 	io:format(File, "~s~n", ["Number of message received before convergence : "]),
 	io:format(File, "~s~n", [integer_to_list(ReceivedMessages)]),
@@ -424,7 +419,7 @@ generateFileRmv (ExperimentNumber, Id, NodeToJoin, CRDT_Type_String, TotalNumber
 	io:format(File, "~s~n", ["======================================================================================="]),
 	io:format(File, "~s~n", [""]),
 	file:close(File),
-	file:delete(NetworkPath).
+	file:delete(NetworkPath2).
 
 
 
@@ -452,25 +447,10 @@ simpleAddition() ->
 %I must make it able to modify a global variable (related to this file)
 %That way I will be available to print information about it in the output file.
 messageReceived() ->
-	case (ets:whereis(convergence_Table)) of
-	undefined -> %Not converged yet, register messages
-		Id = list_to_integer( lists:nth(2,string:split(lists:nth(1,string:split(atom_to_list(erlang:node()),"@")), "e")) ),
-		[{_,ExperimentNumber}] = ets:lookup(mytable, exp),
-		Path="Memoire/Mesures/Exp"++integer_to_list(ExperimentNumber)++"/Network/Node"++integer_to_list(Id)++".txt",
-		case (ets:whereis(start_table)) of
-		undefined -> %Still adding/removing elements
-			Phrase1 = "Message received during addition/removal of elements.\n",
-			file:write_file(Path,Phrase1,[append]);
-		_ -> %message received during wait for convergence
-			[{_,StartTime}]=ets:lookup(start_table, start),
-			Duration = erlang:system_time(1000) - StartTime,
-			Phrase = "Message received after (ms) " ++ integer_to_list(Duration) ++"\n",
-			file:write_file(Path,Phrase,[append])
-		end;
-	_ ->
-		%Already converged, do nothing
-		ok
-	end.
+	Id = list_to_integer( lists:nth(2,string:split(lists:nth(1,string:split(atom_to_list(erlang:node()),"@")), "e")) ),
+	Path="Memoire/Mesures/Network/Node"++integer_to_list(Id)++".txt",
+	Phrase = "Message received \n",
+	file:write_file(Path,Phrase,[append]).
 
 
 created() ->

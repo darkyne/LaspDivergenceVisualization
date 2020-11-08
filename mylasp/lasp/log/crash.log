@@ -3410,3 +3410,225 @@
     stack_size: 27
     reductions: 214
   neighbours:
+2020-11-08 01:50:00 =SUPERVISOR REPORT====
+     Supervisor: {local,partisan_pool}
+     Context:    shutdown_error
+     Reason:     noproc
+     Offender:   [{pid,1},{id,{partisan_peer_service_server,undefined,undefined,undefined}},{mfargs,{partisan_peer_service_server,acceptor_init,undefined}},{restart_type,temporary},{shutdown,5000},{child_type,worker}]
+
+2020-11-08 02:00:00 =SUPERVISOR REPORT====
+     Supervisor: {local,partisan_pool}
+     Context:    shutdown_error
+     Reason:     noproc
+     Offender:   [{pid,1},{id,{partisan_peer_service_server,undefined,undefined,undefined}},{mfargs,{partisan_peer_service_server,acceptor_init,undefined}},{restart_type,temporary},{shutdown,5000},{child_type,worker}]
+
+2020-11-08 02:01:25 =CRASH REPORT====
+  crasher:
+    initial call: partisan_socket:init/1
+    pid: <0.446.0>
+    registered_name: []
+    exception exit: {eaddrinuse,[{gen_server,init_it,6,[{file,"gen_server.erl"},{line,358}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,249}]}]}
+    ancestors: [partisan_pool_sup,partisan_sup,<0.384.0>]
+    message_queue_len: 0
+    messages: []
+    links: [<0.444.0>]
+    dictionary: []
+    trap_exit: true
+    status: running
+    heap_size: 376
+    stack_size: 27
+    reductions: 953
+  neighbours:
+2020-11-08 02:01:25 =SUPERVISOR REPORT====
+     Supervisor: {local,partisan_pool_sup}
+     Context:    start_error
+     Reason:     eaddrinuse
+     Offender:   [{pid,undefined},{id,{partisan_socket,{192,168,1,39},32919}},{mfargs,{partisan_socket,start_link,[{192,168,1,39},32919]}},{restart_type,permanent},{shutdown,5000},{child_type,worker}]
+
+2020-11-08 02:01:25 =SUPERVISOR REPORT====
+     Supervisor: {local,partisan_sup}
+     Context:    start_error
+     Reason:     {shutdown,{failed_to_start_child,{partisan_socket,{192,168,1,39},32919},eaddrinuse}}
+     Offender:   [{pid,undefined},{id,partisan_pool_sup},{mfargs,{partisan_pool_sup,start_link,[]}},{restart_type,permanent},{shutdown,20000},{child_type,supervisor}]
+
+2020-11-08 02:01:25 =CRASH REPORT====
+  crasher:
+    initial call: application_master:init/4
+    pid: <0.383.0>
+    registered_name: []
+    exception exit: {{{error,{shutdown,{failed_to_start_child,partisan_pool_sup,{shutdown,{failed_to_start_child,{partisan_socket,{192,168,1,39},32919},eaddrinuse}}}}},{partisan_app,start,[normal,[]]}},[{application_master,init,4,[{file,"application_master.erl"},{line,138}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,249}]}]}
+    ancestors: [<0.382.0>]
+    message_queue_len: 0
+    messages: []
+    links: [<0.382.0>,<0.384.0>,<0.43.0>]
+    dictionary: []
+    trap_exit: true
+    status: running
+    heap_size: 610
+    stack_size: 27
+    reductions: 214
+  neighbours:
+2020-11-08 03:30:34 =SUPERVISOR REPORT====
+     Supervisor: {local,partisan_pool}
+     Context:    shutdown_error
+     Reason:     noproc
+     Offender:   [{pid,1},{id,{partisan_peer_service_server,undefined,undefined,undefined}},{mfargs,{partisan_peer_service_server,acceptor_init,undefined}},{restart_type,temporary},{shutdown,5000},{child_type,worker}]
+
+2020-11-08 03:33:48 =SUPERVISOR REPORT====
+     Supervisor: {local,partisan_pool}
+     Context:    shutdown_error
+     Reason:     noproc
+     Offender:   [{pid,1},{id,{partisan_peer_service_server,undefined,undefined,undefined}},{mfargs,{partisan_peer_service_server,acceptor_init,undefined}},{restart_type,temporary},{shutdown,5000},{child_type,worker}]
+
+2020-11-08 04:15:31 =SUPERVISOR REPORT====
+     Supervisor: {local,partisan_pool}
+     Context:    shutdown_error
+     Reason:     noproc
+     Offender:   [{pid,1},{id,{partisan_peer_service_server,undefined,undefined,undefined}},{mfargs,{partisan_peer_service_server,acceptor_init,undefined}},{restart_type,temporary},{shutdown,5000},{child_type,worker}]
+
+2020-11-08 04:20:25 =SUPERVISOR REPORT====
+     Supervisor: {local,partisan_pool}
+     Context:    shutdown_error
+     Reason:     noproc
+     Offender:   [{pid,1},{id,{partisan_peer_service_server,undefined,undefined,undefined}},{mfargs,{partisan_peer_service_server,acceptor_init,undefined}},{restart_type,temporary},{shutdown,5000},{child_type,worker}]
+
+2020-11-08 04:50:07 =SUPERVISOR REPORT====
+     Supervisor: {local,partisan_pool}
+     Context:    shutdown_error
+     Reason:     noproc
+     Offender:   [{pid,1},{id,{partisan_peer_service_server,undefined,undefined,undefined}},{mfargs,{partisan_peer_service_server,acceptor_init,undefined}},{restart_type,temporary},{shutdown,5000},{child_type,worker}]
+
+2020-11-08 04:54:13 =SUPERVISOR REPORT====
+     Supervisor: {local,partisan_pool}
+     Context:    shutdown_error
+     Reason:     noproc
+     Offender:   [{pid,1},{id,{partisan_peer_service_server,undefined,undefined,undefined}},{mfargs,{partisan_peer_service_server,acceptor_init,undefined}},{restart_type,temporary},{shutdown,5000},{child_type,worker}]
+
+2020-11-08 11:47:48 =ERROR REPORT====
+** Generic server <0.464.0> terminating 
+** Last message in was {tcp,#Port<0.68>,<<131,104,3,115,15,102,111,114,119,97,114,100,95,109,101,115,115,97,103,101,115,39,112,97,114,116,105,115,97,110,95,112,108,117,103,103,97,98,108,101,95,112,101,101,114,95,115,101,114,118,105,99,101,95,109,97,110,97,103,101,114,104,2,115,19,109,101,109,98,101,114,115,104,105,112,95,115,116,114,97,116,101,103,121,104,2,116,0,0,0,4,100,0,8,99,104,97,110,110,101,108,115,108,0,0,0,1,100,0,9,117,110,100,101,102,105,110,101,100,106,100,0,12,108,105,115,116,101,110,95,97,100,100,114,115,108,0,0,0,1,116,0,0,0,2,100,0,2,105,112,104,4,97,192,97,168,97,1,97,39,100,0,4,112,111,114,116,98,0,0,170,145,106,100,0,4,110,97,109,101,100,0,18,110,111,100,101,50,64,49,57,50,46,49,54,56,46,49,46,51,57,100,0,11,112,97,114,97,108,108,101,108,105,115,109,97,1,104,3,115,7,102,117,108,108,95,118,49,109,0,0,0,20,101,51,49,136,38,18,41,117,65,107,33,7,229,98,60,51,66,204,152,147,104,2,115,11,115,116,97,116,101,95,111,114,115,101,116,108,0,0,0,2,104,2,116,0,0,0,4,100,0,8,99,104,97,110,110,101,108,115,108,0,0,0,1,100,0,9,117,110,100,101,102,105,110,101,100,106,100,0,12,108,105,115,116,101,110,95,97,100,100,114,115,108,0,0,0,1,116,0,0,0,2,100,0,2,105,112,104,4,97,192,97,168,97,1,97,39,100,0,4,112,111,114,116,98,0,0,170,145,106,100,0,4,110,97,109,101,100,0,18,110,111,100,101,50,64,49,57,50,46,49,54,56,46,49,46,51,57,100,0,11,112,97,114,97,108,108,101,108,105,115,109,97,1,108,0,0,0,1,104,2,109,0,0,0,20,195,21,167,158,211,91,55,212,63,93,133,223,24,153,23,115,159,108,26,145,115,4,116,114,117,101,106,104,2,116,0,0,0,4,100,0,8,99,104,97,110,110,101,108,115,108,0,0,0,1,100,0,9,117,110,100,101,102,105,110,101,100,106,100,0,12,108,105,115,116,101,110,95,97,100,100,114,115,108,0,0,0,1,116,0,0,0,2,100,0,2,105,112,104,4,97,192,97,168,97,1,97,39,100,0,4,112,111,114,116,98,0,0,198,165,106,100,0,4,110,97,109,101,100,0,18,110,111,100,101,49,64,49,57,50,46,49,54,56,46,49,46,51,57,100,0,11,112,97,114,97,108,108,101,108,105,115,109,97,1,108,0,0,0,1,104,2,109,0,0,0,20,223,160,181,213,138,228,242,163,111,170,13,195,116,55,30,113,88,1,99,56,115,4,116,114,117,101,106,106>>}
+** When Server state == {state,{connection,#Port<0.68>,gen_tcp,inet,false},#Ref<0.391500081.2517893121.59541>}
+** Reason for termination ==
+** {badarg,[{ets,lookup,[mytable,exp],[]},{lasp_convergence_measure,messageReceived,0,[{file,"/home/gcreupelandt/Documents/MEMOIRE/LaspDivergenceVisualization/mylasp/lasp/src/lasp_convergence_measure.erl"},{line,458}]},{partisan_pluggable_peer_service_manager,receive_message,2,[{file,"/home/gcreupelandt/Documents/MEMOIRE/LaspDivergenceVisualization/lasp/_build/default/lib/partisan/src/partisan_pluggable_peer_service_manager.erl"},{line,261}]},{partisan_peer_service_server,handle_message,2,[{file,"/home/gcreupelandt/Documents/MEMOIRE/LaspDivergenceVisualization/lasp/_build/default/lib/partisan/src/partisan_peer_service_server.erl"},{line,160}]},{partisan_peer_service_server,handle_info,2,[{file,"/home/gcreupelandt/Documents/MEMOIRE/LaspDivergenceVisualization/lasp/_build/default/lib/partisan/src/partisan_peer_service_server.erl"},{line,91}]},{gen_server,try_dispatch,4,[{file,"gen_server.erl"},{line,637}]},{gen_server,handle_msg,6,[{file,"gen_server.erl"},{line,711}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,249}]}]}
+2020-11-08 11:47:48 =CRASH REPORT====
+  crasher:
+    initial call: partisan_peer_service_server:init/3
+    pid: <0.464.0>
+    registered_name: []
+    exception error: bad argument: [{ets,lookup,[mytable,exp],[]},{lasp_convergence_measure,messageReceived,0,[{file,"/home/gcreupelandt/Documents/MEMOIRE/LaspDivergenceVisualization/mylasp/lasp/src/lasp_convergence_measure.erl"},{line,458}]},{partisan_pluggable_peer_service_manager,receive_message,2,[{file,"/home/gcreupelandt/Documents/MEMOIRE/LaspDivergenceVisualization/lasp/_build/default/lib/partisan/src/partisan_pluggable_peer_service_manager.erl"},{line,261}]},{partisan_peer_service_server,handle_message,2,[{file,"/home/gcreupelandt/Documents/MEMOIRE/LaspDivergenceVisualization/lasp/_build/default/lib/partisan/src/partisan_peer_service_server.erl"},{line,160}]},{partisan_peer_service_server,handle_info,2,[{file,"/home/gcreupelandt/Documents/MEMOIRE/LaspDivergenceVisualization/lasp/_build/default/lib/partisan/src/partisan_peer_service_server.erl"},{line,91}]},{gen_server,try_dispatch,4,[{file,"gen_server.erl"},{line,637}]},{gen_server,handle_msg,6,[{file,"gen_server.erl"},{line,711}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,249}]}]
+    ancestors: [partisan_pool,partisan_pool_sup,partisan_sup,<0.400.0>]
+    message_queue_len: 0
+    messages: []
+    links: [<0.461.0>,#Port<0.68>]
+    dictionary: [{{partisan_peer_service_server,peer},'node2@192.168.1.39'},{{partisan_peer_service_server,ingress_delay},0}]
+    trap_exit: false
+    status: running
+    heap_size: 2586
+    stack_size: 27
+    reductions: 1539
+  neighbours:
+2020-11-08 11:47:48 =SUPERVISOR REPORT====
+     Supervisor: {local,partisan_pool}
+     Context:    child_terminated
+     Reason:     {badarg,[{ets,lookup,[mytable,exp],[]},{lasp_convergence_measure,messageReceived,0,[{file,"/home/gcreupelandt/Documents/MEMOIRE/LaspDivergenceVisualization/mylasp/lasp/src/lasp_convergence_measure.erl"},{line,458}]},{partisan_pluggable_peer_service_manager,receive_message,2,[{file,"/home/gcreupelandt/Documents/MEMOIRE/LaspDivergenceVisualization/lasp/_build/default/lib/partisan/src/partisan_pluggable_peer_service_manager.erl"},{line,261}]},{partisan_peer_service_server,handle_message,2,[{file,"/home/gcreupelandt/Documents/MEMOIRE/LaspDivergenceVisualization/lasp/_build/default/lib/partisan/src/partisan_peer_service_server.erl"},{line,160}]},{partisan_peer_service_server,handle_info,2,[{file,"/home/gcreupelandt/Documents/MEMOIRE/LaspDivergenceVisualization/lasp/_build/default/lib/partisan/src/partisan_peer_service_server.erl"},{line,91}]},{gen_server,try_dispatch,4,[{file,"gen_server.erl"},{line,637}]},{gen_server,handle_msg,6,[{file,"gen_server.erl"},{line,711}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,249}]}]}
+     Offender:   [{pid,<0.464.0>},{id,{partisan_peer_service_server,{{192,168,1,39},58395},{{192,168,1,39},50853},#Ref<0.391500081.2517893121.59511>}},{mfargs,{partisan_peer_service_server,acceptor_init,undefined}},{restart_type,temporary},{shutdown,5000},{child_type,worker}]
+
+2020-11-08 16:04:10 =CRASH REPORT====
+  crasher:
+    initial call: application_master:init/4
+    pid: <0.476.0>
+    registered_name: []
+    exception exit: {{bad_return,{{lasp_app,start,[normal,[]]},{'EXIT',{function_clause,[{lasp_partisan_peer_service,join,[<<"node1@192.168.1.39">>,true],[{file,"/home/gcreupelandt/Documents/MEMOIRE/LaspDivergenceVisualization/mylasp/lasp/src/lasp_partisan_peer_service.erl"},{line,48}]},{lasp_convergence_measure,launchExperimentAdding,8,[{file,"/home/gcreupelandt/Documents/MEMOIRE/LaspDivergenceVisualization/mylasp/lasp/src/lasp_convergence_measure.erl"},{line,55}]},{lasp_app,start,2,[{file,"/home/gcreupelandt/Documents/MEMOIRE/LaspDivergenceVisualization/mylasp/lasp/src/lasp_app.erl"},{line,44}]},{application_master,start_it_old,4,[{file,"application_master.erl"},{line,277}]}]}}}},[{application_master,init,4,[{file,"application_master.erl"},{line,138}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,249}]}]}
+    ancestors: [<0.475.0>]
+    message_queue_len: 1
+    messages: [{'EXIT',<0.477.0>,normal}]
+    links: [<0.475.0>,<0.43.0>]
+    dictionary: []
+    trap_exit: true
+    status: running
+    heap_size: 1598
+    stack_size: 27
+    reductions: 299
+  neighbours:
+2020-11-08 16:06:23 =CRASH REPORT====
+  crasher:
+    initial call: application_master:init/4
+    pid: <0.476.0>
+    registered_name: []
+    exception exit: {{bad_return,{{lasp_app,start,[normal,[]]},{'EXIT',{badarg,[{erlang,list_to_atom,[<<"node1@192.168.1.39">>],[]},{lasp_app,start,2,[{file,"/home/gcreupelandt/Documents/MEMOIRE/LaspDivergenceVisualization/mylasp/lasp/src/lasp_app.erl"},{line,43}]},{application_master,start_it_old,4,[{file,"application_master.erl"},{line,277}]}]}}}},[{application_master,init,4,[{file,"application_master.erl"},{line,138}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,249}]}]}
+    ancestors: [<0.475.0>]
+    message_queue_len: 1
+    messages: [{'EXIT',<0.477.0>,normal}]
+    links: [<0.475.0>,<0.43.0>]
+    dictionary: []
+    trap_exit: true
+    status: running
+    heap_size: 987
+    stack_size: 27
+    reductions: 238
+  neighbours:
+2020-11-08 16:06:48 =CRASH REPORT====
+  crasher:
+    initial call: application_master:init/4
+    pid: <0.476.0>
+    registered_name: []
+    exception exit: {{bad_return,{{lasp_app,start,[normal,[]]},{'EXIT',{badarg,[{erlang,list_to_atom,[<<"node1@192.168.1.39">>],[]},{lasp_app,start,2,[{file,"/home/gcreupelandt/Documents/MEMOIRE/LaspDivergenceVisualization/mylasp/lasp/src/lasp_app.erl"},{line,43}]},{application_master,start_it_old,4,[{file,"application_master.erl"},{line,277}]}]}}}},[{application_master,init,4,[{file,"application_master.erl"},{line,138}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,249}]}]}
+    ancestors: [<0.475.0>]
+    message_queue_len: 1
+    messages: [{'EXIT',<0.477.0>,normal}]
+    links: [<0.475.0>,<0.43.0>]
+    dictionary: []
+    trap_exit: true
+    status: running
+    heap_size: 987
+    stack_size: 27
+    reductions: 238
+  neighbours:
+2020-11-08 16:35:18 =ERROR REPORT====
+** Generic server partisan_pluggable_peer_service_manager terminating 
+** Last message in was {join,#{listen_addrs => {badrpc,nodedown},name => 'node1@192.168.1.39'}}
+** When Server state == {state,<<101,82,95,173,226,24,233,154,149,176,216,125,117,166,125,20,195,222,186,113>>,{dict,0,16,16,8,80,48,{[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]},{{[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]}}},[],[],[#{channels => [undefined],listen_addrs => [#{ip => {192,168,1,39},port => 36421}],name => 'node3@192.168.1.39',parallelism => 1}],{dict,0,16,16,8,80,48,{[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]},{{[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]}}},{dict,0,16,16,8,80,48,{[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]},{{[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]}}},[],{dict,0,16,16,8,80,48,{[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]},{{[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]}}},{dict,0,16,16,8,80,48,{[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]},{{[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]}}},{dict,0,16,16,8,80,48,{[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]},{{[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]}}},[],{dict,0,16,16,8,80,48,{[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]},{{[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]}}},partisan_full_membership_strategy,{full_v1,<<101,82,95,173,226,24,233,154,149,176,216,125,117,166,125,20,195,222,186,113>>,{state_orset,[{#{channels => [undefined],listen_addrs => [#{ip => {192,168,1,39},port => 36421}],name => 'node3@192.168.1.39',parallelism => 1},[{<<115,154,240,235,21,62,66,185,229,105,9,5,119,19,63,218,87,193,174,31>>,true}]}]}}}
+** Reason for termination ==
+** {function_clause,[{lists,foldl,[#Fun<partisan_util.1.120488044>,{dict,0,16,16,8,80,48,{[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]},{{[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]}}},{badrpc,nodedown}],[{file,"lists.erl"},{line,1262}]},{lists,foldl,3,[{file,"lists.erl"},{line,1263}]},{partisan_pluggable_peer_service_manager,internal_join,3,[{file,"/home/gcreupelandt/Documents/MEMOIRE/LaspDivergenceVisualization/lasp/_build/default/lib/partisan/src/partisan_pluggable_peer_service_manager.erl"},{line,1454}]},{partisan_pluggable_peer_service_manager,handle_call,3,[{file,"/home/gcreupelandt/Documents/MEMOIRE/LaspDivergenceVisualization/lasp/_build/default/lib/partisan/src/partisan_pluggable_peer_service_manager.erl"},{line,528}]},{gen_server,try_handle_call,4,[{file,"gen_server.erl"},{line,661}]},{gen_server,handle_msg,6,[{file,"gen_server.erl"},{line,690}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,249}]}]}
+** Client <0.477.0> stacktrace
+** [{gen,do_call,4,[{file,"gen.erl"},{line,167}]},{gen_server,call,3,[{file,"gen_server.erl"},{line,219}]},{lasp_convergence_measure,launchExperimentAdding,8,[{file,"/home/gcreupelandt/Documents/MEMOIRE/LaspDivergenceVisualization/mylasp/lasp/src/lasp_convergence_measure.erl"},{line,55}]},{lasp_app,start,2,[{file,"/home/gcreupelandt/Documents/MEMOIRE/LaspDivergenceVisualization/mylasp/lasp/src/lasp_app.erl"},{line,42}]},{application_master,start_it_old,4,[{file,"application_master.erl"},{line,277}]}]
+2020-11-08 16:35:18 =CRASH REPORT====
+  crasher:
+    initial call: partisan_pluggable_peer_service_manager:init/1
+    pid: <0.450.0>
+    registered_name: partisan_pluggable_peer_service_manager
+    exception error: {function_clause,[{lists,foldl,[#Fun<partisan_util.1.120488044>,{dict,0,16,16,8,80,48,{[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]},{{[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]}}},{badrpc,nodedown}],[{file,"lists.erl"},{line,1262}]},{lists,foldl,3,[{file,"lists.erl"},{line,1263}]},{partisan_pluggable_peer_service_manager,internal_join,3,[{file,"/home/gcreupelandt/Documents/MEMOIRE/LaspDivergenceVisualization/lasp/_build/default/lib/partisan/src/partisan_pluggable_peer_service_manager.erl"},{line,1454}]},{partisan_pluggable_peer_service_manager,handle_call,3,[{file,"/home/gcreupelandt/Documents/MEMOIRE/LaspDivergenceVisualization/lasp/_build/default/lib/partisan/src/partisan_pluggable_peer_service_manager.erl"},{line,528}]},{gen_server,try_handle_call,4,[{file,"gen_server.erl"},{line,661}]},{gen_server,handle_msg,6,[{file,"gen_server.erl"},{line,690}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,249}]}]}
+    ancestors: [partisan_sup,<0.396.0>]
+    message_queue_len: 2
+    messages: [connections,retransmit]
+    links: [<0.397.0>]
+    dictionary: [{rand_seed,{#{jump => #Fun<rand.24.53802439>,max => 288230376151711743,next => #Fun<rand.23.53802439>,type => exsplus},[104442862345719614|111725877777904790]}}]
+    trap_exit: true
+    status: running
+    heap_size: 4185
+    stack_size: 27
+    reductions: 2846
+  neighbours:
+2020-11-08 16:35:18 =SUPERVISOR REPORT====
+     Supervisor: {local,partisan_sup}
+     Context:    child_terminated
+     Reason:     {function_clause,[{lists,foldl,[#Fun<partisan_util.1.120488044>,{dict,0,16,16,8,80,48,{[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]},{{[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]}}},{badrpc,nodedown}],[{file,"lists.erl"},{line,1262}]},{lists,foldl,3,[{file,"lists.erl"},{line,1263}]},{partisan_pluggable_peer_service_manager,internal_join,3,[{file,"/home/gcreupelandt/Documents/MEMOIRE/LaspDivergenceVisualization/lasp/_build/default/lib/partisan/src/partisan_pluggable_peer_service_manager.erl"},{line,1454}]},{partisan_pluggable_peer_service_manager,handle_call,3,[{file,"/home/gcreupelandt/Documents/MEMOIRE/LaspDivergenceVisualization/lasp/_build/default/lib/partisan/src/partisan_pluggable_peer_service_manager.erl"},{line,528}]},{gen_server,try_handle_call,4,[{file,"gen_server.erl"},{line,661}]},{gen_server,handle_msg,6,[{file,"gen_server.erl"},{line,690}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,249}]}]}
+     Offender:   [{pid,<0.450.0>},{id,partisan_pluggable_peer_service_manager},{mfargs,{partisan_pluggable_peer_service_manager,start_link,[]}},{restart_type,permanent},{shutdown,5000},{child_type,worker}]
+
+2020-11-08 16:35:18 =CRASH REPORT====
+  crasher:
+    initial call: application_master:init/4
+    pid: <0.476.0>
+    registered_name: []
+    exception exit: {{bad_return,{{lasp_app,start,[normal,[]]},{'EXIT',{{function_clause,[{lists,foldl,[#Fun<partisan_util.1.120488044>,{dict,0,16,16,8,80,48,{[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]},{{[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]}}},{badrpc,nodedown}],[{file,"lists.erl"},{line,1262}]},{lists,foldl,3,[{file,"lists.erl"},{line,1263}]},{partisan_pluggable_peer_service_manager,internal_join,3,[{file,"/home/gcreupelandt/Documents/MEMOIRE/LaspDivergenceVisualization/lasp/_build/default/lib/partisan/src/partisan_pluggable_peer_service_manager.erl"},{line,1454}]},{partisan_pluggable_peer_service_manager,handle_call,3,[{file,"/home/gcreupelandt/Documents/MEMOIRE/LaspDivergenceVisualization/lasp/_build/default/lib/partisan/src/partisan_pluggable_peer_service_manager.erl"},{line,528}]},{gen_server,try_handle_call,4,[{file,"gen_server.erl"},{line,661}]},{gen_server,handle_msg,6,[{file,"gen_server.erl"},{line,690}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,249}]}]},{gen_server,call,[partisan_pluggable_peer_service_manager,{join,#{listen_addrs => {badrpc,nodedown},name => 'node1@192.168.1.39'}},infinity]}}}}},[{application_master,init,4,[{file,"application_master.erl"},{line,138}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,249}]}]}
+    ancestors: [<0.475.0>]
+    message_queue_len: 1
+    messages: [{'EXIT',<0.477.0>,normal}]
+    links: [<0.475.0>,<0.43.0>]
+    dictionary: []
+    trap_exit: true
+    status: running
+    heap_size: 1598
+    stack_size: 27
+    reductions: 196
+  neighbours:
