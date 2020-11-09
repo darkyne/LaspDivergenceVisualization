@@ -6,7 +6,8 @@
          launchExperimentRemoving/8,
 		 simpleAddition/0,
 		 messageReceived/0,
-		 created/0
+		 created/0,
+		 launchExperimentDynamic/5
          ]).
 
 
@@ -122,7 +123,7 @@ launchExperimentAdding(ExperimentNumber, NodeToJoin, CRDT_Id, TotalNumberOfNodes
 
 
 %% ===================================================================
-%% Helpers
+%% Helpers for LaunchExperimentAdding
 %% ===================================================================
 
 
@@ -325,7 +326,7 @@ launchExperimentRemoving(ExperimentNumber, NodeToJoin, CRDT_Id, TotalNumberOfNod
 
 
 %% ===================================================================
-%% Helpers
+%% Helpers for LaunchExperimentRemoving
 %% ===================================================================
 
 removeValues(Id, CRDT_Id, CRDT_Type, NumberOfValues, All_At_Once, RemovingSpeed) ->
@@ -422,6 +423,44 @@ generateFileRmv (ExperimentNumber, Id, NodeToJoin, CRDT_Type_String, TotalNumber
 	file:delete(NetworkPath2).
 
 
+
+%% ===================================================================
+%% launchExperimentDynamic:
+%% ===================================================================
+
+launchExperimentDynamic(ExperimentNumber, NodeToJoin, CRDT_Id, TotalNumberOfNodes, SendingSpeed) ->
+	io:format("Experiment ~p ~n",[ExperimentNumber]),
+	io:format("Number of nodes ~p ~n",[TotalNumberOfNodes]),
+	io:format("Sending speed ~p ~n",[SendingSpeed]),
+	timer:sleep(1000), %start with a little sleep to allow NodeToJoin to be booted in case it is a bit slower than this node
+	Id = list_to_integer( lists:nth(2,string:split(lists:nth(1,string:split(atom_to_list(erlang:node()),"@")), "e")) ),
+	lasp_peer_service:join(NodeToJoin),
+	MyRange = lists:seq( (Id-1)*1000 , (Id*1000)-1 ), %0-999, 1000-1999, 2000-2999,... Each node has its own range of 1000
+	StartingElements= lists:seq( ((Id-1)*1000)+500 , (Id*1000)-1 ), 
+	lasp:update({CRDT_Id, state_awset}, {add_all, StartingElements}, self() ), %CRDT already contains 500-999, 1500-1999, 2500-2999...
+	%Start=erlang:system_time(1000),
+	startLoop(MyRange, 0, CRDT_Id).
+	
+
+
+%% ===================================================================
+%% Helpers for launchExperimentDynamic:
+%% ===================================================================
+
+startLoop(Range,AddIndex, CRDT_Id) ->
+	RemoveIndex=(AddIndex+500) rem 1000,
+	ElementToAdd=lists:nth(AddIndex+1, Range), %Start with NextIndex=1 -> it had 500-999 and we add 0
+	ElementToRemove=lists:nth(RemoveIndex+1,Range), %Starting example: it had 500-999, we add 0 and remove 500.
+	io:format("Added element: ~p ~n", [ElementToAdd]),
+	io:format("Removed element: ~p ~n", [ElementToRemove]),
+	io:format("~n"),
+	lasp:update({CRDT_Id, state_awset}, {add, ElementToAdd}, self()),
+	lasp:update({CRDT_Id, state_awset}, {rmv, ElementToRemove}, self()),
+	timer:sleep(5),
+	
+	startLoop(Range, ((AddIndex+1) rem 1000), CRDT_Id).
+
+	
 
 
 %% ===================================================================

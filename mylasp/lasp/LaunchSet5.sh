@@ -10,7 +10,7 @@ initialNode=1
 localNodes=20
 iterations=50
 experiments=4
-duration=60
+duration=120
 
 #For local tets:
 #ipAddress=127.0.0.1

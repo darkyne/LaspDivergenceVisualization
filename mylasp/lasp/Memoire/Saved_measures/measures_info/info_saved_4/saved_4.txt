@@ -38,7 +38,11 @@ RESUME:
 
 Remove d'elements.
 10 nodes, tout est en all_at_once car la partie progressive donne des résultats useless.
-Cas analysés: 10,100,1000,5 000, 10 000 éléments en no-partition et en partition.
+Cas analysés: +100, +100, +1000 en no-partition et en partition.
+
+Remarque: pour les cas remove 1.000 le nombre de messages envoyés pour la partie "no-partition" n'est pas vraiment indicatif car le add_all qui précède dure très longtemps et on compte les messages durant toute cette période. Or le temps considéré pour le nombre de messages/sec ne compte pas cette période.
+Pour la partie nombe de messages/sec du cas 1.000, il vaut mieux regarer le cas avec partition (exp6).
+
 
 
 

@@ -69,7 +69,6 @@ do
 	echo "median is $convergence_median"
 	echo "convergence time median: $convergence_median" >> Results/${d%/*}.txt
 	
-	echo "initial size of the CRDT (with $initialNumberOfElements elements): $initialSize"
 	echo "initial size of the CRDT (with $initialNumberOfElements elements): $initialSize" >> Results/${d%/*}.txt
 	echo "final size of the CRDT (with $finalNumberOfElements elements): $finalSize" >> Results/${d%/*}.txt
 	

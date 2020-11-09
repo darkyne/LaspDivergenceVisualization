@@ -10,7 +10,7 @@ initialNode=1
 localNodes=10
 iterations=50
 experiments=6
-duration=60
+duration=200
 
 #For local tets:
 #ipAddress=127.0.0.1
@@ -56,7 +56,7 @@ echo "LAUNCHING THE NEW EXPERIMENTS SET"
 sleep $decalage #Wait initial decallage related to raspberry pi slow nodes booting
 
 
-for k in $(seq 5 1 "$experiments")  #number of different expriments
+for k in $(seq 1 1 "$experiments")  #number of different expriments
 do
 	
 	if [ $k = 5 ]

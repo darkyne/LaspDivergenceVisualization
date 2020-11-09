@@ -11,3 +11,9 @@ Run locally, 10nodes, add 10, 100, 1000 (no partition and partition) -> 6 experi
 
 Saved_4:
 Run locally, 10nodes, remove 10, 100, 1000 (no partition and partition) -> 6 experiments.
+
+Saved_5:
+Run locally, 20nodes, add 10, 100 (no partition and partition) -> 4 experiments.
+
+Saved_6:
+Run locally, 20nodes, remove 10, 100 (no partition and partition) -> 4 experiments.

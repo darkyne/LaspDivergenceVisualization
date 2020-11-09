@@ -6,9 +6,15 @@ Mesures:
 20nodes: +10,100,1000 -10,100,1000 Finalement +10,100 -10,100 car +1000/-1000 est trop lourd (add_all est très très lourd).
 
 Analyse:
-5nodes: +10,100,1000 -10,100,1000 OK
-10nodes: +10,100,1000 -10,100,1000
-20nodes: +10,100 -10,100
+5nodes:
++10,100,1000 OK 
+-10,100,1000 OK
+10nodes:
++10,100 OK
+-10,100 OK
+20nodes:
++10,100 OK
+-10,100 
 
 Algorithme qui ajoute élément, attend time to leave, retire élément. A priori: loop: add element, remove element, query, print
 Savoir comment tourner un module en tâche de fond.
@@ -18,10 +24,12 @@ Pour les mesures 20nodes, il faudra peut-être run sur le serveur UCL. A voir.
 Finished:
 Mesures pour ADD et REMOVE.
 Finition script d'analyse.
+Script d'analyse.
+Algo qui add et remove.
 
 
 TODO:
-Algrithme qui add et remove avec un time to live.
+Algrithme qui add et remove. OK Mais comment faire des mesures dessus ?
 Comprendre comment lancer une application en tâche de fond (regarder comment c'est fait pr lancer partisan etc et se baser sur ce modèle).
 Savoir modifier la vitesse de convergence.
 
@@ -32,6 +40,10 @@ Maintenant mon ventilateur fait un bruit de fou (fatigué). Il faut que je le re
 -MODIFIER message_received pour ne plus regarder dans ets. Mais plutôt: ajouter doffice dans fichier et c'est dans l'autre code (principal) qu'on copie colle le fichier ailleurs quand on a convergé. OK
 -MODIFIER le script pour qu'après chaque itération, il supprime les fichiers dans /network (au cas où). OK
 -TROUVER un moyen d'ajouter un nombre élevé d'éléments d'un coup. => OK pour 10nodes (200sec par itération). Pour 20 nodes, je me limiterai à 10 et 100 valeurs. OK
+
+EXPERIENCES:
+Il reste à run Set6 Exp1,2,3,4.
+
 
 
 
