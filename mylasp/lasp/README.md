@@ -3,8 +3,21 @@ Lasp
 
 For general information about the original project, see https://github.com/lasp-lang/lasp
 
-# My Scripts
-### LaunchSet1.sh
+
+# Important folders
+
+## src
+Contient les fichiers source de lasp.
+Contient notamment lasp_app.erl qui définit ce que fera le node à son lancement.
+Ce fichiers (lasp_app.erl) sera automatiquement remplacé par le fichier adéquat par le script LaunchExp.sh
+Contient également lasp_convergence_measure.erl qui implémente certaines fonctions permettant de réaliser des mesures.
+
+## Memoire
+Ce dossier comporte 4 sous-dossier importants: MyScripts, AppsToLaunch, Mesures et Saved_measures.
+
+### MyScripts
+
+#### LaunchSet1.sh
 Ce script permet de lancer le premier set d'expériences pour générer des fichiers de mesures.
 Tout est automatisé et les fichiers d'outputs seront placés dans le dossier Memoire/Mesures. Les résultats (compte-rendu basé sur l'analyse des fichiers d'outputs) seront placés dans le dossier Memoire/Mesures/Results.
 Ce premier set d'expérience concerne la création de 5 nodes qui vont générer des éléments et les ajouter dans un CRDT (awset) et mesurer le temps requis pour que le système ai convergé.
@@ -18,24 +31,16 @@ Avant de lancer tout script, pensez à écrire votre adresse IPV4 dans le fichie
  Les fichiers d'outputs et de résults sont placés dans le dossier "/Memoire/Mesures". Si des fichiers précédemment générés vous sont importants, pensez donc à les sauvegarder ailleurs avant de lancer une nouvelle exécution car le script commence automatiquement par nettoyer le dossier "/Memoire/Mesures". 
 
 
-### clean_mesures.sh
+#### clean_mesures.sh
 Ce script permet de supprimer les fichiers d'outputs qui ont été générés dans le dossier /Memoire/Mesures.
 Il peut être lancé manuellement si vous le souhaitez mais, dans tous les cas, il est automatiquement exécuté lors de l'éxécution de nouvelles mesures.
 
-### analyse.sh
+#### analyse.sh
 Ce script permet de lancer l'analyse des fichiers d'outputs afin de générer des fichiers de résulstats qui sont automatiquement placés dans le dossier Results.
 A noter qu'il est conseillé d'utiliser ce script dans un environnement séparé afin d'éviter tout risque de corrompre de précédents résultats. C'est pourquoi il se trouve dans un dossier à part (appelé analyse).
 
-# Important folders
-
-## src
-Contient les fichiers source de lasp.
-Contient notamment lasp_app.erl qui définit ce que fera le node à son lancement.
-Ce fichiers (lasp_app.erl) sera automatiquement remplacé par le fichier adéquat par le script LaunchExp.sh
-Contient également lasp_convergence_measure.erl qui implémente certaines fonctions permettant de réaliser des mesures.
-
-## Memoire
-Ce dossier comporte 3 sous-dossier importants:
+#### LaunchBasicNode
+Il s'agit d'un script très simple qui lance un node lasp local (127.0.0.1) sans tâche particulière à effectuer, permettant donc à l'utilisateur d'intéragir directement dedans.
 
 ### AppsToLaunch
 Ce dossier contient les expériences (sous forme de lasp_app.erl) à lancer par le script LaunchExp.sh

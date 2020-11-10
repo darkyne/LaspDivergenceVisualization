@@ -428,10 +428,10 @@ generateFileRmv (ExperimentNumber, Id, NodeToJoin, CRDT_Type_String, TotalNumber
 %% launchExperimentDynamic:
 %% ===================================================================
 
-launchExperimentDynamic(ExperimentNumber, NodeToJoin, CRDT_Id, TotalNumberOfNodes, SendingSpeed) ->
+launchExperimentDynamic(ExperimentNumber, NodeToJoin, CRDT_Id, TotalNumberOfNodes, SendingPeriod) ->
 	io:format("Experiment ~p ~n",[ExperimentNumber]),
 	io:format("Number of nodes ~p ~n",[TotalNumberOfNodes]),
-	io:format("Sending speed ~p ~n",[SendingSpeed]),
+	io:format("Sending period ~p ~n",[SendingPeriod]),
 	timer:sleep(1000), %start with a little sleep to allow NodeToJoin to be booted in case it is a bit slower than this node
 	Id = list_to_integer( lists:nth(2,string:split(lists:nth(1,string:split(atom_to_list(erlang:node()),"@")), "e")) ),
 	lasp_peer_service:join(NodeToJoin),
@@ -439,7 +439,7 @@ launchExperimentDynamic(ExperimentNumber, NodeToJoin, CRDT_Id, TotalNumberOfNode
 	StartingElements= lists:seq( ((Id-1)*1000)+500 , (Id*1000)-1 ), 
 	lasp:update({CRDT_Id, state_awset}, {add_all, StartingElements}, self() ), %CRDT already contains 500-999, 1500-1999, 2500-2999...
 	%Start=erlang:system_time(1000),
-	startLoop(MyRange, 0, CRDT_Id).
+	startLoop(MyRange, 0, CRDT_Id, SendingPeriod).
 	
 
 
@@ -447,7 +447,7 @@ launchExperimentDynamic(ExperimentNumber, NodeToJoin, CRDT_Id, TotalNumberOfNode
 %% Helpers for launchExperimentDynamic:
 %% ===================================================================
 
-startLoop(Range,AddIndex, CRDT_Id) ->
+startLoop(Range,AddIndex, CRDT_Id, SendingPeriod) ->
 	RemoveIndex=(AddIndex+500) rem 1000,
 	ElementToAdd=lists:nth(AddIndex+1, Range), %Start with NextIndex=1 -> it had 500-999 and we add 0
 	ElementToRemove=lists:nth(RemoveIndex+1,Range), %Starting example: it had 500-999, we add 0 and remove 500.
@@ -456,9 +456,9 @@ startLoop(Range,AddIndex, CRDT_Id) ->
 	io:format("~n"),
 	lasp:update({CRDT_Id, state_awset}, {add, ElementToAdd}, self()),
 	lasp:update({CRDT_Id, state_awset}, {rmv, ElementToRemove}, self()),
-	timer:sleep(5),
+	timer:sleep(SendingPeriod),
 	
-	startLoop(Range, ((AddIndex+1) rem 1000), CRDT_Id).
+	startLoop(Range, ((AddIndex+1) rem 1000), CRDT_Id, SendingPeriod).
 
 	
 
