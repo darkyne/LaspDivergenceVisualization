@@ -57,7 +57,3 @@ Le sous-dossier **measures_info** donne des informations concernant le type d'ex
 
 Le sous-dossier **measures_datas** contient les données qui ont été sauvegardées pour de précédentes expériences. Les noms correspondent aux expériences reprises dans measures_info et coïncident avec les sets d'expériences des différents scripts. A noter que si ces expériences ont déjà été analysées, un dossier Results sera également présent donnant des informations statistiques.
 
-
-## REMARQUE
-Si vous ne souhaitez pas lancer un script automatisé mais un simple node lasp afin de réaliser des tests manuels, il vous faut alors supprimer le fichier "/src/lasp_app.erl" et placer le fichier "/Basic_node/lasp_app.erl" dans le dossier "/src" afin de remplacer le fichier supprimé.
-Ainsi, il ne vous reste plus qu'à ouvrir dans terminal dans le dossier "/lasp " et d'entrer la commande: " rebar3 shell --name node1@127.0.0.1 ". Bien-entendu, vous pouvez utiliser un autre nom de node ou une réelle adresse Ip. Veuillez noter, cependant, que si vous voulez faire appel au module lasp_convergence_measure, il sera nécessaire que votre node porte le nom "nodeX" avec X un entier unique.
