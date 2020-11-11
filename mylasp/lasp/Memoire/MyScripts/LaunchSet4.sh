@@ -52,6 +52,8 @@ rm Memoire/Mesures/Network/*.txt
 #============================================================================================
 #============================================================================================
 
+Node=$(sed -n 1p Memoire/AppsToLaunch/IpAddress.txt)
+Ip=$(cut -d "@" -f2- <<< "$Node")
 
 echo "LAUNCHING THE NEW EXPERIMENTS SET"
 sleep $decalage #Wait initial decallage related to raspberry pi slow nodes booting
@@ -76,7 +78,7 @@ do
 
 		for i in $(seq "$initialNode" 1 "$localNodes") #number of local nodes
 		do
-			xterm -hold -e "rebar3 shell --name node$i@$ipAddress" &
+			xterm -hold -e "rebar3 shell --name node$i@$Ip" &
 		done
 		sleep $duration
 		killall xterm

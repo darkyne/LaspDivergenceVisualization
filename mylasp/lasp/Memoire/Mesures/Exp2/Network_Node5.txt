@@ -1,0 +1,2 @@
+Number of messages received: 79
+Experiment duration: 30

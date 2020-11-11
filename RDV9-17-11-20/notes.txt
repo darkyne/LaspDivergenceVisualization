@@ -1,0 +1,13 @@
+TODO for rdv9:
+
+Savoir lancer les expériences avec la VM INGI.
+Savoir lancer l'algo de mesures en continu en tâche de fond.
+
+
+REMARQUES:
+Lorsque je lance l'expérience de add/remove/dump le CRDT grandit lentement en taille. Ca semble lier au fait que les adds convergeraient plus vite que les removes...?
+Globalement il prend plus vite les adds que les removes. Du coup la taille du CRDT a tendance à augmenter assez vite au début puis c'est ratrappé par les remove et ça se stabilise petit à petit.
+Par exemple pour 5 nodes avec 500datas chacun, ça commence à 2.500 puis vu que chacun fait add/remove, ça augmente (jusque 2.800) avant de redescendre aux alentours de 2550 et si on arrête les add/remove et qu'on attend suffisemment longtemps, ça redescend à 2.500.
+OK problème résolu, c'était lié à la range trop petite pour chaque node, or awset = add win set donc logique qu'il y avait au final plus de add que de remove. C'est réglé.
+Maintenant, on a bien size +ou- constante.
+

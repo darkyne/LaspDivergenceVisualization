@@ -5097,3 +5097,332 @@
      Reason:     noproc
      Offender:   [{pid,1},{id,{partisan_peer_service_server,undefined,undefined,undefined}},{mfargs,{partisan_peer_service_server,acceptor_init,undefined}},{restart_type,temporary},{shutdown,5000},{child_type,worker}]
 
+2020-11-10 16:07:30 =CRASH REPORT====
+  crasher:
+    initial call: application_master:init/4
+    pid: <0.483.0>
+    registered_name: []
+    exception exit: {{bad_return,{{lasp_app,start,[normal,[]]},{'EXIT',{badarg,[{io,format,[<0.483.0>,[{set,500,100,128,64,500,300,{[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]},{{[933,805,750,622,0],[984,856,673,545],[907,779,724,596],[958,830,647,519],[881,698,570],[932,804,749,621],[983,855,672,544],[906,778,723,595],[957,829,646,518],[880,697,569],[931,803,748,620],[982,854,671,543],[905,777,722,594],[956,828,645,517],[879,696,568],[930,802,747,619]},{[981,853,670,542],[904,776,721,593],[955,827,644,516],[878,695,567],[929,801,746,618],[980,852,669,541],[903,775,720,592],[954,826,643,515],[877,694,566,511],[928,800,745,617],[979,851,668,540],[902,774,719,591],[953,825,642,514],[876,693,565,510],[927,799,744,616],[978,850,667,539]},{[901,773,718,590],[952,824,641,513],[875,692,564,509],[926,798,743,615],[977,913,849,785,730,666,602,538],[964,900,836,772,717,653,589,525],[951,887,823,704,640,576,512],[938,874,810,755,691,627,563,508],[989,925,861,797,742,678,614,550],[976,912,848,784,729,665,601,537],[963,899,835,771,716,652,588,524],[950,886,822,767,703,639,575],[937,873,809,754,690,626,562,507],[988,924,860,796,741,677,613,549],[975,911,847,783,728,664,600,536],[962,898,834,770,715,651,587,523]},{[949,885,821,766,702,638,574],[936,872,808,753,689,625,561,506],[987,923,859,795,740,676,612,548],[974,910,846,782,727,663,599,535],[961,897,833,769,714,650,586,522],[948,884,820,765,701,637,573],[999,935,871,807,752,688,624,560,505],[986,922,858,794,739,675,611,547],[973,909,845,781,726,662,598,534],[960,896,832,768,713,649,585,521],[947,883,819,764,700,636,572],[998,934,870,806,751,687,623,559,504],[985,921,857,793,738,674,610,546],[972,908,844,780,725,661,597,533],[959,895,831,712,648,584,520],[946,882,818,763,699,635,571]},{[997,869,686,558,503],[920,792,737,609],[971,843,660,532],[894,711,583],[945,817,762,634],[996,868,685,557,502],[919,791,736,608],[970,842,659,531],[893,710,582],[944,816,761,633],[995,867,684,556,501],[918,790,735,607],[969,841,658,530],[892,709,581],[943,815,760,632],[994,866,683,555]},{[917,789,734,606],[968,840,657,529],[891,708,580],[942,814,759,631],[993,865,682,554],[916,788,733,605],[967,839,656,528],[890,707,579],[941,813,758,630],[992,864,681,553],[915,787,732,604],[966,838,655,527],[889,706,578],[940,812,757,629],[991,863,680,552],[914,786,731,603]},{[965,837,654,526],[888,705,577],[939,811,756,628],[990,862,679,551],[],[],[],[],[],[],[],[],[],[],[],[]},{[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]}}}],[]],[]},{lasp_convergence_measure,startLoop,5,[{file,"/home/gcreupelandt/Documents/MEMOIRE/LaspDivergenceVisualization/mylasp/lasp/src/lasp_convergence_measure.erl"},{line,465}]},{lasp_app,start,2,[{file,"/home/gcreupelandt/Documents/MEMOIRE/LaspDivergenceVisualization/mylasp/lasp/src/lasp_app.erl"},{line,42}]},{application_master,start_it_old,4,[{file,"application_master.erl"},{line,277}]}]}}}},[{application_master,init,4,[{file,"application_master.erl"},{line,138}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,249}]}]}
+    ancestors: [<0.482.0>]
+    message_queue_len: 1
+    messages: [{'EXIT',<0.484.0>,normal}]
+    links: [<0.482.0>,<0.43.0>]
+    dictionary: []
+    trap_exit: true
+    status: running
+    heap_size: 4185
+    stack_size: 27
+    reductions: 397
+  neighbours:
+2020-11-10 16:13:29 =ERROR REPORT====
+
+** Cannot get connection id for node 'node1@127.0.0.1'
+2020-11-10 16:13:37 =ERROR REPORT====
+** Generic server partisan_pluggable_peer_service_manager terminating 
+** Last message in was {join,#{listen_addrs => {badrpc,nodedown},name => 'node1@192.168.1.39'}}
+** When Server state == {state,<<64,170,29,4,64,43,138,82,37,178,190,20,38,224,187,112,9,58,245,101>>,{dict,0,16,16,8,80,48,{[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]},{{[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]}}},[],[],[#{channels => [undefined],listen_addrs => [#{ip => {127,0,0,1},port => 60819}],name => 'node1@127.0.0.1',parallelism => 1}],{dict,0,16,16,8,80,48,{[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]},{{[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]}}},{dict,0,16,16,8,80,48,{[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]},{{[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]}}},[],{dict,0,16,16,8,80,48,{[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]},{{[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]}}},{dict,0,16,16,8,80,48,{[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]},{{[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]}}},{dict,0,16,16,8,80,48,{[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]},{{[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]}}},[],{dict,0,16,16,8,80,48,{[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]},{{[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]}}},partisan_full_membership_strategy,{full_v1,<<64,170,29,4,64,43,138,82,37,178,190,20,38,224,187,112,9,58,245,101>>,{state_orset,[{#{channels => [undefined],listen_addrs => [#{ip => {127,0,0,1},port => 60819}],name => 'node1@127.0.0.1',parallelism => 1},[{<<76,198,123,14,2,163,130,209,226,143,93,239,185,166,179,0,194,121,66,125>>,true}]}]}}}
+** Reason for termination ==
+** {function_clause,[{lists,foldl,[#Fun<partisan_util.1.120488044>,{dict,0,16,16,8,80,48,{[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]},{{[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]}}},{badrpc,nodedown}],[{file,"lists.erl"},{line,1262}]},{lists,foldl,3,[{file,"lists.erl"},{line,1263}]},{partisan_pluggable_peer_service_manager,internal_join,3,[{file,"/home/gcreupelandt/Documents/MEMOIRE/LaspDivergenceVisualization/lasp/_build/default/lib/partisan/src/partisan_pluggable_peer_service_manager.erl"},{line,1454}]},{partisan_pluggable_peer_service_manager,handle_call,3,[{file,"/home/gcreupelandt/Documents/MEMOIRE/LaspDivergenceVisualization/lasp/_build/default/lib/partisan/src/partisan_pluggable_peer_service_manager.erl"},{line,528}]},{gen_server,try_handle_call,4,[{file,"gen_server.erl"},{line,661}]},{gen_server,handle_msg,6,[{file,"gen_server.erl"},{line,690}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,249}]}]}
+** Client <0.484.0> stacktrace
+** [{gen,do_call,4,[{file,"gen.erl"},{line,167}]},{gen_server,call,3,[{file,"gen_server.erl"},{line,219}]},{lasp_convergence_measure,launchExperimentDynamic,5,[{file,"/home/gcreupelandt/Documents/MEMOIRE/LaspDivergenceVisualization/mylasp/lasp/src/lasp_convergence_measure.erl"},{line,436}]},{lasp_app,start,2,[{file,"/home/gcreupelandt/Documents/MEMOIRE/LaspDivergenceVisualization/mylasp/lasp/src/lasp_app.erl"},{line,42}]},{application_master,start_it_old,4,[{file,"application_master.erl"},{line,277}]}]
+2020-11-10 16:13:37 =CRASH REPORT====
+  crasher:
+    initial call: partisan_pluggable_peer_service_manager:init/1
+    pid: <0.457.0>
+    registered_name: partisan_pluggable_peer_service_manager
+    exception error: {function_clause,[{lists,foldl,[#Fun<partisan_util.1.120488044>,{dict,0,16,16,8,80,48,{[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]},{{[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]}}},{badrpc,nodedown}],[{file,"lists.erl"},{line,1262}]},{lists,foldl,3,[{file,"lists.erl"},{line,1263}]},{partisan_pluggable_peer_service_manager,internal_join,3,[{file,"/home/gcreupelandt/Documents/MEMOIRE/LaspDivergenceVisualization/lasp/_build/default/lib/partisan/src/partisan_pluggable_peer_service_manager.erl"},{line,1454}]},{partisan_pluggable_peer_service_manager,handle_call,3,[{file,"/home/gcreupelandt/Documents/MEMOIRE/LaspDivergenceVisualization/lasp/_build/default/lib/partisan/src/partisan_pluggable_peer_service_manager.erl"},{line,528}]},{gen_server,try_handle_call,4,[{file,"gen_server.erl"},{line,661}]},{gen_server,handle_msg,6,[{file,"gen_server.erl"},{line,690}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,249}]}]}
+    ancestors: [partisan_sup,<0.403.0>]
+    message_queue_len: 2
+    messages: [connections,retransmit]
+    links: [<0.404.0>]
+    dictionary: [{rand_seed,{#{jump => #Fun<rand.24.53802439>,max => 288230376151711743,next => #Fun<rand.23.53802439>,type => exsplus},[242038885191990468|262340415194698521]}}]
+    trap_exit: true
+    status: running
+    heap_size: 6772
+    stack_size: 27
+    reductions: 4293
+  neighbours:
+2020-11-10 16:13:37 =SUPERVISOR REPORT====
+     Supervisor: {local,partisan_sup}
+     Context:    child_terminated
+     Reason:     {function_clause,[{lists,foldl,[#Fun<partisan_util.1.120488044>,{dict,0,16,16,8,80,48,{[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]},{{[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]}}},{badrpc,nodedown}],[{file,"lists.erl"},{line,1262}]},{lists,foldl,3,[{file,"lists.erl"},{line,1263}]},{partisan_pluggable_peer_service_manager,internal_join,3,[{file,"/home/gcreupelandt/Documents/MEMOIRE/LaspDivergenceVisualization/lasp/_build/default/lib/partisan/src/partisan_pluggable_peer_service_manager.erl"},{line,1454}]},{partisan_pluggable_peer_service_manager,handle_call,3,[{file,"/home/gcreupelandt/Documents/MEMOIRE/LaspDivergenceVisualization/lasp/_build/default/lib/partisan/src/partisan_pluggable_peer_service_manager.erl"},{line,528}]},{gen_server,try_handle_call,4,[{file,"gen_server.erl"},{line,661}]},{gen_server,handle_msg,6,[{file,"gen_server.erl"},{line,690}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,249}]}]}
+     Offender:   [{pid,<0.457.0>},{id,partisan_pluggable_peer_service_manager},{mfargs,{partisan_pluggable_peer_service_manager,start_link,[]}},{restart_type,permanent},{shutdown,5000},{child_type,worker}]
+
+2020-11-10 16:13:37 =CRASH REPORT====
+  crasher:
+    initial call: application_master:init/4
+    pid: <0.483.0>
+    registered_name: []
+    exception exit: {{bad_return,{{lasp_app,start,[normal,[]]},{'EXIT',{{function_clause,[{lists,foldl,[#Fun<partisan_util.1.120488044>,{dict,0,16,16,8,80,48,{[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]},{{[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]}}},{badrpc,nodedown}],[{file,"lists.erl"},{line,1262}]},{lists,foldl,3,[{file,"lists.erl"},{line,1263}]},{partisan_pluggable_peer_service_manager,internal_join,3,[{file,"/home/gcreupelandt/Documents/MEMOIRE/LaspDivergenceVisualization/lasp/_build/default/lib/partisan/src/partisan_pluggable_peer_service_manager.erl"},{line,1454}]},{partisan_pluggable_peer_service_manager,handle_call,3,[{file,"/home/gcreupelandt/Documents/MEMOIRE/LaspDivergenceVisualization/lasp/_build/default/lib/partisan/src/partisan_pluggable_peer_service_manager.erl"},{line,528}]},{gen_server,try_handle_call,4,[{file,"gen_server.erl"},{line,661}]},{gen_server,handle_msg,6,[{file,"gen_server.erl"},{line,690}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,249}]}]},{gen_server,call,[partisan_pluggable_peer_service_manager,{join,#{listen_addrs => {badrpc,nodedown},name => 'node1@192.168.1.39'}},infinity]}}}}},[{application_master,init,4,[{file,"application_master.erl"},{line,138}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,249}]}]}
+    ancestors: [<0.482.0>]
+    message_queue_len: 1
+    messages: [{'EXIT',<0.484.0>,normal}]
+    links: [<0.482.0>,<0.43.0>]
+    dictionary: []
+    trap_exit: true
+    status: running
+    heap_size: 1598
+    stack_size: 27
+    reductions: 196
+  neighbours:
+2020-11-10 16:34:09 =CRASH REPORT====
+  crasher:
+    initial call: application_master:init/4
+    pid: <0.483.0>
+    registered_name: []
+    exception exit: {{bad_return,{{lasp_app,start,[normal,[]]},{'EXIT',{badarg,[{io,format,[<0.483.0>,[0,750,805,933,51,673,856,984,102,724,779,907,25,647,830,958,76,698,881,749,804,932,50,672,855,983,101,723,778,906,24,646,829,957,75,697,880,126,748,803,931,49,671,854,982,100,722,777,905,23,645,828,956,74,696,879,125,747,802,930,48,670,853,981,99,721,776,904,22,644,827,955,73,695,878,124,746,801,929,47,669,852,980,98,720,775,903,21,643,826,954,72,694,877,123,745,800,928,46,668,851,979,97,719,774,902,20,642,825,953,71,693,876,122,744,799,927,45,667,850,978,96,718,773,901,19,641,824,952,70,692,875,121,743,798,926,44,108,666,730,785,849,913,977,31,95,653,717,772,836,900,964,18,82,640,704,823,887,951,5,69,627,691,755,810,874,938,56,120,678,742,797,861,925,989,43,107,665,729,784,848,912,976,30,94,652,716,771,835,899,963,17,81,639,703,767,822,886,950,4,68,690,754,809,873,937,55,119,677,741,796,860,924,988,42,106,664,728,783,847,911,975,29,93,651,715,770,834,898,962,16,80,638,702,766,821,885,949,3,67,689,753,808,872,936,54,118,676,740,795,859,923,987,41,105,663,727,782,846,910,974,28,92,650,714,769,833,897,961,15,79,637,701,765,820,884,948,2,66,688,752,807,871,935,999,53,117,675,739,794,858,922,986,40,104,662,726,781,845,909,973,27,91,649,713,768,832,896,960,14,78,636,700,764,819,883,947,1,65,687,751,806,870,934,998,52,116,674,738,793,857,921,985,39,103,661,725,780,844,908,972,26,90,648,712,831,895,959,13,77,635,699,763,818,882,946,64,686,869,997,115,737,792,920,38,660,843,971,89,711,894,12,634,762,817,945,63,685,868,996,114,736,791,919,37,659,842,970,88,710,893,11,633,761,816,944,62,684,867,995,113,735,790,918,36,658,841,969,87,709,892,10,632,760,815,943,61,683,866,994,112,734,789,917,35,657,840,968,86,708,891,9,631,759,814,942,60,682,865,993,111,733,788,916,34,656,839,967,85,707,890,8,630,758,813,941,59,681,864,992,110,732,787,915,33,655,838,966,84,706,889,7,629,757,812,940,58,680,863,991,109,731,786,914,32,654,837,965,83,705,888,6,628,756,811,939,57,679,862,990],[]],[]},{lasp_convergence_measure,startLoop,5,[{file,"/home/gcreupelandt/Documents/MEMOIRE/LaspDivergenceVisualization/mylasp/lasp/src/lasp_convergence_measure.erl"},{line,466}]},{lasp_app,start,2,[{file,"/home/gcreupelandt/Documents/MEMOIRE/LaspDivergenceVisualization/mylasp/lasp/src/lasp_app.erl"},{line,42}]},{application_master,start_it_old,4,[{file,"application_master.erl"},{line,277}]}]}}}},[{application_master,init,4,[{file,"application_master.erl"},{line,138}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,249}]}]}
+    ancestors: [<0.482.0>]
+    message_queue_len: 1
+    messages: [{'EXIT',<0.484.0>,normal}]
+    links: [<0.482.0>,<0.43.0>]
+    dictionary: []
+    trap_exit: true
+    status: running
+    heap_size: 4185
+    stack_size: 27
+    reductions: 10618
+  neighbours:
+2020-11-10 17:50:14 =SUPERVISOR REPORT====
+     Supervisor: {local,partisan_pool}
+     Context:    shutdown_error
+     Reason:     noproc
+     Offender:   [{pid,1},{id,{partisan_peer_service_server,undefined,undefined,undefined}},{mfargs,{partisan_peer_service_server,acceptor_init,undefined}},{restart_type,temporary},{shutdown,5000},{child_type,worker}]
+
+2020-11-11 13:24:36 =CRASH REPORT====
+  crasher:
+    initial call: application_master:init/4
+    pid: <0.475.0>
+    registered_name: []
+    exception exit: {{bad_return,{{lasp_app,start,[normal,[]]},{'EXIT',{undef,[{lasp_convergence_measure,launchExperimentDynaimc,[5,'node1@192.168.1.39',<<"set1">>,5,10],[]},{lasp_app,start,2,[{file,"/home/gcreupelandt/Documents/MEMOIRE/LaspDivergenceVisualization/mylasp/lasp/src/lasp_app.erl"},{line,42}]},{application_master,start_it_old,4,[{file,"application_master.erl"},{line,277}]}]}}}},[{application_master,init,4,[{file,"application_master.erl"},{line,138}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,249}]}]}
+    ancestors: [<0.474.0>]
+    message_queue_len: 1
+    messages: [{'EXIT',<0.476.0>,normal}]
+    links: [<0.474.0>,<0.43.0>]
+    dictionary: []
+    trap_exit: true
+    status: running
+    heap_size: 987
+    stack_size: 27
+    reductions: 239
+  neighbours:
+2020-11-11 13:24:36 =CRASH REPORT====
+  crasher:
+    initial call: application_master:init/4
+    pid: <0.475.0>
+    registered_name: []
+    exception exit: {{bad_return,{{lasp_app,start,[normal,[]]},{'EXIT',{undef,[{lasp_convergence_measure,launchExperimentDynaimc,[5,'node1@192.168.1.39',<<"set1">>,5,10],[]},{lasp_app,start,2,[{file,"/home/gcreupelandt/Documents/MEMOIRE/LaspDivergenceVisualization/mylasp/lasp/src/lasp_app.erl"},{line,42}]},{application_master,start_it_old,4,[{file,"application_master.erl"},{line,277}]}]}}}},[{application_master,init,4,[{file,"application_master.erl"},{line,138}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,249}]}]}
+    ancestors: [<0.474.0>]
+    message_queue_len: 1
+    messages: [{'EXIT',<0.476.0>,normal}]
+    links: [<0.474.0>,<0.43.0>]
+    dictionary: []
+    trap_exit: true
+    status: running
+    heap_size: 987
+    stack_size: 27
+    reductions: 239
+  neighbours:
+2020-11-11 13:24:36 =CRASH REPORT====
+  crasher:
+    initial call: application_master:init/4
+    pid: <0.476.0>
+    registered_name: []
+    exception exit: {{bad_return,{{lasp_app,start,[normal,[]]},{'EXIT',{undef,[{lasp_convergence_measure,launchExperimentDynaimc,[5,'node1@192.168.1.39',<<"set1">>,5,10],[]},{lasp_app,start,2,[{file,"/home/gcreupelandt/Documents/MEMOIRE/LaspDivergenceVisualization/mylasp/lasp/src/lasp_app.erl"},{line,42}]},{application_master,start_it_old,4,[{file,"application_master.erl"},{line,277}]}]}}}},[{application_master,init,4,[{file,"application_master.erl"},{line,138}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,249}]}]}
+    ancestors: [<0.475.0>]
+    message_queue_len: 1
+    messages: [{'EXIT',<0.477.0>,normal}]
+    links: [<0.475.0>,<0.43.0>]
+    dictionary: []
+    trap_exit: true
+    status: running
+    heap_size: 987
+    stack_size: 27
+    reductions: 239
+  neighbours:
+2020-11-11 13:24:36 =CRASH REPORT====
+  crasher:
+    initial call: application_master:init/4
+    pid: <0.475.0>
+    registered_name: []
+    exception exit: {{bad_return,{{lasp_app,start,[normal,[]]},{'EXIT',{undef,[{lasp_convergence_measure,launchExperimentDynaimc,[5,'node1@192.168.1.39',<<"set1">>,5,10],[]},{lasp_app,start,2,[{file,"/home/gcreupelandt/Documents/MEMOIRE/LaspDivergenceVisualization/mylasp/lasp/src/lasp_app.erl"},{line,42}]},{application_master,start_it_old,4,[{file,"application_master.erl"},{line,277}]}]}}}},[{application_master,init,4,[{file,"application_master.erl"},{line,138}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,249}]}]}
+    ancestors: [<0.474.0>]
+    message_queue_len: 1
+    messages: [{'EXIT',<0.476.0>,normal}]
+    links: [<0.474.0>,<0.43.0>]
+    dictionary: []
+    trap_exit: true
+    status: running
+    heap_size: 987
+    stack_size: 27
+    reductions: 239
+  neighbours:
+2020-11-11 13:24:36 =CRASH REPORT====
+  crasher:
+    initial call: application_master:init/4
+    pid: <0.475.0>
+    registered_name: []
+    exception exit: {{bad_return,{{lasp_app,start,[normal,[]]},{'EXIT',{undef,[{lasp_convergence_measure,launchExperimentDynaimc,[5,'node1@192.168.1.39',<<"set1">>,5,10],[]},{lasp_app,start,2,[{file,"/home/gcreupelandt/Documents/MEMOIRE/LaspDivergenceVisualization/mylasp/lasp/src/lasp_app.erl"},{line,42}]},{application_master,start_it_old,4,[{file,"application_master.erl"},{line,277}]}]}}}},[{application_master,init,4,[{file,"application_master.erl"},{line,138}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,249}]}]}
+    ancestors: [<0.474.0>]
+    message_queue_len: 1
+    messages: [{'EXIT',<0.476.0>,normal}]
+    links: [<0.474.0>,<0.43.0>]
+    dictionary: []
+    trap_exit: true
+    status: running
+    heap_size: 987
+    stack_size: 27
+    reductions: 239
+  neighbours:
+2020-11-11 15:46:15 =CRASH REPORT====
+  crasher:
+    initial call: application_master:init/4
+    pid: <0.475.0>
+    registered_name: []
+    exception exit: {{bad_return,{{lasp_app,start,[normal,[]]},{'EXIT',{timeout_value,[{timer,sleep,1,[{file,"timer.erl"},{line,152}]},{lasp_convergence_measure,startLoop,5,[{file,"/home/gcreupelandt/Documents/MEMOIRE/LaspDivergenceVisualization/mylasp/lasp/src/lasp_convergence_measure.erl"},{line,480}]},{lasp_app,start,2,[{file,"/home/gcreupelandt/Documents/MEMOIRE/LaspDivergenceVisualization/mylasp/lasp/src/lasp_app.erl"},{line,42}]},{application_master,start_it_old,4,[{file,"application_master.erl"},{line,277}]}]}}}},[{application_master,init,4,[{file,"application_master.erl"},{line,138}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,249}]}]}
+    ancestors: [<0.474.0>]
+    message_queue_len: 1
+    messages: [{'EXIT',<0.476.0>,normal}]
+    links: [<0.474.0>,<0.43.0>]
+    dictionary: []
+    trap_exit: true
+    status: running
+    heap_size: 2586
+    stack_size: 27
+    reductions: 2142
+  neighbours:
+2020-11-11 15:46:15 =CRASH REPORT====
+  crasher:
+    initial call: application_master:init/4
+    pid: <0.475.0>
+    registered_name: []
+    exception exit: {{bad_return,{{lasp_app,start,[normal,[]]},{'EXIT',{timeout_value,[{timer,sleep,1,[{file,"timer.erl"},{line,152}]},{lasp_convergence_measure,startLoop,5,[{file,"/home/gcreupelandt/Documents/MEMOIRE/LaspDivergenceVisualization/mylasp/lasp/src/lasp_convergence_measure.erl"},{line,480}]},{lasp_app,start,2,[{file,"/home/gcreupelandt/Documents/MEMOIRE/LaspDivergenceVisualization/mylasp/lasp/src/lasp_app.erl"},{line,42}]},{application_master,start_it_old,4,[{file,"application_master.erl"},{line,277}]}]}}}},[{application_master,init,4,[{file,"application_master.erl"},{line,138}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,249}]}]}
+    ancestors: [<0.474.0>]
+    message_queue_len: 1
+    messages: [{'EXIT',<0.476.0>,normal}]
+    links: [<0.474.0>,<0.43.0>]
+    dictionary: []
+    trap_exit: true
+    status: running
+    heap_size: 2586
+    stack_size: 27
+    reductions: 2166
+  neighbours:
+2020-11-11 15:46:15 =CRASH REPORT====
+  crasher:
+    initial call: application_master:init/4
+    pid: <0.475.0>
+    registered_name: []
+    exception exit: {{bad_return,{{lasp_app,start,[normal,[]]},{'EXIT',{timeout_value,[{timer,sleep,1,[{file,"timer.erl"},{line,152}]},{lasp_convergence_measure,startLoop,5,[{file,"/home/gcreupelandt/Documents/MEMOIRE/LaspDivergenceVisualization/mylasp/lasp/src/lasp_convergence_measure.erl"},{line,480}]},{lasp_app,start,2,[{file,"/home/gcreupelandt/Documents/MEMOIRE/LaspDivergenceVisualization/mylasp/lasp/src/lasp_app.erl"},{line,42}]},{application_master,start_it_old,4,[{file,"application_master.erl"},{line,277}]}]}}}},[{application_master,init,4,[{file,"application_master.erl"},{line,138}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,249}]}]}
+    ancestors: [<0.474.0>]
+    message_queue_len: 1
+    messages: [{'EXIT',<0.476.0>,normal}]
+    links: [<0.474.0>,<0.43.0>]
+    dictionary: []
+    trap_exit: true
+    status: running
+    heap_size: 2586
+    stack_size: 27
+    reductions: 2262
+  neighbours:
+2020-11-11 15:46:15 =CRASH REPORT====
+  crasher:
+    initial call: application_master:init/4
+    pid: <0.475.0>
+    registered_name: []
+    exception exit: {{bad_return,{{lasp_app,start,[normal,[]]},{'EXIT',{timeout_value,[{timer,sleep,1,[{file,"timer.erl"},{line,152}]},{lasp_convergence_measure,startLoop,5,[{file,"/home/gcreupelandt/Documents/MEMOIRE/LaspDivergenceVisualization/mylasp/lasp/src/lasp_convergence_measure.erl"},{line,480}]},{lasp_app,start,2,[{file,"/home/gcreupelandt/Documents/MEMOIRE/LaspDivergenceVisualization/mylasp/lasp/src/lasp_app.erl"},{line,42}]},{application_master,start_it_old,4,[{file,"application_master.erl"},{line,277}]}]}}}},[{application_master,init,4,[{file,"application_master.erl"},{line,138}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,249}]}]}
+    ancestors: [<0.474.0>]
+    message_queue_len: 1
+    messages: [{'EXIT',<0.476.0>,normal}]
+    links: [<0.474.0>,<0.43.0>]
+    dictionary: []
+    trap_exit: true
+    status: running
+    heap_size: 2586
+    stack_size: 27
+    reductions: 2286
+  neighbours:
+2020-11-11 15:46:39 =CRASH REPORT====
+  crasher:
+    initial call: application_master:init/4
+    pid: <0.475.0>
+    registered_name: []
+    exception exit: {{bad_return,{{lasp_app,start,[normal,[]]},{'EXIT',{timeout_value,[{timer,sleep,1,[{file,"timer.erl"},{line,152}]},{lasp_convergence_measure,startLoop,5,[{file,"/home/gcreupelandt/Documents/MEMOIRE/LaspDivergenceVisualization/mylasp/lasp/src/lasp_convergence_measure.erl"},{line,480}]},{lasp_app,start,2,[{file,"/home/gcreupelandt/Documents/MEMOIRE/LaspDivergenceVisualization/mylasp/lasp/src/lasp_app.erl"},{line,42}]},{application_master,start_it_old,4,[{file,"application_master.erl"},{line,277}]}]}}}},[{application_master,init,4,[{file,"application_master.erl"},{line,138}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,249}]}]}
+    ancestors: [<0.474.0>]
+    message_queue_len: 1
+    messages: [{'EXIT',<0.476.0>,normal}]
+    links: [<0.474.0>,<0.43.0>]
+    dictionary: []
+    trap_exit: true
+    status: running
+    heap_size: 987
+    stack_size: 27
+    reductions: 248
+  neighbours:
+2020-11-11 15:46:40 =CRASH REPORT====
+  crasher:
+    initial call: application_master:init/4
+    pid: <0.476.0>
+    registered_name: []
+    exception exit: {{bad_return,{{lasp_app,start,[normal,[]]},{'EXIT',{timeout_value,[{timer,sleep,1,[{file,"timer.erl"},{line,152}]},{lasp_convergence_measure,startLoop,5,[{file,"/home/gcreupelandt/Documents/MEMOIRE/LaspDivergenceVisualization/mylasp/lasp/src/lasp_convergence_measure.erl"},{line,480}]},{lasp_app,start,2,[{file,"/home/gcreupelandt/Documents/MEMOIRE/LaspDivergenceVisualization/mylasp/lasp/src/lasp_app.erl"},{line,42}]},{application_master,start_it_old,4,[{file,"application_master.erl"},{line,277}]}]}}}},[{application_master,init,4,[{file,"application_master.erl"},{line,138}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,249}]}]}
+    ancestors: [<0.475.0>]
+    message_queue_len: 1
+    messages: [{'EXIT',<0.477.0>,normal}]
+    links: [<0.475.0>,<0.43.0>]
+    dictionary: []
+    trap_exit: true
+    status: running
+    heap_size: 987
+    stack_size: 27
+    reductions: 248
+  neighbours:
+2020-11-11 15:46:40 =CRASH REPORT====
+  crasher:
+    initial call: application_master:init/4
+    pid: <0.475.0>
+    registered_name: []
+    exception exit: {{bad_return,{{lasp_app,start,[normal,[]]},{'EXIT',{timeout_value,[{timer,sleep,1,[{file,"timer.erl"},{line,152}]},{lasp_convergence_measure,startLoop,5,[{file,"/home/gcreupelandt/Documents/MEMOIRE/LaspDivergenceVisualization/mylasp/lasp/src/lasp_convergence_measure.erl"},{line,480}]},{lasp_app,start,2,[{file,"/home/gcreupelandt/Documents/MEMOIRE/LaspDivergenceVisualization/mylasp/lasp/src/lasp_app.erl"},{line,42}]},{application_master,start_it_old,4,[{file,"application_master.erl"},{line,277}]}]}}}},[{application_master,init,4,[{file,"application_master.erl"},{line,138}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,249}]}]}
+    ancestors: [<0.474.0>]
+    message_queue_len: 1
+    messages: [{'EXIT',<0.476.0>,normal}]
+    links: [<0.474.0>,<0.43.0>]
+    dictionary: []
+    trap_exit: true
+    status: running
+    heap_size: 987
+    stack_size: 27
+    reductions: 248
+  neighbours:
+2020-11-11 15:46:40 =CRASH REPORT====
+  crasher:
+    initial call: application_master:init/4
+    pid: <0.476.0>
+    registered_name: []
+    exception exit: {{bad_return,{{lasp_app,start,[normal,[]]},{'EXIT',{timeout_value,[{timer,sleep,1,[{file,"timer.erl"},{line,152}]},{lasp_convergence_measure,startLoop,5,[{file,"/home/gcreupelandt/Documents/MEMOIRE/LaspDivergenceVisualization/mylasp/lasp/src/lasp_convergence_measure.erl"},{line,480}]},{lasp_app,start,2,[{file,"/home/gcreupelandt/Documents/MEMOIRE/LaspDivergenceVisualization/mylasp/lasp/src/lasp_app.erl"},{line,42}]},{application_master,start_it_old,4,[{file,"application_master.erl"},{line,277}]}]}}}},[{application_master,init,4,[{file,"application_master.erl"},{line,138}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,249}]}]}
+    ancestors: [<0.475.0>]
+    message_queue_len: 1
+    messages: [{'EXIT',<0.477.0>,normal}]
+    links: [<0.475.0>,<0.43.0>]
+    dictionary: []
+    trap_exit: true
+    status: running
+    heap_size: 987
+    stack_size: 27
+    reductions: 248
+  neighbours:
+2020-11-11 15:46:41 =CRASH REPORT====
+  crasher:
+    initial call: application_master:init/4
+    pid: <0.475.0>
+    registered_name: []
+    exception exit: {{bad_return,{{lasp_app,start,[normal,[]]},{'EXIT',{timeout_value,[{timer,sleep,1,[{file,"timer.erl"},{line,152}]},{lasp_convergence_measure,startLoop,5,[{file,"/home/gcreupelandt/Documents/MEMOIRE/LaspDivergenceVisualization/mylasp/lasp/src/lasp_convergence_measure.erl"},{line,480}]},{lasp_app,start,2,[{file,"/home/gcreupelandt/Documents/MEMOIRE/LaspDivergenceVisualization/mylasp/lasp/src/lasp_app.erl"},{line,42}]},{application_master,start_it_old,4,[{file,"application_master.erl"},{line,277}]}]}}}},[{application_master,init,4,[{file,"application_master.erl"},{line,138}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,249}]}]}
+    ancestors: [<0.474.0>]
+    message_queue_len: 1
+    messages: [{'EXIT',<0.476.0>,normal}]
+    links: [<0.474.0>,<0.43.0>]
+    dictionary: []
+    trap_exit: true
+    status: running
+    heap_size: 987
+    stack_size: 27
+    reductions: 248
+  neighbours:

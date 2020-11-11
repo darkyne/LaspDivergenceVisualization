@@ -12,14 +12,17 @@ iterations=50
 experiments=6
 duration=60
 
+#IpAddress is set via Memoire/AppsToLaunch/IpAddress file
+
 #For local tets:
 #ipAddress=127.0.0.1
 
 #on PC:
-ipAddress=192.168.1.39
+#ipAddress=192.168.1.39
 
 #on Pi:
 #ipAddress=192.168.1.62
+
 
 sourcePath=Memoire/AppsToLaunch/Set1/measure
 sourcePath2=/lasp_app.erl
@@ -52,6 +55,9 @@ rm Memoire/Mesures/Network/*.txt
 #============================================================================================
 #============================================================================================
 
+Node=$(sed -n 1p Memoire/AppsToLaunch/IpAddress.txt)
+Ip=$(cut -d "@" -f2- <<< "$Node")
+
 
 echo "LAUNCHING THE NEW EXPERIMENTS SET"
 sleep $decalage #Wait initial decallage related to raspberry pi slow nodes booting
@@ -69,7 +75,7 @@ do
 
 		for i in $(seq "$initialNode" 1 "$localNodes") #number of local nodes
 		do
-			xterm -hold -e "rebar3 shell --name node$i@$ipAddress" &
+			xterm -hold -e "rebar3 shell --name node$i@$Ip" &
 		done
 		sleep $duration
 		killall xterm

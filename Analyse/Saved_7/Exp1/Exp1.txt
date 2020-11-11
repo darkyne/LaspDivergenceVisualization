@@ -1,0 +1,63 @@
+Node2.txt for element 0 convergence time:11790
+Node3.txt for element 0 convergence time:11835
+Node4.txt for element 0 convergence time:11988
+Node5.txt for element 0 convergence time:11990
+
+Node2.txt for element 1 convergence time:11525
+Node3.txt for element 1 convergence time:11553
+Node4.txt for element 1 convergence time:11709
+Node5.txt for element 1 convergence time:11618
+
+Node2.txt for element 2 convergence time:11445
+Node3.txt for element 2 convergence time:11575
+Node4.txt for element 2 convergence time:11693
+Node5.txt for element 2 convergence time:11622
+
+Node2.txt for element 3 convergence time:11444
+Node3.txt for element 3 convergence time:11442
+Node4.txt for element 3 convergence time:11664
+Node5.txt for element 3 convergence time:11539
+
+
+Node2.txt for element 0 convergence time:11790
+Node3.txt for element 0 convergence time:11835
+Node4.txt for element 0 convergence time:11988
+Node5.txt for element 0 convergence time:11990
+
+Node2.txt for element 1 convergence time:11525
+Node3.txt for element 1 convergence time:11553
+Node4.txt for element 1 convergence time:11709
+Node5.txt for element 1 convergence time:11618
+
+Node2.txt for element 2 convergence time:11445
+Node3.txt for element 2 convergence time:11575
+Node4.txt for element 2 convergence time:11693
+Node5.txt for element 2 convergence time:11622
+
+Node2.txt for element 3 convergence time:11444
+Node3.txt for element 3 convergence time:11442
+Node4.txt for element 3 convergence time:11664
+Node5.txt for element 3 convergence time:11539
+
+
+Node2.txt for element 0 convergence time:11790
+Node3.txt for element 0 convergence time:11835
+Node4.txt for element 0 convergence time:11988
+Node5.txt for element 0 convergence time:11990
+
+Node2.txt for element 1 convergence time:11525
+Node3.txt for element 1 convergence time:11553
+Node4.txt for element 1 convergence time:11709
+Node5.txt for element 1 convergence time:11618
+
+Node2.txt for element 2 convergence time:11445
+Node3.txt for element 2 convergence time:11575
+Node4.txt for element 2 convergence time:11693
+Node5.txt for element 2 convergence time:11622
+
+Node2.txt for element 3 convergence time:11444
+Node3.txt for element 3 convergence time:11442
+Node4.txt for element 3 convergence time:11664
+Node5.txt for element 3 convergence time:11539
+
+

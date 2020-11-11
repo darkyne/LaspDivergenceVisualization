@@ -431,15 +431,20 @@ generateFileRmv (ExperimentNumber, Id, NodeToJoin, CRDT_Type_String, TotalNumber
 launchExperimentDynamic(ExperimentNumber, NodeToJoin, CRDT_Id, TotalNumberOfNodes, SendingPeriod) ->
 	io:format("Experiment ~p ~n",[ExperimentNumber]),
 	io:format("Number of nodes ~p ~n",[TotalNumberOfNodes]),
-	io:format("Sending period ~p ~n",[SendingPeriod]),
 	timer:sleep(1000), %start with a little sleep to allow NodeToJoin to be booted in case it is a bit slower than this node
 	Id = list_to_integer( lists:nth(2,string:split(lists:nth(1,string:split(atom_to_list(erlang:node()),"@")), "e")) ),
 	lasp_peer_service:join(NodeToJoin),
-	MyRange = lists:seq( (Id-1)*1000 , (Id*1000)-1 ), %0-999, 1000-1999, 2000-2999,... Each node has its own range of 1000
-	StartingElements= lists:seq( ((Id-1)*1000)+500 , (Id*1000)-1 ), 
-	lasp:update({CRDT_Id, state_awset}, {add_all, StartingElements}, self() ), %CRDT already contains 500-999, 1500-1999, 2500-2999...
+	MyRange = lists:seq( (Id-1)*10000 , (Id*10000)-1 ), %0-9999, 10000-19999, 20000-29999,... Each node has its own range of 1000
+	StartingElements= lists:seq( ((Id-1)*10000)+5000 , (Id*10000)-1 ), 
+	lasp:update({CRDT_Id, state_awset}, {add_all, StartingElements}, self() ), %CRDT already contains 5000-9999, 15000-19999, 25000-29999...
+	Path = "Memoire/Mesures/Exp"++integer_to_list(ExperimentNumber)++"/Node"++integer_to_list(Id)++".txt",
+	{ok, File} = file:open(Path, [write]),
+	ExperimentName = "Launching nodes that will add/remove elements at a specific speed. See info file for more details.",
+	io:format(File, "~s~n", [ExperimentName]),
+	
 	%Start=erlang:system_time(1000),
-	startLoop(MyRange, 0, CRDT_Id, SendingPeriod).
+	startLoop(MyRange, 0, CRDT_Id, SendingPeriod, Path).
+
 	
 
 
@@ -447,8 +452,9 @@ launchExperimentDynamic(ExperimentNumber, NodeToJoin, CRDT_Id, TotalNumberOfNode
 %% Helpers for launchExperimentDynamic:
 %% ===================================================================
 
-startLoop(Range,AddIndex, CRDT_Id, SendingPeriod) ->
-	RemoveIndex=(AddIndex+500) rem 1000,
+startLoop(Range,AddIndex, CRDT_Id, SendingPeriod, Path) ->
+	StartOperation=erlang:system_time(1000),
+	RemoveIndex=(AddIndex+5000) rem 10000,
 	ElementToAdd=lists:nth(AddIndex+1, Range), %Start with NextIndex=1 -> it had 500-999 and we add 0
 	ElementToRemove=lists:nth(RemoveIndex+1,Range), %Starting example: it had 500-999, we add 0 and remove 500.
 	io:format("Added element: ~p ~n", [ElementToAdd]),
@@ -456,10 +462,22 @@ startLoop(Range,AddIndex, CRDT_Id, SendingPeriod) ->
 	io:format("~n"),
 	lasp:update({CRDT_Id, state_awset}, {add, ElementToAdd}, self()),
 	lasp:update({CRDT_Id, state_awset}, {rmv, ElementToRemove}, self()),
-	timer:sleep(SendingPeriod),
-	
-	startLoop(Range, ((AddIndex+1) rem 1000), CRDT_Id, SendingPeriod).
-
+	{ok, CurrentContent} = lasp:query({CRDT_Id, state_awset}),
+	ReadableCurrentContent = sets:to_list(CurrentContent),
+	CurrentTime = erlang:system_time(1000),
+	Size = length(ReadableCurrentContent),
+	file:write_file(Path,"\n",[append]),
+	file:write_file(Path,"NEXT \n",[append]),
+	file:write_file(Path,"TIME " ++ integer_to_list(CurrentTime)++"\n",[append]),
+	file:write_file(Path,"ADDED ELEMENT " ++ integer_to_list(ElementToAdd)++"\n",[append]),
+	file:write_file(Path,"REMOVED ELEMENT " ++ integer_to_list(ElementToRemove)++"\n",[append]),
+	file:write_file(Path,"CRDT Size " ++ integer_to_list(Size)++"\n",[append]),
+	file:write_file(Path,"CONTENT : \n",[append]),
+	file:write_file(Path,io_lib:format("~p.~n", [ReadableCurrentContent]),[append]),
+	EndOperation=erlang:system_time(1000),
+	OperationDuration=EndOperation-StartOperation,
+	timer:sleep(max(SendingPeriod-OperationDuration, 0)),
+	startLoop(Range, ((AddIndex+1) rem 10000), CRDT_Id, SendingPeriod, Path).
 	
 
 

@@ -16,6 +16,7 @@ Contient également lasp_convergence_measure.erl qui implémente certaines fonct
 Ce dossier comporte 4 sous-dossier importants: MyScripts, AppsToLaunch, Mesures et Saved_measures.
 
 ### MyScripts
+These scripts are adapted for local use (using 127.0.0.1 by default) and should, normaly, be running easily on your machine.
 
 #### LaunchSet1.sh
 Ce script permet de lancer le premier set d'expériences pour générer des fichiers de mesures.

@@ -1,0 +1,41 @@
+Node2.txt for element 0 convergence time:6326
+Node3.txt for element 0 convergence time:7008
+Node4.txt for element 0 convergence time:7139
+Node5.txt for element 0 convergence time:7543
+
+Node2.txt for element 1 convergence time:1347
+Node3.txt for element 1 convergence time:2029
+Node4.txt for element 1 convergence time:2160
+Node5.txt for element 1 convergence time:2564
+
+Node2.txt for element 2 convergence time:11177
+Node3.txt for element 2 convergence time:8213
+Node4.txt for element 2 convergence time:11556
+Node5.txt for element 2 convergence time:8648
+
+Node2.txt for element 3 convergence time:6202
+Node3.txt for element 3 convergence time:3238
+Node4.txt for element 3 convergence time:6581
+Node5.txt for element 3 convergence time:3673
+
+Node2.txt for element 4 convergence time:11232
+Node3.txt for element 4 convergence time:11493
+Node4.txt for element 4 convergence time:6933
+Node5.txt for element 4 convergence time:7396
+
+Node2.txt for element 5 convergence time:6199
+Node3.txt for element 5 convergence time:6460
+Node4.txt for element 5 convergence time:1900
+Node5.txt for element 5 convergence time:2363
+
+Node2.txt for element 6 convergence time:11323
+Node3.txt for element 6 convergence time:11559
+Node4.txt for element 6 convergence time:11652
+Node5.txt for element 6 convergence time:7577
+
+Node2.txt for element 7 convergence time:6276
+Node3.txt for element 7 convergence time:6512
+Node4.txt for element 7 convergence time:6605
+Node5.txt for element 7 convergence time:2530
+
+
