@@ -1,9 +1,0 @@
-Results for Exp5
-convergence mean time: 6590,964 
-convergence time standart deviation: 3293,8789834684
-convergence time median: 5084,5
-initial size of the CRDT (with 5000 elements): 11183
-final size of the CRDT (with 0 elements): 49
-mean number of messages/sec : 6.315 
-number of messages/sec standart deviation: 1.898
-number of messages/sec median: 6.683

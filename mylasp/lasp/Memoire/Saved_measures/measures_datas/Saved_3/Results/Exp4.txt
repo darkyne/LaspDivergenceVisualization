@@ -1,9 +1,0 @@
-Results for Exp4
-convergence mean time: 13706,392 
-convergence time standart deviation: 4976,7878400375
-convergence time median: 10680
-initial size of the CRDT (with 0 elements): 267
-final size of the CRDT (with 1000 elements): 2319
-mean number of messages/sec : 14.146 
-number of messages/sec standart deviation: 18.897
-number of messages/sec median: 9.226

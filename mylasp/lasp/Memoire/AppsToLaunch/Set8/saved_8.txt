@@ -1,0 +1,22 @@
+General FORME:
+lasp_convergence_measure:launchExperimentDynamic(ExperimentNumber, NodeToJoin, CRDT_Id, TotalNumberOfNodes, SendingPeriod)
+
+Measure1: 10nodes, add/remove every 0.500 sec (2/sec)
+lasp_convergence_measure:launchExperimentDynamic(1, IpAddress, <<"set1">>, 500),
+
+Measure2: 10nodes, adds/remove every 0.250 sec (4/sec)
+lasp_convergence_measure:launchExperimentDynamic(2, IpAddress, <<"set1">>, 250),
+
+Measure3: 10nodes, add/remove every 0.100 sec (10/sec)
+lasp_convergence_measure:launchExperimentDynamic(3, IpAddress, <<"set1">>, 100),
+
+Measure4: 10nodes, add/remove every 0.050 sec (20/sec)
+lasp_convergence_measure:launchExperimentDynamic(4, IpAddress, <<"set1">>, 50),
+ 
+Measure5: 10nodes, add/remove every 0.01sec (100/sec)
+lasp_convergence_measure:launchExperimentDynaimc(5, IpAddress, <<"set1">>, 10),
+
+
+
+
+

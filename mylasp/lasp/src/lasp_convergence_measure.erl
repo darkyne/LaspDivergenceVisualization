@@ -428,9 +428,8 @@ generateFileRmv (ExperimentNumber, Id, NodeToJoin, CRDT_Type_String, TotalNumber
 %% launchExperimentDynamic:
 %% ===================================================================
 
-launchExperimentDynamic(ExperimentNumber, NodeToJoin, CRDT_Id, TotalNumberOfNodes, SendingPeriod) ->
+launchExperimentDynamic(ExperimentNumber, NodeToJoin, CRDT_Id, SendingPeriod) ->
 	io:format("Experiment ~p ~n",[ExperimentNumber]),
-	io:format("Number of nodes ~p ~n",[TotalNumberOfNodes]),
 	timer:sleep(1000), %start with a little sleep to allow NodeToJoin to be booted in case it is a bit slower than this node
 	Id = list_to_integer( lists:nth(2,string:split(lists:nth(1,string:split(atom_to_list(erlang:node()),"@")), "e")) ),
 	lasp_peer_service:join(NodeToJoin),

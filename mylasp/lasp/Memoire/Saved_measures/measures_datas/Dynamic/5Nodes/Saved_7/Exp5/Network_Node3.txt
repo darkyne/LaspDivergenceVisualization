@@ -1,0 +1,3 @@
+Number of messages received/sec:7.225
+Experiment duration:120
+Total number of messages:867
