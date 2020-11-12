@@ -16,7 +16,10 @@ Contient également lasp_convergence_measure.erl qui implémente certaines fonct
 Ce dossier comporte 4 sous-dossier importants: MyScripts, AppsToLaunch, Mesures et Saved_measures.
 
 ### MyScripts
-These scripts are adapted for local use (using 127.0.0.1 by default) and should, normaly, be running easily on your machine.
+Ce dossier contient l'ensemble de mes scripts. 
+Ceux-ci sont rendus le plus user-friendly possible et devraient normalement run facilement sur n'importe quelle machine.
+Pensez à modifier votre adresse ip dans le fichier Memoire/AppsToLaunch/IpAddress.txt au préalable, vous pouvez évidemment utiliser 127.0.0.1 pour des tests locaux.
+
 
 #### LaunchSet1.sh
 Ce script permet de lancer le premier set d'expériences pour générer des fichiers de mesures.
@@ -36,9 +39,17 @@ Avant de lancer tout script, pensez à écrire votre adresse IPV4 dans le fichie
 Ce script permet de supprimer les fichiers d'outputs qui ont été générés dans le dossier /Memoire/Mesures.
 Il peut être lancé manuellement si vous le souhaitez mais, dans tous les cas, il est automatiquement exécuté lors de l'éxécution de nouvelles mesures.
 
-#### analyse.sh
+#### analyse_static.sh
+Les instructions de ce script sont automatiquement lancées à la suite d'un set d'expériences concernant des analyses statiques.
+C'est-à-dire que pour LaunchSet1,2,..6 il s'agit d'expériences où des nodes génèrent des éléments dans un CRDT puis attendent et mesure le temps de convergence, il s'agit donc d'expériences statiques.
+A la fin de l'expérience, les mesures sont automatiquement analysées. Mais si vous disposez déjà des mesures et voulez les analyser, par exemple en reprenant les mesures dans Memoire/Saved_measures, alors ce script peut vous intéresser.
 Ce script permet de lancer l'analyse des fichiers d'outputs afin de générer des fichiers de résulstats qui sont automatiquement placés dans le dossier Results.
-A noter qu'il est conseillé d'utiliser ce script dans un environnement séparé afin d'éviter tout risque de corrompre de précédents résultats. C'est pourquoi il se trouve dans un dossier à part (appelé analyse).
+
+#### analyse_dynamic.sh
+Les instructions de ce script sont automatiquement lancées à la suite d'un set d'expériences concernant des analyses dynamiques.
+C'est-à-dire que pour LaunchSet7,8 il s'agit d'expériences où des nodes génèrent des éléments dans un CRDT  en continu durant toute l'expérience, il n'y a pas de moment de "pause" pendant lequel le CRDT se stabilise. C'est pourquoi je parle d'expériences dynamiques.
+A la fin de l'expérience, les mesures sont automatiquement analysées. Mais si vous disposez déjà des mesures et voulez les analyser, par exemple en reprenant les mesures dans Memoire/Saved_measures, alors ce script peut vous intéresser.
+Ce script permet de lancer l'analyse des fichiers d'outputs afin de générer des fichiers de résulstats qui sont automatiquement placés dans le dossier Results.
 
 #### LaunchBasicNode
 Il s'agit d'un script très simple qui lance un node lasp local (127.0.0.1) sans tâche particulière à effectuer, permettant donc à l'utilisateur d'intéragir directement dedans.
