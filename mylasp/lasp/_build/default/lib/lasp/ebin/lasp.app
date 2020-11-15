@@ -1,6 +1,6 @@
 {application,lasp,
              [{description,"Declarative, distributed, eventually consistent compuations."},
-              {vsn,"0.0.0+build.52.ref69eb8fb"},
+              {vsn,"0.0.0+build.54.ref31e0c58"},
               {links,[{"Github","https://github.com/lasp-lang/lasp"}]},
               {licenses,["Apache 2"]},
               {registered,[]},

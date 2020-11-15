@@ -5426,3 +5426,214 @@
     stack_size: 27
     reductions: 248
   neighbours:
+2020-11-12 17:05:02 =SUPERVISOR REPORT====
+     Supervisor: {local,partisan_sup}
+     Context:    child_terminated
+     Reason:     normal
+     Offender:   [{pid,<0.438.0>},{id,partisan_pluggable_peer_service_manager},{mfargs,{partisan_pluggable_peer_service_manager,start_link,[]}},{restart_type,permanent},{shutdown,5000},{child_type,worker}]
+
+2020-11-12 17:05:53 =SUPERVISOR REPORT====
+     Supervisor: {local,partisan_sup}
+     Context:    child_terminated
+     Reason:     normal
+     Offender:   [{pid,<0.1300.0>},{id,partisan_pluggable_peer_service_manager},{mfargs,{partisan_pluggable_peer_service_manager,start_link,[]}},{restart_type,permanent},{shutdown,5000},{child_type,worker}]
+
+2020-11-12 17:07:13 =SUPERVISOR REPORT====
+     Supervisor: {local,partisan_sup}
+     Context:    child_terminated
+     Reason:     normal
+     Offender:   [{pid,<0.1431.0>},{id,partisan_pluggable_peer_service_manager},{mfargs,{partisan_pluggable_peer_service_manager,start_link,[]}},{restart_type,permanent},{shutdown,5000},{child_type,worker}]
+
+2020-11-12 17:07:45 =SUPERVISOR REPORT====
+     Supervisor: {local,partisan_sup}
+     Context:    child_terminated
+     Reason:     normal
+     Offender:   [{pid,<0.1745.0>},{id,partisan_pluggable_peer_service_manager},{mfargs,{partisan_pluggable_peer_service_manager,start_link,[]}},{restart_type,permanent},{shutdown,5000},{child_type,worker}]
+
+2020-11-12 17:10:02 =ERROR REPORT====
+** Generic server partisan_pluggable_peer_service_manager terminating 
+** Last message in was {update_members,'node3@192.168.1.39'}
+** When Server state == {state,<<16,147,193,103,33,14,92,138,229,164,163,116,96,122,152,163,224,32,171,182>>,{dict,1,16,16,8,80,48,{[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]},{{[],[],[],[],[],[],[],[],[],[],[],[],[[#{channels => [undefined],listen_addrs => [#{ip => {192,168,1,39},port => 56941}],name => 'node1@192.168.1.39',parallelism => 1}|16923]],[],[],[]}}},[{'node3@192.168.1.39',377}],[],[#{channels => [undefined],listen_addrs => [#{ip => {192,168,1,39},port => 47389}],name => 'node2@192.168.1.39',parallelism => 1},#{channels => [undefined],listen_addrs => [#{ip => {192,168,1,39},port => 56977}],name => 'node3@192.168.1.39',parallelism => 1},#{channels => [undefined],listen_addrs => [#{ip => {192,168,1,39},port => 56941}],name => 'node1@192.168.1.39',parallelism => 1}],{dict,0,16,16,8,80,48,{[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]},{{[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]}}},{dict,0,16,16,8,80,48,{[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]},{{[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]}}},[],{dict,0,16,16,8,80,48,{[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]},{{[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]}}},{dict,0,16,16,8,80,48,{[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]},{{[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]}}},{dict,0,16,16,8,80,48,{[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]},{{[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]}}},[],{dict,1,16,16,8,80,48,{[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]},{{[],[],[],[],[],[],[],[],[],[],[],[],[[#{channels => [undefined],listen_addrs => [#{ip => {192,168,1,39},port => 56941}],name => 'node1@192.168.1.39',parallelism => 1},{#{ip => {192,168,1,39},port => 56941},undefined,<0.1903.0>}]],[],[],[]}}},partisan_full_membership_strategy,{full_v1,<<16,147,193,103,33,14,92,138,229,164,163,116,96,122,152,163,224,32,171,182>>,{state_orset,[{#{channels => [undefined],listen_addrs => [#{ip => {192,168,1,39},port => 47389}],name => 'node2@192.168.1.39',parallelism => 1},[{<<238,6,58,42,73,132,101,175,195,60,61,125,1,89,193,34,241,190,150,28>>,true}]},{#{channels => [undefined],listen_addrs => [#{ip => {192,168,1,39},port => 56941}],name => 'node1@192.168.1.39',parallelism => 1},[{<<239,75,232,138,232,39,222,160,251,75,223,236,193,115,128,178,217,124,169,71>>,true}]},{#{channels => [undefined],listen_addrs => [#{ip => {192,168,1,39},port => 56977}],name => 'node3@192.168.1.39',parallelism => 1},[{<<138,130,20,233,119,99,186,76,38,162,112,213,149,127,173,99,141,254,174,64>>,true},{<<144,234,16,26,127,224,191,226,91,184,176,208,156,97,254,178,54,96,117,218>>,true},{<<145,219,1,43,160,227,36,253,28,96,150,66,143,200,6,195,76,155,144,0>>,true},{<<169,159,206,4,160,233,110,210,10,120,254,40,193,34,90,66,197,140,31,202>>,true},{<<244,86,154,82,55,119,0,219,46,193,144,31,101,65,61,194,187,116,248,25>>,true}]}]}}}
+** Reason for termination ==
+** {function_clause,[{lists,map,[#Fun<partisan_pluggable_peer_service_manager.1.67411316>,'node3@192.168.1.39'],[{file,"lists.erl"},{line,1238}]},{partisan_pluggable_peer_service_manager,handle_call,3,[{file,"/home/gcreupelandt/Documents/MEMOIRE/LaspDivergenceVisualization/lasp/_build/default/lib/partisan/src/partisan_pluggable_peer_service_manager.erl"},{line,467}]},{gen_server,try_handle_call,4,[{file,"gen_server.erl"},{line,661}]},{gen_server,handle_msg,6,[{file,"gen_server.erl"},{line,690}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,249}]}]}
+** Client <0.2645.0> stacktrace
+** [{gen,do_call,4,[{file,"gen.erl"},{line,167}]},{gen_server,call,3,[{file,"gen_server.erl"},{line,219}]},{erl_eval,do_apply,6,[{file,"erl_eval.erl"},{line,684}]},{shell,exprs,7,[{file,"shell.erl"},{line,686}]},{shell,eval_exprs,7,[{file,"shell.erl"},{line,642}]},{shell,eval_loop,3,[{file,"shell.erl"},{line,627}]}]
+2020-11-12 17:10:02 =CRASH REPORT====
+  crasher:
+    initial call: partisan_pluggable_peer_service_manager:init/1
+    pid: <0.1899.0>
+    registered_name: partisan_pluggable_peer_service_manager
+    exception error: {function_clause,[{lists,map,[#Fun<partisan_pluggable_peer_service_manager.1.67411316>,'node3@192.168.1.39'],[{file,"lists.erl"},{line,1238}]},{partisan_pluggable_peer_service_manager,handle_call,3,[{file,"/home/gcreupelandt/Documents/MEMOIRE/LaspDivergenceVisualization/lasp/_build/default/lib/partisan/src/partisan_pluggable_peer_service_manager.erl"},{line,467}]},{gen_server,try_handle_call,4,[{file,"gen_server.erl"},{line,661}]},{gen_server,handle_msg,6,[{file,"gen_server.erl"},{line,690}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,249}]}]}
+    ancestors: [partisan_sup,<0.384.0>]
+    message_queue_len: 0
+    messages: []
+    links: [<0.1903.0>,<0.385.0>]
+    dictionary: [{distance_metrics,{dict,1,16,16,8,80,48,{[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]},{{[],[],[],[],[],[],[],[],[],[],[],[],[[#{channels => [undefined],listen_addrs => [#{ip => {192,168,1,39},port => 56941}],name => 'node1@192.168.1.39',parallelism => 1}|16923]],[],[],[]}}}},{rand_seed,{#{jump => #Fun<rand.24.53802439>,max => 288230376151711743,next => #Fun<rand.23.53802439>,type => exsplus},[270648746052186489|240125173926713574]}}]
+    trap_exit: true
+    status: running
+    heap_size: 4185
+    stack_size: 27
+    reductions: 585455
+  neighbours:
+    neighbour: [{pid,<0.1903.0>},{registered_name,[]},{initial_call,{partisan_peer_service_client,init,['Argument__1']}},{current_function,{gen_server,loop,7}},{ancestors,[partisan_pluggable_peer_service_manager,partisan_sup,<0.384.0>]},{message_queue_len,0},{links,[<0.1899.0>,#Port<0.930>]},{trap_exit,false},{status,waiting},{heap_size,4185},{stack_size,11},{reductions,34764},{current_stacktrace,[{gen_server,loop,7,[{file,"gen_server.erl"},{line,394}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,249}]}]}]
+2020-11-12 17:10:02 =SUPERVISOR REPORT====
+     Supervisor: {local,partisan_sup}
+     Context:    child_terminated
+     Reason:     {function_clause,[{lists,map,[#Fun<partisan_pluggable_peer_service_manager.1.67411316>,'node3@192.168.1.39'],[{file,"lists.erl"},{line,1238}]},{partisan_pluggable_peer_service_manager,handle_call,3,[{file,"/home/gcreupelandt/Documents/MEMOIRE/LaspDivergenceVisualization/lasp/_build/default/lib/partisan/src/partisan_pluggable_peer_service_manager.erl"},{line,467}]},{gen_server,try_handle_call,4,[{file,"gen_server.erl"},{line,661}]},{gen_server,handle_msg,6,[{file,"gen_server.erl"},{line,690}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,249}]}]}
+     Offender:   [{pid,<0.1899.0>},{id,partisan_pluggable_peer_service_manager},{mfargs,{partisan_pluggable_peer_service_manager,start_link,[]}},{restart_type,permanent},{shutdown,5000},{child_type,worker}]
+
+2020-11-12 17:10:50 =SUPERVISOR REPORT====
+     Supervisor: {local,partisan_sup}
+     Context:    child_terminated
+     Reason:     normal
+     Offender:   [{pid,<0.2774.0>},{id,partisan_pluggable_peer_service_manager},{mfargs,{partisan_pluggable_peer_service_manager,start_link,[]}},{restart_type,permanent},{shutdown,5000},{child_type,worker}]
+
+2020-11-12 17:18:51 =ERROR REPORT====
+** Generic server partisan_pluggable_peer_service_manager terminating 
+** Last message in was {update_members,'node1@192.168.1.39'}
+** When Server state == {state,<<166,155,121,117,5,118,105,240,105,4,96,146,82,150,40,189,168,157,18,240>>,{dict,2,16,16,8,80,48,{[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]},{{[],[],[],[],[],[],[],[[#{channels => [undefined],listen_addrs => [#{ip => {192,168,1,39},port => 47389}],name => 'node2@192.168.1.39',parallelism => 1}|23133],[#{channels => [undefined],listen_addrs => [#{ip => {192,168,1,39},port => 56977}],name => 'node3@192.168.1.39',parallelism => 1}|17471]],[],[],[],[],[],[],[],[]}}},[{'node1@192.168.1.39',1272}],[],[#{channels => [undefined],listen_addrs => [#{ip => {192,168,1,39},port => 47389}],name => 'node2@192.168.1.39',parallelism => 1},#{channels => [undefined],listen_addrs => [#{ip => {192,168,1,39},port => 56977}],name => 'node3@192.168.1.39',parallelism => 1},#{channels => [undefined],listen_addrs => [#{ip => {192,168,1,39},port => 56941}],name => 'node1@192.168.1.39',parallelism => 1}],{dict,0,16,16,8,80,48,{[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]},{{[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]}}},{dict,0,16,16,8,80,48,{[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]},{{[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]}}},[],{dict,0,16,16,8,80,48,{[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]},{{[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]}}},{dict,0,16,16,8,80,48,{[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]},{{[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]}}},{dict,0,16,16,8,80,48,{[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]},{{[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]}}},[],{dict,1,16,16,8,80,48,{[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]},{{[],[],[],[],[],[],[],[[#{channels => [undefined],listen_addrs => [#{ip => {192,168,1,39},port => 56977}],name => 'node3@192.168.1.39',parallelism => 1},{#{ip => {192,168,1,39},port => 56977},undefined,<0.774.0>}]],[],[],[],[],[],[],[],[]}}},partisan_full_membership_strategy,{full_v1,<<166,155,121,117,5,118,105,240,105,4,96,146,82,150,40,189,168,157,18,240>>,{state_orset,[{#{channels => [undefined],listen_addrs => [#{ip => {192,168,1,39},port => 47389}],name => 'node2@192.168.1.39',parallelism => 1},[{<<238,6,58,42,73,132,101,175,195,60,61,125,1,89,193,34,241,190,150,28>>,true}]},{#{channels => [undefined],listen_addrs => [#{ip => {192,168,1,39},port => 56941}],name => 'node1@192.168.1.39',parallelism => 1},[{<<239,75,232,138,232,39,222,160,251,75,223,236,193,115,128,178,217,124,169,71>>,true}]},{#{channels => [undefined],listen_addrs => [#{ip => {192,168,1,39},port => 56977}],name => 'node3@192.168.1.39',parallelism => 1},[{<<33,199,211,174,157,161,120,45,143,128,50,157,54,129,207,231,106,51,110,89>>,true},{<<57,186,137,148,137,11,26,88,126,249,5,139,79,131,67,209,138,79,233,41>>,true},{<<138,130,20,233,119,99,186,76,38,162,112,213,149,127,173,99,141,254,174,64>>,true},{<<144,234,16,26,127,224,191,226,91,184,176,208,156,97,254,178,54,96,117,218>>,true},{<<145,219,1,43,160,227,36,253,28,96,150,66,143,200,6,195,76,155,144,0>>,true},{<<169,159,206,4,160,233,110,210,10,120,254,40,193,34,90,66,197,140,31,202>>,true},{<<244,86,154,82,55,119,0,219,46,193,144,31,101,65,61,194,187,116,248,25>>,true}]}]}}}
+** Reason for termination ==
+** {function_clause,[{lists,map,[#Fun<partisan_pluggable_peer_service_manager.1.67411316>,'node1@192.168.1.39'],[{file,"lists.erl"},{line,1238}]},{partisan_pluggable_peer_service_manager,handle_call,3,[{file,"/home/gcreupelandt/Documents/MEMOIRE/LaspDivergenceVisualization/lasp/_build/default/lib/partisan/src/partisan_pluggable_peer_service_manager.erl"},{line,467}]},{gen_server,try_handle_call,4,[{file,"gen_server.erl"},{line,661}]},{gen_server,handle_msg,6,[{file,"gen_server.erl"},{line,690}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,249}]}]}
+** Client <0.4893.0> stacktrace
+** [{gen,do_call,4,[{file,"gen.erl"},{line,167}]},{gen_server,call,3,[{file,"gen_server.erl"},{line,219}]},{erl_eval,do_apply,6,[{file,"erl_eval.erl"},{line,684}]},{shell,exprs,7,[{file,"shell.erl"},{line,686}]},{shell,eval_exprs,7,[{file,"shell.erl"},{line,642}]},{shell,eval_loop,3,[{file,"shell.erl"},{line,627}]}]
+2020-11-12 17:18:51 =CRASH REPORT====
+  crasher:
+    initial call: partisan_pluggable_peer_service_manager:init/1
+    pid: <0.457.0>
+    registered_name: partisan_pluggable_peer_service_manager
+    exception error: {function_clause,[{lists,map,[#Fun<partisan_pluggable_peer_service_manager.1.67411316>,'node1@192.168.1.39'],[{file,"lists.erl"},{line,1238}]},{partisan_pluggable_peer_service_manager,handle_call,3,[{file,"/home/gcreupelandt/Documents/MEMOIRE/LaspDivergenceVisualization/lasp/_build/default/lib/partisan/src/partisan_pluggable_peer_service_manager.erl"},{line,467}]},{gen_server,try_handle_call,4,[{file,"gen_server.erl"},{line,661}]},{gen_server,handle_msg,6,[{file,"gen_server.erl"},{line,690}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,249}]}]}
+    ancestors: [partisan_sup,<0.403.0>]
+    message_queue_len: 0
+    messages: []
+    links: [<0.774.0>,<0.404.0>]
+    dictionary: [{rand_seed,{#{jump => #Fun<rand.24.53802439>,max => 288230376151711743,next => #Fun<rand.23.53802439>,type => exsplus},[228586706270444904|49142117127804980]}},{distance_metrics,{dict,2,16,16,8,80,48,{[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]},{{[],[],[],[],[],[],[],[[#{channels => [undefined],listen_addrs => [#{ip => {192,168,1,39},port => 47389}],name => 'node2@192.168.1.39',parallelism => 1}|23133],[#{channels => [undefined],listen_addrs => [#{ip => {192,168,1,39},port => 56977}],name => 'node3@192.168.1.39',parallelism => 1}|17471]],[],[],[],[],[],[],[],[]}}}}]
+    trap_exit: true
+    status: running
+    heap_size: 6772
+    stack_size: 27
+    reductions: 1971637
+  neighbours:
+    neighbour: [{pid,<0.774.0>},{registered_name,[]},{initial_call,{partisan_peer_service_client,init,['Argument__1']}},{current_function,{gen_server,loop,7}},{ancestors,[partisan_pluggable_peer_service_manager,partisan_sup,<0.403.0>]},{message_queue_len,0},{links,[<0.457.0>,#Port<0.184>]},{trap_exit,false},{status,waiting},{heap_size,2586},{stack_size,11},{reductions,146115},{current_stacktrace,[{gen_server,loop,7,[{file,"gen_server.erl"},{line,394}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,249}]}]}]
+2020-11-12 17:18:51 =SUPERVISOR REPORT====
+     Supervisor: {local,partisan_sup}
+     Context:    child_terminated
+     Reason:     {function_clause,[{lists,map,[#Fun<partisan_pluggable_peer_service_manager.1.67411316>,'node1@192.168.1.39'],[{file,"lists.erl"},{line,1238}]},{partisan_pluggable_peer_service_manager,handle_call,3,[{file,"/home/gcreupelandt/Documents/MEMOIRE/LaspDivergenceVisualization/lasp/_build/default/lib/partisan/src/partisan_pluggable_peer_service_manager.erl"},{line,467}]},{gen_server,try_handle_call,4,[{file,"gen_server.erl"},{line,661}]},{gen_server,handle_msg,6,[{file,"gen_server.erl"},{line,690}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,249}]}]}
+     Offender:   [{pid,<0.457.0>},{id,partisan_pluggable_peer_service_manager},{mfargs,{partisan_pluggable_peer_service_manager,start_link,[]}},{restart_type,permanent},{shutdown,5000},{child_type,worker}]
+
+2020-11-12 17:36:23 =SUPERVISOR REPORT====
+     Supervisor: {local,partisan_sup}
+     Context:    child_terminated
+     Reason:     normal
+     Offender:   [{pid,<0.438.0>},{id,partisan_pluggable_peer_service_manager},{mfargs,{partisan_pluggable_peer_service_manager,start_link,[]}},{restart_type,permanent},{shutdown,5000},{child_type,worker}]
+
+2020-11-12 18:44:37 =ERROR REPORT====
+** Generic server partisan_pluggable_peer_service_manager terminating 
+** Last message in was {join,#{listen_addrs => {badrpc,nodedown},name => 'node2@192.169.1.39'}}
+** When Server state == {state,<<101,82,95,173,226,24,233,154,149,176,216,125,117,166,125,20,195,222,186,113>>,{dict,0,16,16,8,80,48,{[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]},{{[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]}}},[{'node3@192.168.1.39',26}],[],[#{channels => [undefined],listen_addrs => [#{ip => {192,168,1,39},port => 54051}],name => 'node3@192.168.1.39',parallelism => 1}],{dict,0,16,16,8,80,48,{[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]},{{[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]}}},{dict,0,16,16,8,80,48,{[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]},{{[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]}}},[],{dict,0,16,16,8,80,48,{[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]},{{[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]}}},{dict,0,16,16,8,80,48,{[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]},{{[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]}}},{dict,0,16,16,8,80,48,{[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]},{{[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]}}},[],{dict,0,16,16,8,80,48,{[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]},{{[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]}}},partisan_full_membership_strategy,{full_v1,<<101,82,95,173,226,24,233,154,149,176,216,125,117,166,125,20,195,222,186,113>>,{state_orset,[{#{channels => [undefined],listen_addrs => [#{ip => {192,168,1,39},port => 54051}],name => 'node3@192.168.1.39',parallelism => 1},[{<<152,145,65,195,61,162,57,192,131,90,170,28,12,246,79,61,39,232,152,91>>,true}]}]}}}
+** Reason for termination ==
+** {function_clause,[{lists,foldl,[#Fun<partisan_util.1.120488044>,{dict,0,16,16,8,80,48,{[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]},{{[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]}}},{badrpc,nodedown}],[{file,"lists.erl"},{line,1262}]},{lists,foldl,3,[{file,"lists.erl"},{line,1263}]},{partisan_pluggable_peer_service_manager,internal_join,3,[{file,"/home/gcreupelandt/Documents/MEMOIRE/LaspDivergenceVisualization/lasp/_build/default/lib/partisan/src/partisan_pluggable_peer_service_manager.erl"},{line,1454}]},{partisan_pluggable_peer_service_manager,handle_call,3,[{file,"/home/gcreupelandt/Documents/MEMOIRE/LaspDivergenceVisualization/lasp/_build/default/lib/partisan/src/partisan_pluggable_peer_service_manager.erl"},{line,528}]},{gen_server,try_handle_call,4,[{file,"gen_server.erl"},{line,661}]},{gen_server,handle_msg,6,[{file,"gen_server.erl"},{line,690}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,249}]}]}
+** Client <0.530.0> stacktrace
+** [{gen,do_call,4,[{file,"gen.erl"},{line,167}]},{gen_server,call,3,[{file,"gen_server.erl"},{line,219}]},{erl_eval,do_apply,6,[{file,"erl_eval.erl"},{line,684}]},{shell,exprs,7,[{file,"shell.erl"},{line,686}]},{shell,eval_exprs,7,[{file,"shell.erl"},{line,642}]},{shell,eval_loop,3,[{file,"shell.erl"},{line,627}]}]
+2020-11-12 18:44:37 =CRASH REPORT====
+  crasher:
+    initial call: partisan_pluggable_peer_service_manager:init/1
+    pid: <0.438.0>
+    registered_name: partisan_pluggable_peer_service_manager
+    exception error: {function_clause,[{lists,foldl,[#Fun<partisan_util.1.120488044>,{dict,0,16,16,8,80,48,{[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]},{{[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]}}},{badrpc,nodedown}],[{file,"lists.erl"},{line,1262}]},{lists,foldl,3,[{file,"lists.erl"},{line,1263}]},{partisan_pluggable_peer_service_manager,internal_join,3,[{file,"/home/gcreupelandt/Documents/MEMOIRE/LaspDivergenceVisualization/lasp/_build/default/lib/partisan/src/partisan_pluggable_peer_service_manager.erl"},{line,1454}]},{partisan_pluggable_peer_service_manager,handle_call,3,[{file,"/home/gcreupelandt/Documents/MEMOIRE/LaspDivergenceVisualization/lasp/_build/default/lib/partisan/src/partisan_pluggable_peer_service_manager.erl"},{line,528}]},{gen_server,try_handle_call,4,[{file,"gen_server.erl"},{line,661}]},{gen_server,handle_msg,6,[{file,"gen_server.erl"},{line,690}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,249}]}]}
+    ancestors: [partisan_sup,<0.384.0>]
+    message_queue_len: 2
+    messages: [connections,retransmit]
+    links: [<0.385.0>]
+    dictionary: [{rand_seed,{#{jump => #Fun<rand.24.53802439>,max => 288230376151711743,next => #Fun<rand.23.53802439>,type => exsplus},[179912013096916974|180369552938150487]}}]
+    trap_exit: true
+    status: running
+    heap_size: 6772
+    stack_size: 27
+    reductions: 40915
+  neighbours:
+2020-11-12 18:44:37 =SUPERVISOR REPORT====
+     Supervisor: {local,partisan_sup}
+     Context:    child_terminated
+     Reason:     {function_clause,[{lists,foldl,[#Fun<partisan_util.1.120488044>,{dict,0,16,16,8,80,48,{[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]},{{[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]}}},{badrpc,nodedown}],[{file,"lists.erl"},{line,1262}]},{lists,foldl,3,[{file,"lists.erl"},{line,1263}]},{partisan_pluggable_peer_service_manager,internal_join,3,[{file,"/home/gcreupelandt/Documents/MEMOIRE/LaspDivergenceVisualization/lasp/_build/default/lib/partisan/src/partisan_pluggable_peer_service_manager.erl"},{line,1454}]},{partisan_pluggable_peer_service_manager,handle_call,3,[{file,"/home/gcreupelandt/Documents/MEMOIRE/LaspDivergenceVisualization/lasp/_build/default/lib/partisan/src/partisan_pluggable_peer_service_manager.erl"},{line,528}]},{gen_server,try_handle_call,4,[{file,"gen_server.erl"},{line,661}]},{gen_server,handle_msg,6,[{file,"gen_server.erl"},{line,690}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,249}]}]}
+     Offender:   [{pid,<0.438.0>},{id,partisan_pluggable_peer_service_manager},{mfargs,{partisan_pluggable_peer_service_manager,start_link,[]}},{restart_type,permanent},{shutdown,5000},{child_type,worker}]
+
+2020-11-15 16:09:46 =ERROR REPORT====
+** Generic server partisan_pluggable_peer_service_manager terminating 
+** Last message in was {join,#{listen_addrs => {badrpc,nodedown},name => 'node1@192.168.1.39'}}
+** When Server state == {state,<<188,164,92,144,59,45,230,182,193,176,29,24,125,6,229,110,114,7,215,159>>,{dict,0,16,16,8,80,48,{[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]},{{[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]}}},[],[],[#{channels => [undefined],listen_addrs => [#{ip => {192,168,1,39},port => 52661}],name => 'node5@192.168.1.39',parallelism => 1}],{dict,0,16,16,8,80,48,{[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]},{{[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]}}},{dict,0,16,16,8,80,48,{[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]},{{[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]}}},[],{dict,0,16,16,8,80,48,{[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]},{{[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]}}},{dict,0,16,16,8,80,48,{[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]},{{[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]}}},{dict,0,16,16,8,80,48,{[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]},{{[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]}}},[],{dict,0,16,16,8,80,48,{[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]},{{[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]}}},partisan_full_membership_strategy,{full_v1,<<188,164,92,144,59,45,230,182,193,176,29,24,125,6,229,110,114,7,215,159>>,{state_orset,[{#{channels => [undefined],listen_addrs => [#{ip => {192,168,1,39},port => 52661}],name => 'node5@192.168.1.39',parallelism => 1},[{<<108,79,194,139,31,69,167,172,247,41,103,4,170,145,39,196,247,26,64,155>>,true}]}]}}}
+** Reason for termination ==
+** {function_clause,[{lists,foldl,[#Fun<partisan_util.1.120488044>,{dict,0,16,16,8,80,48,{[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]},{{[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]}}},{badrpc,nodedown}],[{file,"lists.erl"},{line,1262}]},{lists,foldl,3,[{file,"lists.erl"},{line,1263}]},{partisan_pluggable_peer_service_manager,internal_join,3,[{file,"/home/gcreupelandt/Documents/MEMOIRE/LaspDivergenceVisualization/lasp/_build/default/lib/partisan/src/partisan_pluggable_peer_service_manager.erl"},{line,1454}]},{partisan_pluggable_peer_service_manager,handle_call,3,[{file,"/home/gcreupelandt/Documents/MEMOIRE/LaspDivergenceVisualization/lasp/_build/default/lib/partisan/src/partisan_pluggable_peer_service_manager.erl"},{line,528}]},{gen_server,try_handle_call,4,[{file,"gen_server.erl"},{line,661}]},{gen_server,handle_msg,6,[{file,"gen_server.erl"},{line,690}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,249}]}]}
+** Client <0.477.0> stacktrace
+** [{gen,do_call,4,[{file,"gen.erl"},{line,167}]},{gen_server,call,3,[{file,"gen_server.erl"},{line,219}]},{lasp_convergence_measure,launchExperimentDynamic,4,[{file,"/home/gcreupelandt/Documents/MEMOIRE/LaspDivergenceVisualization/mylasp/lasp/src/lasp_convergence_measure.erl"},{line,436}]},{lasp_app,start,2,[{file,"/home/gcreupelandt/Documents/MEMOIRE/LaspDivergenceVisualization/mylasp/lasp/src/lasp_app.erl"},{line,42}]},{application_master,start_it_old,4,[{file,"application_master.erl"},{line,277}]}]
+2020-11-15 16:09:46 =ERROR REPORT====
+** Generic server partisan_pluggable_peer_service_manager terminating 
+** Last message in was {join,#{listen_addrs => {badrpc,nodedown},name => 'node1@192.168.1.39'}}
+** When Server state == {state,<<188,69,17,12,16,55,217,106,95,157,129,195,244,5,96,17,176,189,144,166>>,{dict,0,16,16,8,80,48,{[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]},{{[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]}}},[],[],[#{channels => [undefined],listen_addrs => [#{ip => {192,168,1,39},port => 33513}],name => 'node8@192.168.1.39',parallelism => 1}],{dict,0,16,16,8,80,48,{[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]},{{[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]}}},{dict,0,16,16,8,80,48,{[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]},{{[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]}}},[],{dict,0,16,16,8,80,48,{[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]},{{[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]}}},{dict,0,16,16,8,80,48,{[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]},{{[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]}}},{dict,0,16,16,8,80,48,{[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]},{{[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]}}},[],{dict,0,16,16,8,80,48,{[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]},{{[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]}}},partisan_full_membership_strategy,{full_v1,<<188,69,17,12,16,55,217,106,95,157,129,195,244,5,96,17,176,189,144,166>>,{state_orset,[{#{channels => [undefined],listen_addrs => [#{ip => {192,168,1,39},port => 33513}],name => 'node8@192.168.1.39',parallelism => 1},[{<<21,33,135,255,123,95,231,227,250,173,76,57,207,28,253,19,66,100,148,195>>,true}]}]}}}
+** Reason for termination ==
+** {function_clause,[{lists,foldl,[#Fun<partisan_util.1.120488044>,{dict,0,16,16,8,80,48,{[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]},{{[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]}}},{badrpc,nodedown}],[{file,"lists.erl"},{line,1262}]},{lists,foldl,3,[{file,"lists.erl"},{line,1263}]},{partisan_pluggable_peer_service_manager,internal_join,3,[{file,"/home/gcreupelandt/Documents/MEMOIRE/LaspDivergenceVisualization/lasp/_build/default/lib/partisan/src/partisan_pluggable_peer_service_manager.erl"},{line,1454}]},{partisan_pluggable_peer_service_manager,handle_call,3,[{file,"/home/gcreupelandt/Documents/MEMOIRE/LaspDivergenceVisualization/lasp/_build/default/lib/partisan/src/partisan_pluggable_peer_service_manager.erl"},{line,528}]},{gen_server,try_handle_call,4,[{file,"gen_server.erl"},{line,661}]},{gen_server,handle_msg,6,[{file,"gen_server.erl"},{line,690}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,249}]}]}
+** Client <0.525.0> stacktrace
+** [{gen,do_call,4,[{file,"gen.erl"},{line,167}]},{gen_server,call,3,[{file,"gen_server.erl"},{line,219}]},{lasp_convergence_measure,launchExperimentDynamic,4,[{file,"/home/gcreupelandt/Documents/MEMOIRE/LaspDivergenceVisualization/mylasp/lasp/src/lasp_convergence_measure.erl"},{line,436}]},{lasp_app,start,2,[{file,"/home/gcreupelandt/Documents/MEMOIRE/LaspDivergenceVisualization/mylasp/lasp/src/lasp_app.erl"},{line,42}]},{application_master,start_it_old,4,[{file,"application_master.erl"},{line,277}]}]
+2020-11-15 16:09:46 =ERROR REPORT====
+** Generic server partisan_pluggable_peer_service_manager terminating 
+** Last message in was {join,#{listen_addrs => {badrpc,nodedown},name => 'node1@192.168.1.39'}}
+** When Server state == {state,<<101,82,95,173,226,24,233,154,149,176,216,125,117,166,125,20,195,222,186,113>>,{dict,0,16,16,8,80,48,{[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]},{{[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]}}},[],[],[#{channels => [undefined],listen_addrs => [#{ip => {192,168,1,39},port => 43537}],name => 'node3@192.168.1.39',parallelism => 1}],{dict,0,16,16,8,80,48,{[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]},{{[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]}}},{dict,0,16,16,8,80,48,{[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]},{{[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]}}},[],{dict,0,16,16,8,80,48,{[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]},{{[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]}}},{dict,0,16,16,8,80,48,{[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]},{{[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]}}},{dict,0,16,16,8,80,48,{[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]},{{[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]}}},[],{dict,0,16,16,8,80,48,{[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]},{{[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]}}},partisan_full_membership_strategy,{full_v1,<<101,82,95,173,226,24,233,154,149,176,216,125,117,166,125,20,195,222,186,113>>,{state_orset,[{#{channels => [undefined],listen_addrs => [#{ip => {192,168,1,39},port => 43537}],name => 'node3@192.168.1.39',parallelism => 1},[{<<79,119,161,104,90,164,64,166,121,177,116,34,199,213,88,188,86,204,161,15>>,true}]}]}}}
+** Reason for termination ==
+** {function_clause,[{lists,foldl,[#Fun<partisan_util.1.120488044>,{dict,0,16,16,8,80,48,{[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]},{{[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]}}},{badrpc,nodedown}],[{file,"lists.erl"},{line,1262}]},{lists,foldl,3,[{file,"lists.erl"},{line,1263}]},{partisan_pluggable_peer_service_manager,internal_join,3,[{file,"/home/gcreupelandt/Documents/MEMOIRE/LaspDivergenceVisualization/lasp/_build/default/lib/partisan/src/partisan_pluggable_peer_service_manager.erl"},{line,1454}]},{partisan_pluggable_peer_service_manager,handle_call,3,[{file,"/home/gcreupelandt/Documents/MEMOIRE/LaspDivergenceVisualization/lasp/_build/default/lib/partisan/src/partisan_pluggable_peer_service_manager.erl"},{line,528}]},{gen_server,try_handle_call,4,[{file,"gen_server.erl"},{line,661}]},{gen_server,handle_msg,6,[{file,"gen_server.erl"},{line,690}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,249}]}]}
+** Client <0.525.0> stacktrace
+** [{gen,do_call,4,[{file,"gen.erl"},{line,167}]},{gen_server,call,3,[{file,"gen_server.erl"},{line,219}]},{lasp_convergence_measure,launchExperimentDynamic,4,[{file,"/home/gcreupelandt/Documents/MEMOIRE/LaspDivergenceVisualization/mylasp/lasp/src/lasp_convergence_measure.erl"},{line,436}]},{lasp_app,start,2,[{file,"/home/gcreupelandt/Documents/MEMOIRE/LaspDivergenceVisualization/mylasp/lasp/src/lasp_app.erl"},{line,42}]},{application_master,start_it_old,4,[{file,"application_master.erl"},{line,277}]}]
+2020-11-15 16:09:46 =ERROR REPORT====
+** Generic server partisan_pluggable_peer_service_manager terminating 
+** Last message in was {join,#{listen_addrs => {badrpc,nodedown},name => 'node1@192.168.1.39'}}
+** When Server state == {state,<<101,51,49,136,38,18,41,117,65,107,33,7,229,98,60,51,66,204,152,147>>,{dict,0,16,16,8,80,48,{[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]},{{[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]}}},[],[],[#{channels => [undefined],listen_addrs => [#{ip => {192,168,1,39},port => 44275}],name => 'node2@192.168.1.39',parallelism => 1}],{dict,0,16,16,8,80,48,{[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]},{{[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]}}},{dict,0,16,16,8,80,48,{[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]},{{[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]}}},[],{dict,0,16,16,8,80,48,{[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]},{{[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]}}},{dict,0,16,16,8,80,48,{[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]},{{[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]}}},{dict,0,16,16,8,80,48,{[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]},{{[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]}}},[],{dict,0,16,16,8,80,48,{[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]},{{[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]}}},partisan_full_membership_strategy,{full_v1,<<101,51,49,136,38,18,41,117,65,107,33,7,229,98,60,51,66,204,152,147>>,{state_orset,[{#{channels => [undefined],listen_addrs => [#{ip => {192,168,1,39},port => 44275}],name => 'node2@192.168.1.39',parallelism => 1},[{<<32,125,211,163,204,105,216,120,195,7,22,213,60,238,53,35,182,27,34,47>>,true}]}]}}}
+** Reason for termination ==
+** {function_clause,[{lists,foldl,[#Fun<partisan_util.1.120488044>,{dict,0,16,16,8,80,48,{[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]},{{[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]}}},{badrpc,nodedown}],[{file,"lists.erl"},{line,1262}]},{lists,foldl,3,[{file,"lists.erl"},{line,1263}]},{partisan_pluggable_peer_service_manager,internal_join,3,[{file,"/home/gcreupelandt/Documents/MEMOIRE/LaspDivergenceVisualization/lasp/_build/default/lib/partisan/src/partisan_pluggable_peer_service_manager.erl"},{line,1454}]},{partisan_pluggable_peer_service_manager,handle_call,3,[{file,"/home/gcreupelandt/Documents/MEMOIRE/LaspDivergenceVisualization/lasp/_build/default/lib/partisan/src/partisan_pluggable_peer_service_manager.erl"},{line,528}]},{gen_server,try_handle_call,4,[{file,"gen_server.erl"},{line,661}]},{gen_server,handle_msg,6,[{file,"gen_server.erl"},{line,690}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,249}]}]}
+** Client <0.525.0> stacktrace
+** [{gen,do_call,4,[{file,"gen.erl"},{line,167}]},{gen_server,call,3,[{file,"gen_server.erl"},{line,219}]},{lasp_convergence_measure,launchExperimentDynamic,4,[{file,"/home/gcreupelandt/Documents/MEMOIRE/LaspDivergenceVisualization/mylasp/lasp/src/lasp_convergence_measure.erl"},{line,436}]},{lasp_app,start,2,[{file,"/home/gcreupelandt/Documents/MEMOIRE/LaspDivergenceVisualization/mylasp/lasp/src/lasp_app.erl"},{line,42}]},{application_master,start_it_old,4,[{file,"application_master.erl"},{line,277}]}]
+2020-11-15 16:09:46 =ERROR REPORT====
+** Generic server partisan_pluggable_peer_service_manager terminating 
+** Last message in was {join,#{listen_addrs => {badrpc,nodedown},name => 'node1@192.168.1.39'}}
+** When Server state == {state,<<226,193,18,10,86,76,99,148,190,194,124,218,149,231,136,81,65,252,167,136>>,{dict,0,16,16,8,80,48,{[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]},{{[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]}}},[],[],[#{channels => [undefined],listen_addrs => [#{ip => {192,168,1,39},port => 55809}],name => 'node10@192.168.1.39',parallelism => 1}],{dict,0,16,16,8,80,48,{[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]},{{[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]}}},{dict,0,16,16,8,80,48,{[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]},{{[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]}}},[],{dict,0,16,16,8,80,48,{[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]},{{[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]}}},{dict,0,16,16,8,80,48,{[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]},{{[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]}}},{dict,0,16,16,8,80,48,{[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]},{{[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]}}},[],{dict,0,16,16,8,80,48,{[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]},{{[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]}}},partisan_full_membership_strategy,{full_v1,<<226,193,18,10,86,76,99,148,190,194,124,218,149,231,136,81,65,252,167,136>>,{state_orset,[{#{channels => [undefined],listen_addrs => [#{ip => {192,168,1,39},port => 55809}],name => 'node10@192.168.1.39',parallelism => 1},[{<<245,232,246,64,98,45,228,57,78,150,207,71,228,30,13,162,115,238,9,154>>,true}]}]}}}
+** Reason for termination ==
+** {function_clause,[{lists,foldl,[#Fun<partisan_util.1.120488044>,{dict,0,16,16,8,80,48,{[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]},{{[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]}}},{badrpc,nodedown}],[{file,"lists.erl"},{line,1262}]},{lists,foldl,3,[{file,"lists.erl"},{line,1263}]},{partisan_pluggable_peer_service_manager,internal_join,3,[{file,"/home/gcreupelandt/Documents/MEMOIRE/LaspDivergenceVisualization/lasp/_build/default/lib/partisan/src/partisan_pluggable_peer_service_manager.erl"},{line,1454}]},{partisan_pluggable_peer_service_manager,handle_call,3,[{file,"/home/gcreupelandt/Documents/MEMOIRE/LaspDivergenceVisualization/lasp/_build/default/lib/partisan/src/partisan_pluggable_peer_service_manager.erl"},{line,528}]},{gen_server,try_handle_call,4,[{file,"gen_server.erl"},{line,661}]},{gen_server,handle_msg,6,[{file,"gen_server.erl"},{line,690}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,249}]}]}
+** Client <0.525.0> stacktrace
+** [{gen,do_call,4,[{file,"gen.erl"},{line,167}]},{gen_server,call,3,[{file,"gen_server.erl"},{line,219}]},{lasp_convergence_measure,launchExperimentDynamic,4,[{file,"/home/gcreupelandt/Documents/MEMOIRE/LaspDivergenceVisualization/mylasp/lasp/src/lasp_convergence_measure.erl"},{line,436}]},{lasp_app,start,2,[{file,"/home/gcreupelandt/Documents/MEMOIRE/LaspDivergenceVisualization/mylasp/lasp/src/lasp_app.erl"},{line,42}]},{application_master,start_it_old,4,[{file,"application_master.erl"},{line,277}]}]
+2020-11-15 16:09:46 =CRASH REPORT====
+  crasher:
+    initial call: partisan_pluggable_peer_service_manager:init/1
+    pid: <0.498.0>
+    registered_name: partisan_pluggable_peer_service_manager
+    exception error: {function_clause,[{lists,foldl,[#Fun<partisan_util.1.120488044>,{dict,0,16,16,8,80,48,{[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]},{{[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]}}},{badrpc,nodedown}],[{file,"lists.erl"},{line,1262}]},{lists,foldl,3,[{file,"lists.erl"},{line,1263}]},{partisan_pluggable_peer_service_manager,internal_join,3,[{file,"/home/gcreupelandt/Documents/MEMOIRE/LaspDivergenceVisualization/lasp/_build/default/lib/partisan/src/partisan_pluggable_peer_service_manager.erl"},{line,1454}]},{partisan_pluggable_peer_service_manager,handle_call,3,[{file,"/home/gcreupelandt/Documents/MEMOIRE/LaspDivergenceVisualization/lasp/_build/default/lib/partisan/src/partisan_pluggable_peer_service_manager.erl"},{line,528}]},{gen_server,try_handle_call,4,[{file,"gen_server.erl"},{line,661}]},{gen_server,handle_msg,6,[{file,"gen_server.erl"},{line,690}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,249}]}]}
+    ancestors: [partisan_sup,<0.444.0>]
+    message_queue_len: 2
+    messages: [connections,retransmit]
+    links: [<0.445.0>]
+    dictionary: [{rand_seed,{#{jump => #Fun<rand.24.53802439>,max => 288230376151711743,next => #Fun<rand.23.53802439>,type => exsplus},[54648980620906829|17388602470527601]}}]
+    trap_exit: true
+    status: running
+    heap_size: 4185
+    stack_size: 27
+    reductions: 2852
+  neighbours:
+2020-11-15 16:09:46 =SUPERVISOR REPORT====
+     Supervisor: {local,partisan_sup}
+     Context:    child_terminated
+     Reason:     {function_clause,[{lists,foldl,[#Fun<partisan_util.1.120488044>,{dict,0,16,16,8,80,48,{[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]},{{[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]}}},{badrpc,nodedown}],[{file,"lists.erl"},{line,1262}]},{lists,foldl,3,[{file,"lists.erl"},{line,1263}]},{partisan_pluggable_peer_service_manager,internal_join,3,[{file,"/home/gcreupelandt/Documents/MEMOIRE/LaspDivergenceVisualization/lasp/_build/default/lib/partisan/src/partisan_pluggable_peer_service_manager.erl"},{line,1454}]},{partisan_pluggable_peer_service_manager,handle_call,3,[{file,"/home/gcreupelandt/Documents/MEMOIRE/LaspDivergenceVisualization/lasp/_build/default/lib/partisan/src/partisan_pluggable_peer_service_manager.erl"},{line,528}]},{gen_server,try_handle_call,4,[{file,"gen_server.erl"},{line,661}]},{gen_server,handle_msg,6,[{file,"gen_server.erl"},{line,690}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,249}]}]}
+     Offender:   [{pid,<0.498.0>},{id,partisan_pluggable_peer_service_manager},{mfargs,{partisan_pluggable_peer_service_manager,start_link,[]}},{restart_type,permanent},{shutdown,5000},{child_type,worker}]
+
+2020-11-15 16:09:46 =CRASH REPORT====
+  crasher:
+    initial call: application_master:init/4
+    pid: <0.524.0>
+    registered_name: []
+    exception exit: {{bad_return,{{lasp_app,start,[normal,[]]},{'EXIT',{{function_clause,[{lists,foldl,[#Fun<partisan_util.1.120488044>,{dict,0,16,16,8,80,48,{[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]},{{[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]}}},{badrpc,nodedown}],[{file,"lists.erl"},{line,1262}]},{lists,foldl,3,[{file,"lists.erl"},{line,1263}]},{partisan_pluggable_peer_service_manager,internal_join,3,[{file,"/home/gcreupelandt/Documents/MEMOIRE/LaspDivergenceVisualization/lasp/_build/default/lib/partisan/src/partisan_pluggable_peer_service_manager.erl"},{line,1454}]},{partisan_pluggable_peer_service_manager,handle_call,3,[{file,"/home/gcreupelandt/Documents/MEMOIRE/LaspDivergenceVisualization/lasp/_build/default/lib/partisan/src/partisan_pluggable_peer_service_manager.erl"},{line,528}]},{gen_server,try_handle_call,4,[{file,"gen_server.erl"},{line,661}]},{gen_server,handle_msg,6,[{file,"gen_server.erl"},{line,690}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,249}]}]},{gen_server,call,[partisan_pluggable_peer_service_manager,{join,#{listen_addrs => {badrpc,nodedown},name => 'node1@192.168.1.39'}},infinity]}}}}},[{application_master,init,4,[{file,"application_master.erl"},{line,138}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,249}]}]}
+    ancestors: [<0.523.0>]
+    message_queue_len: 1
+    messages: [{'EXIT',<0.525.0>,normal}]
+    links: [<0.523.0>,<0.43.0>]
+    dictionary: []
+    trap_exit: true
+    status: running
+    heap_size: 1598
+    stack_size: 27
+    reductions: 188
+  neighbours:

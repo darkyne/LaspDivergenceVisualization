@@ -25,6 +25,10 @@ Par contre le nombre de nodes et la durée du treshold entre deux envois influen
 Experience dynamique et analyse: OK
 
 12-11-20: Il me reste à run:
-cas statique Set6 (20nodes remove 10,100 -> 4experiences)
-cas dynamique Set8 (10nodes, add-remove -> 5experiences)
+cas statique Set6 (20nodes remove 10,100 -> 4experiences) Lancer 10nodes ma machine et 10nodes ucl. Si nécessaire: write to file without waiting expe to finish on every node.
+cas dynamique Set8 (10nodes, add-remove -> 5experiences) Impossibilité (j'ai test) de lancer 10nodes qui font ça sur ma machine. => Lancer 5 sur ma machine et 5 sur ucl.
 
+
+COMMENT SAVOIR COMBIEN DE NODES ACTIFS DANS LE CLUSER:
+{ok, Connected}=partisan_pluggable_peer_service_manager:connections().
+dict:size(Connected) donne le nombre de nodes actuellement connectés au cluster. Si un node quitte le cluster (crash par exemple), la valeur est mise à jour (donc à chaque boucle il faut refaire appel à partisan_pluggable_peer_service_manager:onnections(). )

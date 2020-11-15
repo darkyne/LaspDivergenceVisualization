@@ -7,7 +7,8 @@
 		 simpleAddition/0,
 		 messageReceived/0,
 		 created/0,
-		 launchExperimentDynamic/5
+		 launchExperimentDynamic/4,
+		 launchContinuousMeasures/0
          ]).
 
 
@@ -478,6 +479,23 @@ startLoop(Range,AddIndex, CRDT_Id, SendingPeriod, Path) ->
 	timer:sleep(max(SendingPeriod-OperationDuration, 0)),
 	startLoop(Range, ((AddIndex+1) rem 10000), CRDT_Id, SendingPeriod, Path).
 	
+
+
+%% ===================================================================
+%% launchContinuousMeasures
+%% ===================================================================
+
+launchContinuousMeasures() ->
+io:format("Started Continuous measures"),
+%every 60sec:
+
+	%leaderId=checkLeader()
+	%if myId==leaderId:
+	% 	leader_measure(),
+	%else:
+	% 	normal_measure(),
+
+ok.
 
 
 %% ===================================================================

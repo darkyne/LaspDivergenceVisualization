@@ -8,7 +8,7 @@
 decalage=0 #decalage=pi_booting_time - pc_booting_time = 8.32
 initialNode=1
 localNodes=20
-iterations=50
+iterations=10
 experiments=4
 duration=300
 

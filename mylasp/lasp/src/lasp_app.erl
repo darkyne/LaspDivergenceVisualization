@@ -39,7 +39,7 @@ start(_StartType, _StartArgs) ->
         {ok, Pid} ->
 			{ok, ReadIpAddress}=file:read_file("Memoire/AppsToLaunch/IpAddress.txt"),
 			IpAddress=list_to_atom( unicode:characters_to_list(string:trim(ReadIpAddress,trailing, "\n")) ),
-			lasp_convergence_measure:launchExperimentDynamic(5, IpAddress, <<"set1">>, 5, 10),
+			lasp_convergence_measure:launchExperimentRemoving(1, IpAddress, <<"set1">>, 20, true, 10, 10, false),
 		    {ok, Pid};
 
         {error, Reason} ->
