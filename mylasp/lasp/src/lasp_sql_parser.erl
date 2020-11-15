@@ -1,14 +1,14 @@
 -module(lasp_sql_parser).
 -export([parse/1, parse_and_scan/1, format_error/1]).
--file("/home/gcreupelandt/Documents/MEMOIRE/LaspDivergenceVisualization/lasp/src/lasp_sql_parser.yrl", 34).
+-file("/home/student/Documents/MEMOIRE/LaspDivergenceVisualization/mylasp/lasp/src/lasp_sql_parser.yrl", 34).
 
 unwrap({_,_,V}) -> V.
 
--file("/home/gcreupelandt/.asdf/installs/erlang/22.0/lib/parsetools-2.1.8/include/yeccpre.hrl", 0).
+-file("/usr/lib/erlang/lib/parsetools-2.1.6/include/yeccpre.hrl", 0).
 %%
 %% %CopyrightBegin%
 %%
-%% Copyright Ericsson AB 1996-2018. All Rights Reserved.
+%% Copyright Ericsson AB 1996-2017. All Rights Reserved.
 %%
 %% Licensed under the Apache License, Version 2.0 (the "License");
 %% you may not use this file except in compliance with the License.
@@ -63,7 +63,8 @@ return_error(Line, Message) ->
 yeccpars0(Tokens, Tzr, State, States, Vstack) ->
     try yeccpars1(Tokens, Tzr, State, States, Vstack)
     catch 
-        error: Error: Stacktrace ->
+        error: Error ->
+            Stacktrace = erlang:get_stacktrace(),
             try yecc_error_type(Error, Stacktrace) of
                 Desc ->
                     erlang:raise(error, {yecc_bug, ?CODE_VERSION, Desc},
@@ -176,7 +177,7 @@ yecctoken2string(Other) ->
 
 
 
--file("/home/gcreupelandt/Documents/MEMOIRE/LaspDivergenceVisualization/lasp/src/lasp_sql_parser.erl", 179).
+-file("/home/student/Documents/MEMOIRE/LaspDivergenceVisualization/mylasp/lasp/src/lasp_sql_parser.erl", 180).
 
 -dialyzer({nowarn_function, yeccpars2/7}).
 yeccpars2(0=S, Cat, Ss, Stack, T, Ts, Tzr) ->
@@ -420,7 +421,7 @@ yeccgoto_where_clause(12=_S, Cat, Ss, Stack, T, Ts, Tzr) ->
  yeccpars2_15(_S, Cat, Ss, Stack, T, Ts, Tzr).
 
 -compile({inline,yeccpars2_4_/1}).
--file("/home/gcreupelandt/Documents/MEMOIRE/LaspDivergenceVisualization/lasp/src/lasp_sql_parser.yrl", 8).
+-file("/home/student/Documents/MEMOIRE/LaspDivergenceVisualization/mylasp/lasp/src/lasp_sql_parser.yrl", 8).
 yeccpars2_4_(__Stack0) ->
  [__2,__1 | __Stack] = __Stack0,
  [begin
@@ -428,7 +429,7 @@ yeccpars2_4_(__Stack0) ->
   end | __Stack].
 
 -compile({inline,yeccpars2_5_/1}).
--file("/home/gcreupelandt/Documents/MEMOIRE/LaspDivergenceVisualization/lasp/src/lasp_sql_parser.yrl", 22).
+-file("/home/student/Documents/MEMOIRE/LaspDivergenceVisualization/mylasp/lasp/src/lasp_sql_parser.yrl", 22).
 yeccpars2_5_(__Stack0) ->
  [__1 | __Stack] = __Stack0,
  [begin
@@ -436,7 +437,7 @@ yeccpars2_5_(__Stack0) ->
   end | __Stack].
 
 -compile({inline,yeccpars2_7_/1}).
--file("/home/gcreupelandt/Documents/MEMOIRE/LaspDivergenceVisualization/lasp/src/lasp_sql_parser.yrl", 27).
+-file("/home/student/Documents/MEMOIRE/LaspDivergenceVisualization/mylasp/lasp/src/lasp_sql_parser.yrl", 27).
 yeccpars2_7_(__Stack0) ->
  [__1 | __Stack] = __Stack0,
  [begin
@@ -444,7 +445,7 @@ yeccpars2_7_(__Stack0) ->
   end | __Stack].
 
 -compile({inline,yeccpars2_8_/1}).
--file("/home/gcreupelandt/Documents/MEMOIRE/LaspDivergenceVisualization/lasp/src/lasp_sql_parser.yrl", 28).
+-file("/home/student/Documents/MEMOIRE/LaspDivergenceVisualization/mylasp/lasp/src/lasp_sql_parser.yrl", 28).
 yeccpars2_8_(__Stack0) ->
  [__1 | __Stack] = __Stack0,
  [begin
@@ -452,7 +453,7 @@ yeccpars2_8_(__Stack0) ->
   end | __Stack].
 
 -compile({inline,yeccpars2_9_/1}).
--file("/home/gcreupelandt/Documents/MEMOIRE/LaspDivergenceVisualization/lasp/src/lasp_sql_parser.yrl", 26).
+-file("/home/student/Documents/MEMOIRE/LaspDivergenceVisualization/mylasp/lasp/src/lasp_sql_parser.yrl", 26).
 yeccpars2_9_(__Stack0) ->
  [__1 | __Stack] = __Stack0,
  [begin
@@ -460,7 +461,7 @@ yeccpars2_9_(__Stack0) ->
   end | __Stack].
 
 -compile({inline,yeccpars2_11_/1}).
--file("/home/gcreupelandt/Documents/MEMOIRE/LaspDivergenceVisualization/lasp/src/lasp_sql_parser.yrl", 23).
+-file("/home/student/Documents/MEMOIRE/LaspDivergenceVisualization/mylasp/lasp/src/lasp_sql_parser.yrl", 23).
 yeccpars2_11_(__Stack0) ->
  [__3,__2,__1 | __Stack] = __Stack0,
  [begin
@@ -468,7 +469,7 @@ yeccpars2_11_(__Stack0) ->
   end | __Stack].
 
 -compile({inline,yeccpars2_14_/1}).
--file("/home/gcreupelandt/Documents/MEMOIRE/LaspDivergenceVisualization/lasp/src/lasp_sql_parser.yrl", 10).
+-file("/home/student/Documents/MEMOIRE/LaspDivergenceVisualization/mylasp/lasp/src/lasp_sql_parser.yrl", 10).
 yeccpars2_14_(__Stack0) ->
  [__2,__1 | __Stack] = __Stack0,
  [begin
@@ -476,7 +477,7 @@ yeccpars2_14_(__Stack0) ->
   end | __Stack].
 
 -compile({inline,yeccpars2_15_/1}).
--file("/home/gcreupelandt/Documents/MEMOIRE/LaspDivergenceVisualization/lasp/src/lasp_sql_parser.yrl", 6).
+-file("/home/student/Documents/MEMOIRE/LaspDivergenceVisualization/mylasp/lasp/src/lasp_sql_parser.yrl", 6).
 yeccpars2_15_(__Stack0) ->
  [__3,__2,__1 | __Stack] = __Stack0,
  [begin
@@ -484,7 +485,7 @@ yeccpars2_15_(__Stack0) ->
   end | __Stack].
 
 -compile({inline,yeccpars2_17_/1}).
--file("/home/gcreupelandt/Documents/MEMOIRE/LaspDivergenceVisualization/lasp/src/lasp_sql_parser.yrl", 12).
+-file("/home/student/Documents/MEMOIRE/LaspDivergenceVisualization/mylasp/lasp/src/lasp_sql_parser.yrl", 12).
 yeccpars2_17_(__Stack0) ->
  [__2,__1 | __Stack] = __Stack0,
  [begin
@@ -492,7 +493,7 @@ yeccpars2_17_(__Stack0) ->
   end | __Stack].
 
 -compile({inline,yeccpars2_21_/1}).
--file("/home/gcreupelandt/Documents/MEMOIRE/LaspDivergenceVisualization/lasp/src/lasp_sql_parser.yrl", 20).
+-file("/home/student/Documents/MEMOIRE/LaspDivergenceVisualization/mylasp/lasp/src/lasp_sql_parser.yrl", 20).
 yeccpars2_21_(__Stack0) ->
  [__3,__2,__1 | __Stack] = __Stack0,
  [begin
@@ -500,7 +501,7 @@ yeccpars2_21_(__Stack0) ->
   end | __Stack].
 
 -compile({inline,yeccpars2_24_/1}).
--file("/home/gcreupelandt/Documents/MEMOIRE/LaspDivergenceVisualization/lasp/src/lasp_sql_parser.yrl", 15).
+-file("/home/student/Documents/MEMOIRE/LaspDivergenceVisualization/mylasp/lasp/src/lasp_sql_parser.yrl", 15).
 yeccpars2_24_(__Stack0) ->
  [__3,__2,__1 | __Stack] = __Stack0,
  [begin
@@ -508,7 +509,7 @@ yeccpars2_24_(__Stack0) ->
   end | __Stack].
 
 -compile({inline,yeccpars2_25_/1}).
--file("/home/gcreupelandt/Documents/MEMOIRE/LaspDivergenceVisualization/lasp/src/lasp_sql_parser.yrl", 18).
+-file("/home/student/Documents/MEMOIRE/LaspDivergenceVisualization/mylasp/lasp/src/lasp_sql_parser.yrl", 18).
 yeccpars2_25_(__Stack0) ->
  [__3,__2,__1 | __Stack] = __Stack0,
  [begin
@@ -516,7 +517,7 @@ yeccpars2_25_(__Stack0) ->
   end | __Stack].
 
 -compile({inline,yeccpars2_27_/1}).
--file("/home/gcreupelandt/Documents/MEMOIRE/LaspDivergenceVisualization/lasp/src/lasp_sql_parser.yrl", 16).
+-file("/home/student/Documents/MEMOIRE/LaspDivergenceVisualization/mylasp/lasp/src/lasp_sql_parser.yrl", 16).
 yeccpars2_27_(__Stack0) ->
  [__3,__2,__1 | __Stack] = __Stack0,
  [begin
@@ -524,4 +525,4 @@ yeccpars2_27_(__Stack0) ->
   end | __Stack].
 
 
--file("/home/gcreupelandt/Documents/MEMOIRE/LaspDivergenceVisualization/lasp/src/lasp_sql_parser.yrl", 37).
+-file("/home/student/Documents/MEMOIRE/LaspDivergenceVisualization/mylasp/lasp/src/lasp_sql_parser.yrl", 37).

@@ -99,9 +99,9 @@
 %%% partisan_peer_service_manager callbacks
 %%%===================================================================
 
-%% @doc Same as start_link([]). 
+%% @doc Same as start_link([]).
 -spec start_link() -> {ok, pid()} | ignore | {error, term()}.
-start_link() -> %Se lance au debut
+start_link() ->
     gen_server:start_link({local, ?MODULE}, ?MODULE, [], []).
 
 %% @doc Return membership list.
@@ -257,8 +257,6 @@ receive_message(_Peer, {forward_message, _ServerRef, {causal, Label, _, _, _, _,
     partisan_causality_backend:receive_message(Label, Message);
 receive_message(Peer, {forward_message, ServerRef, Message} = FullMessage) ->
     % lager:info("in mesage receive at node ~p for peer ~p: ~p", [node(), Peer, FullMessage]),
-	%I can put code here to specify special things to do when receiving a message !
-	lasp_convergence_measure:messageReceived(), 
 
     case partisan_config:get(disable_fast_receive, false) of
         true ->

@@ -18,14 +18,14 @@ Use
 Add the plugin to your rebar config:
 
     %% the plugin itself
-    {plugins, [rebar3_proper]}.
+    {project_plugins, [rebar3_proper]}.
     %% The PropEr dependency is required to compile the test cases
     %% and will be used to run the tests as well.
     {profiles,
         [{test, [
             {deps, [
                 %% hex
-                {proper, "1.2.0"}
+                {proper, "1.3.0"}
                 %% newest from master
                 {proper, {git, "https://github.com/proper-testing/proper.git",
                           {branch, "master"}}}
@@ -135,6 +135,7 @@ The meta function may be omitted entirely.
 Changelog
 ----
 
+- 0.12.0: drop compile phase since newer rebar3 versions handle all of that for us out of the box. Eliminates old deprecation warning.
 - 0.11.1: fix unicode support in meta-functions output
 - 0.11.0: add option to set search steps for targeted properties
 - 0.10.4: add PropEr FSM template

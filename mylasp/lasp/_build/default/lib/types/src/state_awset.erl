@@ -179,15 +179,9 @@ is_bottom({?TYPE, _}=CRDT) ->
 is_inflation({?TYPE, _}=CRDT1, {?TYPE, _}=CRDT2) ->
     state_type:is_inflation(CRDT1, CRDT2);
 
-%% @MODIFIED VERSION (modified)
+%% @todo get back here later
 is_inflation({cardinality, Value}, {?TYPE, _}=CRDT) ->
-	%sets:size(query(CRDT)) >= Value.
-	case (Value) of
-	-1 -> sets:size(query(CRDT)) =< 0; %Special case to detect when a CRDT is empty
-	_ -> sets:size(query(CRDT)) >= Value
-	end.
-
-
+    sets:size(query(CRDT)) >= Value.
 
 %% @doc Check for strict inflation.
 -spec is_strict_inflation(state_awset(), state_awset()) -> boolean().

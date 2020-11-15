@@ -5637,3 +5637,20 @@
     stack_size: 27
     reductions: 188
   neighbours:
+2020-11-15 15:54:15 =CRASH REPORT====
+  crasher:
+    initial call: partisan_socket:init/1
+    pid: <0.397.0>
+    registered_name: []
+    exception exit: {eaddrnotavail,[{gen_server,init_it,6,[{file,"gen_server.erl"},{line,349}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,247}]}]}
+    ancestors: [partisan_pool_sup,partisan_sup,<0.337.0>]
+    message_queue_len: 0
+    messages: []
+    links: [<0.395.0>]
+    dictionary: []
+    trap_exit: true
+    status: running
+    heap_size: 610
+    stack_size: 27
+    reductions: 914
+  neighbours:

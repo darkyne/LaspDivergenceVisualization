@@ -1,4 +1,4 @@
--file("/home/gcreupelandt/.asdf/installs/erlang/22.0/lib/parsetools-2.1.8/include/leexinc.hrl", 0).
+-file("/usr/lib/erlang/lib/parsetools-2.1.6/include/leexinc.hrl", 0).
 %% The source of this file is part of leex distribution, as such it
 %% has the same Copyright as the other files in the leex
 %% distribution. The Copyright is defined in the accompanying file
@@ -12,7 +12,7 @@
 -export([format_error/1]).
 
 %% User code. This is placed here to allow extra attributes.
--file("/home/gcreupelandt/Documents/MEMOIRE/LaspDivergenceVisualization/lasp/src/lasp_sql_lexer.xrl", 23).
+-file("/home/student/Documents/MEMOIRE/LaspDivergenceVisualization/mylasp/lasp/src/lasp_sql_lexer.xrl", 23).
 
 strip(TokenChars,TokenLen) ->
     lists:sublist(TokenChars, 2, TokenLen - 2).
@@ -20,7 +20,7 @@ strip(TokenChars,TokenLen) ->
 % Taken from http://blog.rusty.io/2011/02/08/leex-and-yecc/ and
 % modified.
 
--file("/home/gcreupelandt/.asdf/installs/erlang/22.0/lib/parsetools-2.1.8/include/leexinc.hrl", 14).
+-file("/usr/lib/erlang/lib/parsetools-2.1.6/include/leexinc.hrl", 14).
 
 format_error({illegal,S}) -> ["illegal characters ",io_lib:write_string(S)];
 format_error({user,S}) -> S.
@@ -311,7 +311,7 @@ adjust_line(T, A, [_|Cs], L) ->
 %% return signal either an unrecognised character or end of current
 %% input.
 
--file("/home/gcreupelandt/Documents/MEMOIRE/LaspDivergenceVisualization/lasp/src/lasp_sql_lexer.erl", 313).
+-file("/home/student/Documents/MEMOIRE/LaspDivergenceVisualization/mylasp/lasp/src/lasp_sql_lexer.erl", 313).
 yystate() -> 28.
 
 yystate(31, [111|Ics], Line, Tlen, _, _) ->
@@ -648,59 +648,59 @@ yyaction(10, _, _, _) ->
 yyaction(_, _, _, _) -> error.
 
 -compile({inline,yyaction_0/2}).
--file("/home/gcreupelandt/Documents/MEMOIRE/LaspDivergenceVisualization/lasp/src/lasp_sql_lexer.xrl", 8).
+-file("/home/student/Documents/MEMOIRE/LaspDivergenceVisualization/mylasp/lasp/src/lasp_sql_lexer.xrl", 8).
 yyaction_0(TokenChars, TokenLine) ->
      { token, { select, TokenLine, list_to_atom (TokenChars) } } .
 
 -compile({inline,yyaction_1/2}).
--file("/home/gcreupelandt/Documents/MEMOIRE/LaspDivergenceVisualization/lasp/src/lasp_sql_lexer.xrl", 9).
+-file("/home/student/Documents/MEMOIRE/LaspDivergenceVisualization/mylasp/lasp/src/lasp_sql_lexer.xrl", 9).
 yyaction_1(TokenChars, TokenLine) ->
      { token, { from, TokenLine, list_to_atom (TokenChars) } } .
 
 -compile({inline,yyaction_2/2}).
--file("/home/gcreupelandt/Documents/MEMOIRE/LaspDivergenceVisualization/lasp/src/lasp_sql_lexer.xrl", 10).
+-file("/home/student/Documents/MEMOIRE/LaspDivergenceVisualization/mylasp/lasp/src/lasp_sql_lexer.xrl", 10).
 yyaction_2(TokenChars, TokenLine) ->
      { token, { where, TokenLine, list_to_atom (TokenChars) } } .
 
 -compile({inline,yyaction_3/2}).
--file("/home/gcreupelandt/Documents/MEMOIRE/LaspDivergenceVisualization/lasp/src/lasp_sql_lexer.xrl", 11).
+-file("/home/student/Documents/MEMOIRE/LaspDivergenceVisualization/mylasp/lasp/src/lasp_sql_lexer.xrl", 11).
 yyaction_3(TokenChars, TokenLine) ->
      { token, { union, TokenLine, list_to_atom (TokenChars) } } .
 
 -compile({inline,yyaction_4/2}).
--file("/home/gcreupelandt/Documents/MEMOIRE/LaspDivergenceVisualization/lasp/src/lasp_sql_lexer.xrl", 12).
+-file("/home/student/Documents/MEMOIRE/LaspDivergenceVisualization/mylasp/lasp/src/lasp_sql_lexer.xrl", 12).
 yyaction_4(TokenChars, TokenLine) ->
      { token, { intersection, TokenLine, list_to_atom (TokenChars) } } .
 
 -compile({inline,yyaction_5/2}).
--file("/home/gcreupelandt/Documents/MEMOIRE/LaspDivergenceVisualization/lasp/src/lasp_sql_lexer.xrl", 13).
+-file("/home/student/Documents/MEMOIRE/LaspDivergenceVisualization/mylasp/lasp/src/lasp_sql_lexer.xrl", 13).
 yyaction_5(TokenChars, TokenLine) ->
      { token, { comparator, TokenLine, list_to_atom (TokenChars) } } .
 
 -compile({inline,yyaction_6/3}).
--file("/home/gcreupelandt/Documents/MEMOIRE/LaspDivergenceVisualization/lasp/src/lasp_sql_lexer.xrl", 14).
+-file("/home/student/Documents/MEMOIRE/LaspDivergenceVisualization/mylasp/lasp/src/lasp_sql_lexer.xrl", 14).
 yyaction_6(TokenChars, TokenLen, TokenLine) ->
      S = strip (TokenChars, TokenLen),
      { token, { string, TokenLine, S } } .
 
 -compile({inline,yyaction_7/2}).
--file("/home/gcreupelandt/Documents/MEMOIRE/LaspDivergenceVisualization/lasp/src/lasp_sql_lexer.xrl", 16).
+-file("/home/student/Documents/MEMOIRE/LaspDivergenceVisualization/mylasp/lasp/src/lasp_sql_lexer.xrl", 16).
 yyaction_7(TokenChars, TokenLine) ->
      { token, { var, TokenLine, list_to_atom (TokenChars) } } .
 
 -compile({inline,yyaction_8/2}).
--file("/home/gcreupelandt/Documents/MEMOIRE/LaspDivergenceVisualization/lasp/src/lasp_sql_lexer.xrl", 17).
+-file("/home/student/Documents/MEMOIRE/LaspDivergenceVisualization/mylasp/lasp/src/lasp_sql_lexer.xrl", 17).
 yyaction_8(TokenChars, TokenLine) ->
      { token, { integer, TokenLine, list_to_integer (TokenChars) } } .
 
 -compile({inline,yyaction_9/2}).
--file("/home/gcreupelandt/Documents/MEMOIRE/LaspDivergenceVisualization/lasp/src/lasp_sql_lexer.xrl", 18).
+-file("/home/student/Documents/MEMOIRE/LaspDivergenceVisualization/mylasp/lasp/src/lasp_sql_lexer.xrl", 18).
 yyaction_9(TokenChars, TokenLine) ->
      { token, { list_to_atom (TokenChars), TokenLine } } .
 
 -compile({inline,yyaction_10/0}).
--file("/home/gcreupelandt/Documents/MEMOIRE/LaspDivergenceVisualization/lasp/src/lasp_sql_lexer.xrl", 19).
+-file("/home/student/Documents/MEMOIRE/LaspDivergenceVisualization/mylasp/lasp/src/lasp_sql_lexer.xrl", 19).
 yyaction_10() ->
      skip_token .
 
--file("/home/gcreupelandt/.asdf/installs/erlang/22.0/lib/parsetools-2.1.8/include/leexinc.hrl", 313).
+-file("/usr/lib/erlang/lib/parsetools-2.1.6/include/leexinc.hrl", 313).
