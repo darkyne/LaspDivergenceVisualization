@@ -34,4 +34,9 @@ COMMENT SAVOIR COMBIEN DE NODES ACTIFS DANS LE CLUSER:
 dict:size(Connected) donne le nombre de nodes actuellement connectés au cluster. Si un node quitte le cluster (crash par exemple), la valeur est mise à jour (donc à chaque boucle il faut refaire appel à partisan_pluggable_peer_service_manager:onnections(). )
 Implémentation algo de mesures en tâche de fond: en cours.
 
+Pour mardi:
+-Avancer un peu sur l'algo de mesure continue.
+-Mesurer combien de temps ça prend pour lancer sur la VM pour pouvoir lancer des expériences avec en partie UCL et en partie ma machine.
+
+
 
