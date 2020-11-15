@@ -46,3 +46,4 @@ rebar3.crashdump
 dump.rdb
 Memoire/AppsToLaunch/IpAddress.txt
 rebar.lock
+src/lasp_app.erl
