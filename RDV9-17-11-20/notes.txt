@@ -32,3 +32,6 @@ cas dynamique Set8 (10nodes, add-remove -> 5experiences) Impossibilité (j'ai te
 COMMENT SAVOIR COMBIEN DE NODES ACTIFS DANS LE CLUSER:
 {ok, Connected}=partisan_pluggable_peer_service_manager:connections().
 dict:size(Connected) donne le nombre de nodes actuellement connectés au cluster. Si un node quitte le cluster (crash par exemple), la valeur est mise à jour (donc à chaque boucle il faut refaire appel à partisan_pluggable_peer_service_manager:onnections(). )
+Implémentation algo de mesures en tâche de fond: en cours.
+
+

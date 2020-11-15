@@ -44,4 +44,4 @@ logs/
 erl_crash.dump
 rebar3.crashdump
 dump.rdb
-/Memoire/AppsToLaunch/IpAddress.txt
+Memoire/AppsToLaunch/IpAddress.txt

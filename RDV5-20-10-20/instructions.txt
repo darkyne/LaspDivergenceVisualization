@@ -7,7 +7,7 @@ Open a terminal
 Enter ssh ucl
 Inside studssh, enter ssh tfe
 enter cd lasp
-enter ~/rebar3 shell --name tfe1@130.104.229.105
+enter ~/rebar3 shell --name tfe1@130.104.229.25
 
 WITH RASPBERRY PI:
 

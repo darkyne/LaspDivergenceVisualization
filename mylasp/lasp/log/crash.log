@@ -5654,3 +5654,291 @@
     stack_size: 27
     reductions: 914
   neighbours:
+2020-11-15 17:15:16 =CRASH REPORT====
+  crasher:
+    initial call: partisan_socket:init/1
+    pid: <0.856.0>
+    registered_name: []
+    exception exit: {eaddrnotavail,[{gen_server,init_it,6,[{file,"gen_server.erl"},{line,358}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,249}]}]}
+    ancestors: [partisan_pool_sup,partisan_sup,<0.794.0>]
+    message_queue_len: 0
+    messages: []
+    links: [<0.854.0>]
+    dictionary: []
+    trap_exit: true
+    status: running
+    heap_size: 376
+    stack_size: 27
+    reductions: 953
+  neighbours:
+2020-11-15 17:15:16 =SUPERVISOR REPORT====
+     Supervisor: {local,partisan_pool_sup}
+     Context:    start_error
+     Reason:     eaddrnotavail
+     Offender:   [{pid,undefined},{id,{partisan_socket,{130,104,229,25},36581}},{mfargs,{partisan_socket,start_link,[{130,104,229,25},36581]}},{restart_type,permanent},{shutdown,5000},{child_type,worker}]
+
+2020-11-15 17:15:16 =SUPERVISOR REPORT====
+     Supervisor: {local,partisan_sup}
+     Context:    start_error
+     Reason:     {shutdown,{failed_to_start_child,{partisan_socket,{130,104,229,25},36581},eaddrnotavail}}
+     Offender:   [{pid,undefined},{id,partisan_pool_sup},{mfargs,{partisan_pool_sup,start_link,[]}},{restart_type,permanent},{shutdown,20000},{child_type,supervisor}]
+
+2020-11-15 17:15:16 =CRASH REPORT====
+  crasher:
+    initial call: application_master:init/4
+    pid: <0.793.0>
+    registered_name: []
+    exception exit: {{{error,{shutdown,{failed_to_start_child,partisan_pool_sup,{shutdown,{failed_to_start_child,{partisan_socket,{130,104,229,25},36581},eaddrnotavail}}}}},{partisan_app,start,[normal,[]]}},[{application_master,init,4,[{file,"application_master.erl"},{line,138}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,249}]}]}
+    ancestors: [<0.792.0>]
+    message_queue_len: 0
+    messages: []
+    links: [<0.792.0>,<0.794.0>,<0.43.0>]
+    dictionary: []
+    trap_exit: true
+    status: running
+    heap_size: 610
+    stack_size: 27
+    reductions: 212
+  neighbours:
+2020-11-15 17:15:16 =CRASH REPORT====
+  crasher:
+    initial call: partisan_socket:init/1
+    pid: <0.856.0>
+    registered_name: []
+    exception exit: {eaddrnotavail,[{gen_server,init_it,6,[{file,"gen_server.erl"},{line,358}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,249}]}]}
+    ancestors: [partisan_pool_sup,partisan_sup,<0.794.0>]
+    message_queue_len: 0
+    messages: []
+    links: [<0.854.0>]
+    dictionary: []
+    trap_exit: true
+    status: running
+    heap_size: 376
+    stack_size: 27
+    reductions: 953
+  neighbours:
+2020-11-15 17:15:16 =SUPERVISOR REPORT====
+     Supervisor: {local,partisan_pool_sup}
+     Context:    start_error
+     Reason:     eaddrnotavail
+     Offender:   [{pid,undefined},{id,{partisan_socket,{130,104,229,25},50651}},{mfargs,{partisan_socket,start_link,[{130,104,229,25},50651]}},{restart_type,permanent},{shutdown,5000},{child_type,worker}]
+
+2020-11-15 17:15:16 =SUPERVISOR REPORT====
+     Supervisor: {local,partisan_sup}
+     Context:    start_error
+     Reason:     {shutdown,{failed_to_start_child,{partisan_socket,{130,104,229,25},50651},eaddrnotavail}}
+     Offender:   [{pid,undefined},{id,partisan_pool_sup},{mfargs,{partisan_pool_sup,start_link,[]}},{restart_type,permanent},{shutdown,20000},{child_type,supervisor}]
+
+2020-11-15 17:15:31 =CRASH REPORT====
+  crasher:
+    initial call: partisan_socket:init/1
+    pid: <0.458.0>
+    registered_name: []
+    exception exit: {eaddrnotavail,[{gen_server,init_it,6,[{file,"gen_server.erl"},{line,358}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,249}]}]}
+    ancestors: [partisan_pool_sup,partisan_sup,<0.396.0>]
+    message_queue_len: 0
+    messages: []
+    links: [<0.456.0>]
+    dictionary: []
+    trap_exit: true
+    status: running
+    heap_size: 376
+    stack_size: 27
+    reductions: 953
+  neighbours:
+2020-11-15 17:15:31 =SUPERVISOR REPORT====
+     Supervisor: {local,partisan_pool_sup}
+     Context:    start_error
+     Reason:     eaddrnotavail
+     Offender:   [{pid,undefined},{id,{partisan_socket,{130,104,229,25},51661}},{mfargs,{partisan_socket,start_link,[{130,104,229,25},51661]}},{restart_type,permanent},{shutdown,5000},{child_type,worker}]
+
+2020-11-15 17:15:31 =SUPERVISOR REPORT====
+     Supervisor: {local,partisan_sup}
+     Context:    start_error
+     Reason:     {shutdown,{failed_to_start_child,{partisan_socket,{130,104,229,25},51661},eaddrnotavail}}
+     Offender:   [{pid,undefined},{id,partisan_pool_sup},{mfargs,{partisan_pool_sup,start_link,[]}},{restart_type,permanent},{shutdown,20000},{child_type,supervisor}]
+
+2020-11-15 17:15:31 =CRASH REPORT====
+  crasher:
+    initial call: application_master:init/4
+    pid: <0.395.0>
+    registered_name: []
+    exception exit: {{{error,{shutdown,{failed_to_start_child,partisan_pool_sup,{shutdown,{failed_to_start_child,{partisan_socket,{130,104,229,25},51661},eaddrnotavail}}}}},{partisan_app,start,[normal,[]]}},[{application_master,init,4,[{file,"application_master.erl"},{line,138}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,249}]}]}
+    ancestors: [<0.394.0>]
+    message_queue_len: 0
+    messages: []
+    links: [<0.394.0>,<0.396.0>,<0.43.0>]
+    dictionary: []
+    trap_exit: true
+    status: running
+    heap_size: 610
+    stack_size: 27
+    reductions: 212
+  neighbours:
+2020-11-15 17:15:31 =CRASH REPORT====
+  crasher:
+    initial call: partisan_socket:init/1
+    pid: <0.458.0>
+    registered_name: []
+    exception exit: {eaddrnotavail,[{gen_server,init_it,6,[{file,"gen_server.erl"},{line,358}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,249}]}]}
+    ancestors: [partisan_pool_sup,partisan_sup,<0.396.0>]
+    message_queue_len: 0
+    messages: []
+    links: [<0.456.0>]
+    dictionary: []
+    trap_exit: true
+    status: running
+    heap_size: 376
+    stack_size: 27
+    reductions: 953
+  neighbours:
+2020-11-15 17:15:31 =SUPERVISOR REPORT====
+     Supervisor: {local,partisan_pool_sup}
+     Context:    start_error
+     Reason:     eaddrnotavail
+     Offender:   [{pid,undefined},{id,{partisan_socket,{130,104,229,25},51399}},{mfargs,{partisan_socket,start_link,[{130,104,229,25},51399]}},{restart_type,permanent},{shutdown,5000},{child_type,worker}]
+
+2020-11-15 17:15:31 =SUPERVISOR REPORT====
+     Supervisor: {local,partisan_sup}
+     Context:    start_error
+     Reason:     {shutdown,{failed_to_start_child,{partisan_socket,{130,104,229,25},51399},eaddrnotavail}}
+     Offender:   [{pid,undefined},{id,partisan_pool_sup},{mfargs,{partisan_pool_sup,start_link,[]}},{restart_type,permanent},{shutdown,20000},{child_type,supervisor}]
+
+2020-11-15 17:15:31 =CRASH REPORT====
+  crasher:
+    initial call: application_master:init/4
+    pid: <0.395.0>
+    registered_name: []
+    exception exit: {{{error,{shutdown,{failed_to_start_child,partisan_pool_sup,{shutdown,{failed_to_start_child,{partisan_socket,{130,104,229,25},51399},eaddrnotavail}}}}},{partisan_app,start,[normal,[]]}},[{application_master,init,4,[{file,"application_master.erl"},{line,138}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,249}]}]}
+    ancestors: [<0.394.0>]
+    message_queue_len: 1
+    messages: [{'EXIT',<0.396.0>,normal}]
+    links: [<0.394.0>,<0.43.0>]
+    dictionary: []
+    trap_exit: true
+    status: running
+    heap_size: 376
+    stack_size: 27
+    reductions: 214
+  neighbours:
+2020-11-15 17:15:31 =CRASH REPORT====
+  crasher:
+    initial call: partisan_socket:init/1
+    pid: <0.458.0>
+    registered_name: []
+    exception exit: {eaddrnotavail,[{gen_server,init_it,6,[{file,"gen_server.erl"},{line,358}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,249}]}]}
+    ancestors: [partisan_pool_sup,partisan_sup,<0.396.0>]
+    message_queue_len: 0
+    messages: []
+    links: [<0.456.0>]
+    dictionary: []
+    trap_exit: true
+    status: running
+    heap_size: 376
+    stack_size: 27
+    reductions: 953
+  neighbours:
+2020-11-15 17:15:31 =SUPERVISOR REPORT====
+     Supervisor: {local,partisan_pool_sup}
+     Context:    start_error
+     Reason:     eaddrnotavail
+     Offender:   [{pid,undefined},{id,{partisan_socket,{130,104,229,25},33341}},{mfargs,{partisan_socket,start_link,[{130,104,229,25},33341]}},{restart_type,permanent},{shutdown,5000},{child_type,worker}]
+
+2020-11-15 17:15:31 =SUPERVISOR REPORT====
+     Supervisor: {local,partisan_sup}
+     Context:    start_error
+     Reason:     {shutdown,{failed_to_start_child,{partisan_socket,{130,104,229,25},33341},eaddrnotavail}}
+     Offender:   [{pid,undefined},{id,partisan_pool_sup},{mfargs,{partisan_pool_sup,start_link,[]}},{restart_type,permanent},{shutdown,20000},{child_type,supervisor}]
+
+2020-11-15 17:15:31 =CRASH REPORT====
+  crasher:
+    initial call: application_master:init/4
+    pid: <0.395.0>
+    registered_name: []
+    exception exit: {{{error,{shutdown,{failed_to_start_child,partisan_pool_sup,{shutdown,{failed_to_start_child,{partisan_socket,{130,104,229,25},33341},eaddrnotavail}}}}},{partisan_app,start,[normal,[]]}},[{application_master,init,4,[{file,"application_master.erl"},{line,138}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,249}]}]}
+    ancestors: [<0.394.0>]
+    message_queue_len: 0
+    messages: []
+    links: [<0.394.0>,<0.396.0>,<0.43.0>]
+    dictionary: []
+    trap_exit: true
+    status: running
+    heap_size: 610
+    stack_size: 27
+    reductions: 212
+  neighbours:
+2020-11-15 17:15:31 =CRASH REPORT====
+  crasher:
+    initial call: partisan_socket:init/1
+    pid: <0.457.0>
+    registered_name: []
+    exception exit: {eaddrnotavail,[{gen_server,init_it,6,[{file,"gen_server.erl"},{line,358}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,249}]}]}
+    ancestors: [partisan_pool_sup,partisan_sup,<0.395.0>]
+    message_queue_len: 0
+    messages: []
+    links: [<0.455.0>]
+    dictionary: []
+    trap_exit: true
+    status: running
+    heap_size: 376
+    stack_size: 27
+    reductions: 953
+  neighbours:
+2020-11-15 17:15:31 =SUPERVISOR REPORT====
+     Supervisor: {local,partisan_pool_sup}
+     Context:    start_error
+     Reason:     eaddrnotavail
+     Offender:   [{pid,undefined},{id,{partisan_socket,{130,104,229,25},59191}},{mfargs,{partisan_socket,start_link,[{130,104,229,25},59191]}},{restart_type,permanent},{shutdown,5000},{child_type,worker}]
+
+2020-11-15 17:15:31 =SUPERVISOR REPORT====
+     Supervisor: {local,partisan_sup}
+     Context:    start_error
+     Reason:     {shutdown,{failed_to_start_child,{partisan_socket,{130,104,229,25},59191},eaddrnotavail}}
+     Offender:   [{pid,undefined},{id,partisan_pool_sup},{mfargs,{partisan_pool_sup,start_link,[]}},{restart_type,permanent},{shutdown,20000},{child_type,supervisor}]
+
+2020-11-15 17:15:31 =SUPERVISOR REPORT====
+     Supervisor: {local,partisan_pool_sup}
+     Context:    start_error
+     Reason:     eaddrnotavail
+     Offender:   [{pid,undefined},{id,{partisan_socket,{130,104,229,25},50211}},{mfargs,{partisan_socket,start_link,[{130,104,229,25},50211]}},{restart_type,permanent},{shutdown,5000},{child_type,worker}]
+
+2020-11-15 17:15:31 =CRASH REPORT====
+  crasher:
+    initial call: partisan_socket:init/1
+    pid: <0.457.0>
+    registered_name: []
+    exception exit: {eaddrnotavail,[{gen_server,init_it,6,[{file,"gen_server.erl"},{line,358}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,249}]}]}
+    ancestors: [partisan_pool_sup,partisan_sup,<0.395.0>]
+    message_queue_len: 0
+    messages: []
+    links: [<0.455.0>]
+    dictionary: []
+    trap_exit: true
+    status: running
+    heap_size: 376
+    stack_size: 27
+    reductions: 953
+  neighbours:
+2020-11-15 17:15:31 =SUPERVISOR REPORT====
+     Supervisor: {local,partisan_sup}
+     Context:    start_error
+     Reason:     {shutdown,{failed_to_start_child,{partisan_socket,{130,104,229,25},50211},eaddrnotavail}}
+     Offender:   [{pid,undefined},{id,partisan_pool_sup},{mfargs,{partisan_pool_sup,start_link,[]}},{restart_type,permanent},{shutdown,20000},{child_type,supervisor}]
+
+2020-11-15 17:15:31 =CRASH REPORT====
+  crasher:
+    initial call: application_master:init/4
+    pid: <0.394.0>
+    registered_name: []
+    exception exit: {{{error,{shutdown,{failed_to_start_child,partisan_pool_sup,{shutdown,{failed_to_start_child,{partisan_socket,{130,104,229,25},50211},eaddrnotavail}}}}},{partisan_app,start,[normal,[]]}},[{application_master,init,4,[{file,"application_master.erl"},{line,138}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,249}]}]}
+    ancestors: [<0.393.0>]
+    message_queue_len: 1
+    messages: [{'EXIT',<0.395.0>,normal}]
+    links: [<0.393.0>,<0.43.0>]
+    dictionary: []
+    trap_exit: true
+    status: running
+    heap_size: 376
+    stack_size: 27
+    reductions: 214
+  neighbours:
