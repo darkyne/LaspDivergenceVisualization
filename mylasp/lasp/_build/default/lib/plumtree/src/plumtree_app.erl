@@ -1,6 +1,6 @@
 %% -------------------------------------------------------------------
 %%
-%% Copyright (c) 2014 SyncFree Consortium.  All Rights Reserved.
+%% Copyright (c) 2015 Helium Systems, Inc.  All Rights Reserved.
 %%
 %% This file is provided to you under the Apache License,
 %% Version 2.0 (the "License"); you may not use this file
@@ -18,38 +18,21 @@
 %%
 %% -------------------------------------------------------------------
 
--module(lasp_app).
+-module(plumtree_app).
 
 -behaviour(application).
 
--include("lasp.hrl").
-
-%% Application callbacks
 -export([start/2, stop/1]).
 
-
-%% ===================================================================
-%% Application callbacks
-%% ===================================================================
-
-
-%% start non modified version:
 start(_StartType, _StartArgs) ->
-    case lasp_sup:start_link() of
+    case plumtree_sup:start_link() of
         {ok, Pid} ->
-			{ok, ReadIpAddress}=file:read_file("Memoire/AppsToLaunch/IpAddress.txt"),
-			IpAddress=list_to_atom( unicode:characters_to_list(string:trim(ReadIpAddress,trailing, "\n")) ),
-			lasp_convergence_measure:launchExperimentDynamic(2, IpAddress, <<"set1">>, 250),
-		    {ok, Pid};
-
-        {error, Reason} ->
-            {error, Reason}
+            %% do nothing for now
+            %% TODO plumtree_broadcast hooks
+            {ok, Pid};
+        Other ->
+            {error, Other}
     end.
-    
-%% @doc Stop the lasp application.
+
 stop(_State) ->
     ok.
-
-
-
-

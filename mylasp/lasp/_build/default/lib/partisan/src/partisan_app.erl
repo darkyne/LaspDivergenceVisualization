@@ -1,6 +1,7 @@
 %% -------------------------------------------------------------------
 %%
-%% Copyright (c) 2014 SyncFree Consortium.  All Rights Reserved.
+%% Copyright (c) 2015 Helium Systems, Inc.  All Rights Reserved.
+%% Copyright (c) 2016 Christopher Meiklejohn.  All Rights Reserved.
 %%
 %% This file is provided to you under the Apache License,
 %% Version 2.0 (the "License"); you may not use this file
@@ -18,38 +19,23 @@
 %%
 %% -------------------------------------------------------------------
 
--module(lasp_app).
+-module(partisan_app).
 
 -behaviour(application).
 
--include("lasp.hrl").
+-include("partisan.hrl").
 
-%% Application callbacks
 -export([start/2, stop/1]).
 
-
-%% ===================================================================
-%% Application callbacks
-%% ===================================================================
-
-
-%% start non modified version:
+%% @doc Initialize the application.
 start(_StartType, _StartArgs) ->
-    case lasp_sup:start_link() of
+    case partisan_sup:start_link() of
         {ok, Pid} ->
-			{ok, ReadIpAddress}=file:read_file("Memoire/AppsToLaunch/IpAddress.txt"),
-			IpAddress=list_to_atom( unicode:characters_to_list(string:trim(ReadIpAddress,trailing, "\n")) ),
-			lasp_convergence_measure:launchExperimentDynamic(2, IpAddress, <<"set1">>, 250),
-		    {ok, Pid};
-
-        {error, Reason} ->
-            {error, Reason}
+            {ok, Pid};
+        Other ->
+            {error, Other}
     end.
-    
-%% @doc Stop the lasp application.
+
+%% @doc Stop the application.
 stop(_State) ->
     ok.
-
-
-
-

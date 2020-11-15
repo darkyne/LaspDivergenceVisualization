@@ -23,7 +23,6 @@ rt/
 .local_dialyzer_plt
 build
 .vagrant
-_build/
 TEST-*
 data/
 *.deb
