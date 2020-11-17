@@ -488,15 +488,20 @@ startLoop(Range,AddIndex, CRDT_Id, SendingPeriod, Path) ->
 launchContinuousMeasures() ->
 io:format("Started Continuous measures"),
 %every 60sec:
-
-	%leaderId=checkLeader()
+	checkLeaderLoop().
+	%LeaderId=checkLeader(PreviousLeader, 10000)
 	%if myId==leaderId:
 	% 	leader_measure(),
 	%else:
 	% 	normal_measure(),
 
-ok.
+%ok.
 
+checkLeaderLoop() ->
+	LeaderId=lasp_leader_election:checkLeader(10000),
+	io:format("my leader is: ~p ~n", [LeaderId]),
+	timer:sleep(2000),
+	checkLeaderLoop().
 
 %% ===================================================================
 %% Other small tests:

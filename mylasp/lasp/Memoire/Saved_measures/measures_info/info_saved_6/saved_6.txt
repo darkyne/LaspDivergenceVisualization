@@ -40,5 +40,6 @@ Remove d'elements.
 20 nodes, tout est en all_at_once car la partie progressive donne des résultats useless.
 Cas analysés: 10,100,1000,5 000, 10 000 éléments en no-partition et en partition.
 
+Au final, seulement 10 et 100 éléments sinon trop lourd.
 
 

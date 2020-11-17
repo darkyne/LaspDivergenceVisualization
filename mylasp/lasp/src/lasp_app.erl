@@ -37,9 +37,8 @@
 start(_StartType, _StartArgs) ->
     case lasp_sup:start_link() of
         {ok, Pid} ->
-			{ok, ReadIpAddress}=file:read_file("Memoire/AppsToLaunch/IpAddress.txt"),
-			IpAddress=list_to_atom( unicode:characters_to_list(string:trim(ReadIpAddress,trailing, "\n")) ),
-			lasp_convergence_measure:launchExperimentDynamic(2, IpAddress, <<"set1">>, 250),
+			lasp_peer_service:join('node3@127.0.0.1'),
+			lasp_convergence_measure:launchContinuousMeasures(),
 		    {ok, Pid};
 
         {error, Reason} ->

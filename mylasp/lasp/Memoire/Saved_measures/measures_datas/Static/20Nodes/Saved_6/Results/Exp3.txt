@@ -1,0 +1,9 @@
+Results for Exp3
+convergence mean time: 65517,44047619 
+convergence time standart deviation: 34965,289822104
+convergence time median: 65070
+initial size of the CRDT (with 2000 elements): 4607
+final size of the CRDT (with 0 elements): 49
+mean number of messages/sec : 33.524 
+number of messages/sec standart deviation: 11.937
+number of messages/sec median: 35.997
