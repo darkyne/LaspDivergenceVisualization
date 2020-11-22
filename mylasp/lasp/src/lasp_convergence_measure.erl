@@ -8,7 +8,8 @@
 		 messageReceived/0,
 		 created/0,
 		 launchExperimentDynamic/4,
-		 launchContinuousMeasures/0
+		 launchContinuousMeasures/1,
+		 readThresholdMaxDuration/3
          ]).
 
 
@@ -485,23 +486,126 @@ startLoop(Range,AddIndex, CRDT_Id, SendingPeriod, Path) ->
 %% launchContinuousMeasures
 %% ===================================================================
 
-launchContinuousMeasures() ->
-io:format("Started Continuous measures"),
-%every 60sec:
-	checkLeaderLoop().
-	%LeaderId=checkLeader(PreviousLeader, 10000)
-	%if myId==leaderId:
-	% 	leader_measure(),
-	%else:
-	% 	normal_measure(),
+launchContinuousMeasures(MeasurePeriod) -> %MeasurePeriod should be at minimum convergenceTime*4 (ex avec le basic 8sec, on fait au mieux une mesure tous les 32 sec)
+io:format("Continuous Measures Started ! ~n"),
+	Id=list_to_integer( lists:nth(2,string:split(lists:nth(1,string:split(atom_to_list(erlang:node()),"@")), "e")) ),
+	continuousMeasurementLoop(Id, MeasurePeriod).
 
-%ok.
 
-checkLeaderLoop() ->
-	LeaderId=lasp_leader_election:checkLeader(10000),
-	io:format("my leader is: ~p ~n", [LeaderId]),
-	timer:sleep(2000),
-	checkLeaderLoop().
+
+continuousMeasurementLoop(Id,MeasurePeriod) ->
+	io:format("============================ ~n"),
+	io:format("NEW MEASURE ROUND ~n"),
+	io:format("============================ ~n"),
+	LoopStartTime = erlang:system_time(1000),
+	{LeaderId, Cluster_size}=lasp_leader_election:checkLeader(20000), %MeasurePeriod must be at least 4*realConvergenceTime
+	io:format("My leader is: ~p ~n", [LeaderId]),
+	TimeOut=30000,
+
+	case {LeaderId==Id, Cluster_size>0} of
+	{true,true} -> %I am LEADER
+			
+			%Leader starts by removing TimeStamps in case previous leader crashed and did not remove them.
+			{ok , RawPreviousTimeStamps} = lasp:query({<<"basic_task">>, state_awset}),
+			PreviousTimeStamps = sets:to_list(RawPreviousTimeStamps),
+			lasp:update({<<"basic_task">>, state_awset}, {rmv_all, PreviousTimeStamps}, self()), %Remove in case some node crashed and did not remove its TimeStamp
+
+			%Measure Phase
+			StartTime=erlang:system_time(1000),
+			lasp:update({<<"leader_task">>, state_awset}, {add, Id}, self()), %I add my Id
+			io:format("[LEADER] Wait for ~p nodes to answer... ", [Cluster_size]),
+			readThresholdMaxDuration({<<"basic_task">>, state_awset}, {cardinality, Cluster_size},TimeOut), %I wait everyone answered. Skip after TimeOut ms waiting
+			io:format("OK! ~n"),	
+
+			%Compute Phase
+			RoundTripTime = erlang:system_time(1000)-StartTime,
+			{ok, TimeStampSet}=lasp:query({<<"basic_task">>, state_awset}),
+			{WorstConvergenceTime, IndividualConvergenceTimes} = getWorstConvergenceTime(TimeStampSet, StartTime),
+
+			PreviousConvergenceTime=getSystemConvergenceTime(),
+			lasp:update({<<"system_convergence">>, state_awset}, {rmv, PreviousConvergenceTime}, self()),
+			lasp:update({<<"system_convergence">>, state_awset}, {add, {RoundTripTime, WorstConvergenceTime, IndividualConvergenceTimes}}, self()),
+			io:format("[LEADER] New convergence time : ~p ~n", [WorstConvergenceTime]),
+
+			%Reset Phase
+			timer:sleep(1000),
+			{ok, PotentialLeadersId}=lasp:query({<<"leader_task">>, state_awset}), %Useful to remove potential previous leader Id if he crashed. 
+			ListPotentialLeadersId=sets:to_list(PotentialLeadersId), %Thus we remove ListOfPotentialLeadersId and not simply my own Id.
+
+			lasp:update({<<"leader_task">>, state_awset}, {rmv_all, ListPotentialLeadersId}, self()), %I remove my Id (reset for next measure)
+			readThresholdMaxDuration({<<"basic_task">>, state_awset}, {cardinality, -1}, TimeOut), %I wait everyone removed its TimeStamp (reset for next measure). Skip after TimeOut msec waiting
+																								 
+			{ok , RawPreviousTimeStamps2} = lasp:query({<<"basic_task">>, state_awset}),
+			PreviousTimeStamps2 = sets:to_list(RawPreviousTimeStamps2),
+			lasp:update({<<"basic_task">>, state_awset}, {rmv_all, PreviousTimeStamps2}, self()), %Remove in case some node crashed and did not remove its TimeStamp
+			io:format("[LEADER] Reset is done ! ~n"),
+
+			LoopEndTime=erlang:system_time(1000),
+			LoopDuration=LoopEndTime-LoopStartTime,
+			timer:sleep(max(MeasurePeriod-LoopDuration, 0));
+			
+			
+
+	{false,true} ->%I am NOT-LEADER
+
+			%Measure Phase
+			io:format("[BASIC] Waiting for leader measure signal... "),
+			readThresholdMaxDuration({<<"leader_task">>, state_awset}, {cardinality, 1},TimeOut), %I wait to detect leader added his Id
+			io:format("OK! ~n"),
+			TimeStamp=erlang:system_time(1000),
+			lasp:update({<<"basic_task">>, state_awset}, {add, {Id, TimeStamp}}, self()), %I add my {Id, TimeStamp}
+
+			%Reset Phase
+
+			readThresholdMaxDuration({<<"leader_task">>, state_awset}, {cardinality, -1},TimeOut), %I wait to detect leader removed his Id (reset for next measure)
+			io:format("[BASIC] Reset is done ! ~n"),
+			lasp:update({<<"basic_task">>, state_awset}, {rmv, {Id, TimeStamp}}, self()); %I remove my {Id, TimeStamp} (reset for next measure)
+
+	{_,false} -> %Cluster is empty, I am alone
+			io:format ("I am alone ~n"),
+			timer:sleep(500), %Will check for new leader every 500ms
+			ok
+	end,
+	continuousMeasurementLoop(Id, MeasurePeriod).
+
+
+getWorstConvergenceTime(TimeStampSet, StartTime) ->
+	TimeStampList=sets:to_list(TimeStampSet),
+	%io:format("~p ~n", [TimeStampList]),
+	case length(TimeStampList) of
+	0 ->
+		WorstConvergenceTime=nan,
+		OrderedConvergenceTimes = [];
+	_ -> 
+		ConvergenceTimes = lists:map(fun({A,B}) -> {A, B-StartTime} end, TimeStampList),
+		OrderedConvergenceTimes=lists:sort( fun({_,A},{_,B}) -> A =< B end, ConvergenceTimes),
+		{_, WorstConvergenceTime} = lists:nth(length(OrderedConvergenceTimes), OrderedConvergenceTimes)
+	end,
+	{WorstConvergenceTime, OrderedConvergenceTimes}.
+
+
+getSystemConvergenceTime() ->
+	{ok, RawConvergenceTime} = lasp:query({<<"system_convergence">>, state_awset}),
+	ConvergenceTimeList=sets:to_list(RawConvergenceTime),
+	case length(ConvergenceTimeList) of
+	1 ->
+		ConvergenceTime = lists:nth(1, ConvergenceTimeList);
+	_ ->
+		ConvergenceTime = nomeasure
+	end,
+	ConvergenceTime.
+
+readThresholdMaxDuration(CRDT_Id, Threshold, MaxDuration) ->
+	Self = self(),
+	_Pid = spawn (fun() -> 
+						lasp:read(CRDT_Id, Threshold),
+						Self ! {self(), ok} end),
+	receive
+		{_PidSpawned, ok} -> ok
+	after
+		MaxDuration -> erlang:exit(_Pid, kill)
+	end.
+
 
 %% ===================================================================
 %% Other small tests:

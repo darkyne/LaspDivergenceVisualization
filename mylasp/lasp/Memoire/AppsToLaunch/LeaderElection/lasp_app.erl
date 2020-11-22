@@ -40,7 +40,7 @@ start(_StartType, _StartArgs) ->
 			{ok, ReadIpAddress}=file:read_file("Memoire/AppsToLaunch/IpAddress.txt"),
 			IpAddress=list_to_atom( unicode:characters_to_list(string:trim(ReadIpAddress,trailing, "\n")) ),
 			lasp_peer_service:join(IpAddress),
-			lasp_convergence_measure:launchContinuousMeasures(40000),
+			loop(1000),
 		    {ok, Pid};
 
         {error, Reason} ->
@@ -52,5 +52,10 @@ stop(_State) ->
     ok.
 
 
+loop(Period) ->
+	{LeaderId, _ }=lasp_leader_election:checkLeader(15000),
+	io:format("My Leader is: ~p ~n", [LeaderId]),
+	timer:sleep(Period),
+	loop(Period).
 
 

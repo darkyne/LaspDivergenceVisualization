@@ -1,0 +1,18 @@
+RDV10 24/11/20
+
+TODO:
+-Pourquoi le orswot est si lent à réaliser des opérations?
+-Partir sur d'autres CRDT si besoin
+-Vérifier le temps requis pr add un élément sur un tout petit CRDT (voir même vide)
+-Terminer mesures en continue:
+							-Si un basic node crache alors qu'il avais mis son timeStamp, il faut que le leader retire tous les TimeStamp qui pourraient rester. OK
+							-Si le leader meurt pendant que les basic nodes sont bloqués, aucun ne passera leader, il faut leur mettre des ReadThresholdMaxDuration. OK
+							-Si le leader change, il doit nettoyer le truc des TimeStamp au cas où il en resterait. OK
+
+ACTUEL:
+-Si un node crash, ça continue normalement. OK
+-Si un node se rajoute, ça continue normalement. OK
+-Si le leader crash, les autres restent bloqués et du coup aucun nouveua leader n'est choisi. OK
+
+-Si je retire un node, le leader, sur ce round, va faire un timeout et continuer. Il semble que sur le long terme ça fasse cracher mon ordi...? OK
+
