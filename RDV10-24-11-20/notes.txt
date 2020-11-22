@@ -8,7 +8,7 @@ TODO:
 							-Si un basic node crache alors qu'il avais mis son timeStamp, il faut que le leader retire tous les TimeStamp qui pourraient rester. OK
 							-Si le leader meurt pendant que les basic nodes sont bloqués, aucun ne passera leader, il faut leur mettre des ReadThresholdMaxDuration. OK
 							-Si le leader change, il doit nettoyer le truc des TimeStamp au cas où il en resterait. OK
-
+							-Tranformer le contenu du system_convergence CRDT en un format map pour facilement choper les infos.
 ACTUEL:
 -Si un node crash, ça continue normalement. OK
 -Si un node se rajoute, ça continue normalement. OK

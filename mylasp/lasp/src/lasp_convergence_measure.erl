@@ -587,6 +587,7 @@ getWorstConvergenceTime(TimeStampSet, StartTime) ->
 getSystemConvergenceTime() ->
 	{ok, RawConvergenceTime} = lasp:query({<<"system_convergence">>, state_awset}),
 	ConvergenceTimeList=sets:to_list(RawConvergenceTime),
+	io:format("Previous Convergence CRDT: ~p ~n", [ConvergenceTimeList]),
 	case length(ConvergenceTimeList) of
 	1 ->
 		ConvergenceTime = lists:nth(1, ConvergenceTimeList);
