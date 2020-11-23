@@ -110,5 +110,19 @@ Mise au point d'un algorithme capable de run des mesures en tâche de fond.
 En cours: comprendre comment faire pour lancer cela en tâche de fond.
 
 
+## RDV9 17-11-2020 14 (Teams)
+Fin implémentation tâche dynamique (add/remove/dump to file).
+Lancement de mesures sur la VM INGI.
+Resolution problème lié au lancement sur VM.
+Mesures dynamiques réalisées pour 5 et 10 nodes.
+
+
+## RDV10 24-11-2020 14 (Teams)
+Fin implémentation tâche continue en fond.
+Ce système de mesures continues peut désormais s'adapter (si des nodes sont ajoutés, retirés ou tués).
+launchContinuousMeasure(Period) permet de mettre à jour de façon continues les mesures de convergence.
+Les nodes peuvent accéder à différentes méthodes permettant de visualiser ces dernières mesures.
+Remarque: mesure pour ajouter un simple élément (style un chiffre: 5) dans un state_awset qui est tout simplement vide: environ 20 ms !
+Je go faire de petites mesures avec d'autres CRDT.
 
 

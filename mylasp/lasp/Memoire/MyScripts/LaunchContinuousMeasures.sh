@@ -1,5 +1,5 @@
 
-echo "Launching a very simple node runing leader election"
+echo "Launching some simple nodes running Continuous Measures"
 cd ../..
 duration=300 #5 min
 

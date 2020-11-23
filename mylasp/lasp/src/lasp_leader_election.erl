@@ -52,8 +52,8 @@ checkLeader(Period) -> %Returns the leader Id. If current leader infos are older
 
 checkLeaderLoop(TimeOut, Period) ->
 	StartTime = erlang:system_time(1000),
-	{LeaderId,_} = checkLeader(TimeOut),
-	io:format("My leader is: ~p ~n", [LeaderId]),
+	%{LeaderId,_} = checkLeader(TimeOut),
+	%io:format("My leader is: ~p ~n", [LeaderId]),
 	EndTime = erlang:system_time(1000),
 	ElapsedTime=EndTime - StartTime,
 	timer:sleep(max(0, Period-ElapsedTime)),
@@ -65,7 +65,7 @@ selectNewLeader(MyId, Connected) -> %Select a new leader, push it to leader crdt
 
 	case dict:size(Connected) of
 	0 -> %I am alone (or under partition), no need to push new leader on crdt. Consider myself as leader.
-		io:format("I'm alone (or justed booted) ! ~n"),
+		%io:format("I'm alone (or justed booted) ! ~n"),
 		LeaderId=list_to_integer( lists:nth(2,string:split(lists:nth(1,string:split(atom_to_list(erlang:node()),"@")), "e")) ),
 		Cluster_size=0;
 	_ -> %I am in a cluster with a least one other node
@@ -78,7 +78,7 @@ selectNewLeader(MyId, Connected) -> %Select a new leader, push it to leader crdt
 selectSmaller(MyId) ->
 	{ok, Connected}=partisan_pluggable_peer_service_manager:connections(),
 	Keys=dict:fetch_keys(Connected),
-
+	%io:format("KEYS ~p ~n", [Keys]),
 	NameList = lists:map(fun(A) -> maps:get(name,A) end ,Keys),
 	SortedKeys = lists:usort(NameList),
 

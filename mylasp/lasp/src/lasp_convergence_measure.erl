@@ -9,7 +9,14 @@
 		 created/0,
 		 launchExperimentDynamic/4,
 		 launchContinuousMeasures/1,
-		 readThresholdMaxDuration/3
+		 readThresholdMaxDuration/3,
+		 getSystemConvergenceInfos/0,
+		 getSystemConvergenceTime/0,
+		 getSystemRoundTrip/0,
+		 getSystemWorstNodeId/0,
+		 getIndividualConvergenceTimes/0,
+		 getConvergenceTime/1,
+		 addition_compute_time/0
          ]).
 
 
@@ -489,17 +496,21 @@ startLoop(Range,AddIndex, CRDT_Id, SendingPeriod, Path) ->
 launchContinuousMeasures(MeasurePeriod) -> %MeasurePeriod should be at minimum convergenceTime*4 (ex avec le basic 8sec, on fait au mieux une mesure tous les 32 sec)
 io:format("Continuous Measures Started ! ~n"),
 	Id=list_to_integer( lists:nth(2,string:split(lists:nth(1,string:split(atom_to_list(erlang:node()),"@")), "e")) ),
-	continuousMeasurementLoop(Id, MeasurePeriod).
+	Self = self(),
+			_Pid = spawn (fun() -> 
+						continuousMeasurementLoop(Id, MeasurePeriod),
+						Self ! {self(), ok} end),
+	_Pid.
 
 
 
 continuousMeasurementLoop(Id,MeasurePeriod) ->
-	io:format("============================ ~n"),
-	io:format("NEW MEASURE ROUND ~n"),
-	io:format("============================ ~n"),
+	%io:format("============================ ~n"),
+	%io:format("NEW MEASURE ROUND ~n"),
+	%io:format("============================ ~n"),
 	LoopStartTime = erlang:system_time(1000),
 	{LeaderId, Cluster_size}=lasp_leader_election:checkLeader(20000), %MeasurePeriod must be at least 4*realConvergenceTime
-	io:format("My leader is: ~p ~n", [LeaderId]),
+	%io:format("My leader is: ~p ~n", [LeaderId]),
 	TimeOut=30000,
 
 	case {LeaderId==Id, Cluster_size>0} of
@@ -513,20 +524,19 @@ continuousMeasurementLoop(Id,MeasurePeriod) ->
 			%Measure Phase
 			StartTime=erlang:system_time(1000),
 			lasp:update({<<"leader_task">>, state_awset}, {add, Id}, self()), %I add my Id
-			io:format("[LEADER] Wait for ~p nodes to answer... ", [Cluster_size]),
+			%io:format("[LEADER] Wait for ~p nodes to answer... ", [Cluster_size]),
 			readThresholdMaxDuration({<<"basic_task">>, state_awset}, {cardinality, Cluster_size},TimeOut), %I wait everyone answered. Skip after TimeOut ms waiting
-			io:format("OK! ~n"),	
+			%io:format("OK! ~n"),	
 
 			%Compute Phase
 			RoundTripTime = erlang:system_time(1000)-StartTime,
 			{ok, TimeStampSet}=lasp:query({<<"basic_task">>, state_awset}),
-			{WorstConvergenceTime, IndividualConvergenceTimes} = getWorstConvergenceTime(TimeStampSet, StartTime),
-
-			PreviousConvergenceTime=getSystemConvergenceTime(),
+			{WorstConvergenceTime, IndividualConvergenceTimes} = computeWorstConvergenceTime(TimeStampSet, StartTime),
+			NewConvergenceInfos = #{roundTripTime => RoundTripTime, worstConvergenceTime => WorstConvergenceTime, individualConvergenceTimes => IndividualConvergenceTimes},
+			PreviousConvergenceTime=getSystemConvergenceInfos(),
 			lasp:update({<<"system_convergence">>, state_awset}, {rmv, PreviousConvergenceTime}, self()),
-			lasp:update({<<"system_convergence">>, state_awset}, {add, {RoundTripTime, WorstConvergenceTime, IndividualConvergenceTimes}}, self()),
-			io:format("[LEADER] New convergence time : ~p ~n", [WorstConvergenceTime]),
-
+			lasp:update({<<"system_convergence">>, state_awset}, {add, NewConvergenceInfos}, self()),
+			%io:format("[LEADER] New convergence infos : ~p ~n", [NewConvergenceInfos]),
 			%Reset Phase
 			timer:sleep(1000),
 			{ok, PotentialLeadersId}=lasp:query({<<"leader_task">>, state_awset}), %Useful to remove potential previous leader Id if he crashed. 
@@ -538,7 +548,7 @@ continuousMeasurementLoop(Id,MeasurePeriod) ->
 			{ok , RawPreviousTimeStamps2} = lasp:query({<<"basic_task">>, state_awset}),
 			PreviousTimeStamps2 = sets:to_list(RawPreviousTimeStamps2),
 			lasp:update({<<"basic_task">>, state_awset}, {rmv_all, PreviousTimeStamps2}, self()), %Remove in case some node crashed and did not remove its TimeStamp
-			io:format("[LEADER] Reset is done ! ~n"),
+			%io:format("[LEADER] Reset is done ! ~n"),
 
 			LoopEndTime=erlang:system_time(1000),
 			LoopDuration=LoopEndTime-LoopStartTime,
@@ -549,52 +559,128 @@ continuousMeasurementLoop(Id,MeasurePeriod) ->
 	{false,true} ->%I am NOT-LEADER
 
 			%Measure Phase
-			io:format("[BASIC] Waiting for leader measure signal... "),
+			%io:format("[BASIC] Waiting for leader measure signal... "),
 			readThresholdMaxDuration({<<"leader_task">>, state_awset}, {cardinality, 1},TimeOut), %I wait to detect leader added his Id
-			io:format("OK! ~n"),
+			%io:format("OK! ~n"),
 			TimeStamp=erlang:system_time(1000),
 			lasp:update({<<"basic_task">>, state_awset}, {add, {Id, TimeStamp}}, self()), %I add my {Id, TimeStamp}
 
 			%Reset Phase
 
 			readThresholdMaxDuration({<<"leader_task">>, state_awset}, {cardinality, -1},TimeOut), %I wait to detect leader removed his Id (reset for next measure)
-			io:format("[BASIC] Reset is done ! ~n"),
+			%io:format("[BASIC] Reset is done ! ~n"),
 			lasp:update({<<"basic_task">>, state_awset}, {rmv, {Id, TimeStamp}}, self()); %I remove my {Id, TimeStamp} (reset for next measure)
 
 	{_,false} -> %Cluster is empty, I am alone
-			io:format ("I am alone ~n"),
+			%io:format ("I am alone ~n"),
 			timer:sleep(500), %Will check for new leader every 500ms
 			ok
 	end,
 	continuousMeasurementLoop(Id, MeasurePeriod).
 
 
-getWorstConvergenceTime(TimeStampSet, StartTime) ->
+computeWorstConvergenceTime(TimeStampSet, StartTime) ->
 	TimeStampList=sets:to_list(TimeStampSet),
-	%io:format("~p ~n", [TimeStampList]),
 	case length(TimeStampList) of
 	0 ->
 		WorstConvergenceTime=nan,
 		OrderedConvergenceTimes = [];
 	_ -> 
-		ConvergenceTimes = lists:map(fun({A,B}) -> {A, B-StartTime} end, TimeStampList),
-		OrderedConvergenceTimes=lists:sort( fun({_,A},{_,B}) -> A =< B end, ConvergenceTimes),
-		{_, WorstConvergenceTime} = lists:nth(length(OrderedConvergenceTimes), OrderedConvergenceTimes)
+		ConvergenceTimes = lists:map(fun({A,B}) -> #{id => A, convergenceTime => B-StartTime} end, TimeStampList),
+		OrderedConvergenceTimes = lists:sort( fun(A,B) -> maps:get(convergenceTime, A) =< maps:get(convergenceTime, B) end, ConvergenceTimes),
+		WorstConvergenceTime = lists:nth(length(OrderedConvergenceTimes), OrderedConvergenceTimes)
 	end,
 	{WorstConvergenceTime, OrderedConvergenceTimes}.
 
 
-getSystemConvergenceTime() ->
-	{ok, RawConvergenceTime} = lasp:query({<<"system_convergence">>, state_awset}),
-	ConvergenceTimeList=sets:to_list(RawConvergenceTime),
-	io:format("Previous Convergence CRDT: ~p ~n", [ConvergenceTimeList]),
-	case length(ConvergenceTimeList) of
+
+
+getSystemConvergenceInfos() ->
+	{ok, RawConvergenceInfo} = lasp:query({<<"system_convergence">>, state_awset}),
+	ConvergenceInfoList=sets:to_list(RawConvergenceInfo),
+	case length(ConvergenceInfoList) of
 	1 ->
-		ConvergenceTime = lists:nth(1, ConvergenceTimeList);
+		ConvergenceInfo = lists:nth(1, ConvergenceInfoList);
 	_ ->
-		ConvergenceTime = nomeasure
+		ConvergenceInfo = nomeasure
+	end,
+	ConvergenceInfo.
+
+getSystemConvergenceTime() ->
+	{ok, RawInfos} = lasp:query({<<"system_convergence">>, state_awset}),
+	InfosList = sets:to_list(RawInfos),
+	case length(InfosList) of
+	1 ->
+		Infos = lists:nth(1, InfosList),
+		ConvergenceTime = maps:get(convergenceTime , maps:get(worstConvergenceTime, Infos));
+	_ ->
+		ConvergenceTime = noValue
 	end,
 	ConvergenceTime.
+
+
+getSystemWorstNodeId() ->
+	{ok, RawInfos} = lasp:query({<<"system_convergence">>, state_awset}),
+	InfosList = sets:to_list(RawInfos),
+	case length(InfosList) of
+	1 ->
+		Infos = lists:nth(1, InfosList),
+		Node = maps:get(id ,maps:get(wostConvergenceTime, Infos));
+	_ ->
+		Node = noValue
+	end,
+	Node.
+
+
+getSystemRoundTrip() ->
+	{ok, RawInfos} = lasp:query({<<"system_convergence">>, state_awset}),
+	InfosList = sets:to_list(RawInfos),
+	case length(InfosList) of
+	1 ->
+		Infos = lists:nth(1, InfosList),
+		RoundTrip = maps:get(roundTripTime, Infos);
+	_ ->
+		RoundTrip = noValue
+	end,
+	RoundTrip.
+
+getIndividualConvergenceTimes() ->
+	{ok, RawInfos} = lasp:query({<<"system_convergence">>, state_awset}),
+	InfosList = sets:to_list(RawInfos),
+	case length(InfosList) of
+	1 ->
+		Infos = lists:nth(1, InfosList),
+		IndividualTimes = maps:get(individualConvergenceTimes, Infos);
+	_ ->
+		IndividualTimes = noValue
+	end,
+	IndividualTimes.
+
+getConvergenceTime(Id) -> %VERIFIER QUON NA PAS UN TRUC VIDE
+	{LeaderId, _ }=lasp_leader_election:checkLeader(20000),
+	case (Id==LeaderId) of
+	true -> 
+			MyConvergenceTime = getSystemConvergenceTime(); %I am leader, there is no specific measure for myself. I take the worst case instead.
+	false ->
+			IndividualConvergenceTimes = getIndividualConvergenceTimes(),
+			case IndividualConvergenceTimes of
+			noValue -> 
+				MyConvergenceTime = noValue;
+			_ ->
+				MyIndividualConvergenceInfoList = lists:filter(fun(A) -> maps:get(id, A)==Id end, IndividualConvergenceTimes),
+				case length(MyIndividualConvergenceInfoList) of
+				0 -> 
+					MyConvergenceTime = noValue;
+				_ ->
+					MyIndividualConvergenceInfo = lists:nth(1, MyIndividualConvergenceInfoList),
+					MyConvergenceTime = maps:get(convergenceTime, MyIndividualConvergenceInfo)
+				end
+			end
+	end,
+	MyConvergenceTime.
+			
+
+
 
 readThresholdMaxDuration(CRDT_Id, Threshold, MaxDuration) ->
 	Self = self(),
@@ -608,9 +694,17 @@ readThresholdMaxDuration(CRDT_Id, Threshold, MaxDuration) ->
 	end.
 
 
+
 %% ===================================================================
 %% Other small tests:
 %% ===================================================================
+
+addition_compute_time() ->
+	lasp:declare({<<"special_set">>, state_awset}, state_awset),
+	Start = erlang:system_time(1000),
+	lasp:update({<<"special_set">>, state_awset}, {add , 5}, self()),
+	Duration = erlang:system_time(1000) - Start,
+	io:format("Computation duration to add a simple little element ~p ~n", [Duration]).
 
 simpleAddition() ->
  
