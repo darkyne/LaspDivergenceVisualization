@@ -122,7 +122,11 @@ Fin implémentation tâche continue en fond.
 Ce système de mesures continues peut désormais s'adapter (si des nodes sont ajoutés, retirés ou tués).
 launchContinuousMeasure(Period) permet de mettre à jour de façon continues les mesures de convergence.
 Les nodes peuvent accéder à différentes méthodes permettant de visualiser ces dernières mesures.
-Remarque: mesure pour ajouter un simple élément (style un chiffre: 5) dans un state_awset qui est tout simplement vide: environ 20 ms !
-Je go faire de petites mesures avec d'autres CRDT.
+Remarque: 
+mesure pour ajouter un simple élément (un chiffre: 5) dans:
+-un state_awset vide: environ 25 ms (15 à 40ms)
+-un state_orset vide: environ 30ms (20 à 40ms)
+-un gcounter à 0: environ 20 ms (10 à 30ms)
+
 
 

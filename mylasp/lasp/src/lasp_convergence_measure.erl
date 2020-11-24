@@ -8,7 +8,7 @@
 		 messageReceived/0,
 		 created/0,
 		 launchExperimentDynamic/4,
-		 launchContinuousMeasures/1,
+		 launchContinuousMeasures/2,
 		 readThresholdMaxDuration/3,
 		 getSystemConvergenceInfos/0,
 		 getSystemConvergenceTime/0,
@@ -16,7 +16,9 @@
 		 getSystemWorstNodeId/0,
 		 getIndividualConvergenceTimes/0,
 		 getConvergenceTime/1,
-		 addition_compute_time/0
+		 addition_awset_time/0,
+		 addition_orset_time/0,
+		 addition_gcount_time/0
          ]).
 
 
@@ -493,24 +495,29 @@ startLoop(Range,AddIndex, CRDT_Id, SendingPeriod, Path) ->
 %% launchContinuousMeasures
 %% ===================================================================
 
-launchContinuousMeasures(MeasurePeriod) -> %MeasurePeriod should be at minimum convergenceTime*4 (ex avec le basic 8sec, on fait au mieux une mesure tous les 32 sec)
+launchContinuousMeasures(MeasurePeriod, Debug) -> %MeasurePeriod should be at minimum convergenceTime*4 (ex avec le basic 8sec, on fait au mieux une mesure tous les 32 sec)
 io:format("Continuous Measures Started ! ~n"),
 	Id=list_to_integer( lists:nth(2,string:split(lists:nth(1,string:split(atom_to_list(erlang:node()),"@")), "e")) ),
 	Self = self(),
 			_Pid = spawn (fun() -> 
-						continuousMeasurementLoop(Id, MeasurePeriod),
+						continuousMeasurementLoop(Id, MeasurePeriod, Debug),
 						Self ! {self(), ok} end),
 	_Pid.
 
 
 
-continuousMeasurementLoop(Id,MeasurePeriod) ->
-	%io:format("============================ ~n"),
-	%io:format("NEW MEASURE ROUND ~n"),
-	%io:format("============================ ~n"),
+continuousMeasurementLoop(Id,MeasurePeriod, Debug) ->
 	LoopStartTime = erlang:system_time(1000),
 	{LeaderId, Cluster_size}=lasp_leader_election:checkLeader(20000), %MeasurePeriod must be at least 4*realConvergenceTime
-	%io:format("My leader is: ~p ~n", [LeaderId]),
+	case Debug of 
+	true ->
+		io:format("============================ ~n"),
+		io:format("NEW MEASURE ROUND ~n"),
+		io:format("============================ ~n"),
+		io:format("My leader is: ~p ~n", [LeaderId]);
+	false ->
+		ok
+	end,
 	TimeOut=30000,
 
 	case {LeaderId==Id, Cluster_size>0} of
@@ -524,9 +531,14 @@ continuousMeasurementLoop(Id,MeasurePeriod) ->
 			%Measure Phase
 			StartTime=erlang:system_time(1000),
 			lasp:update({<<"leader_task">>, state_awset}, {add, Id}, self()), %I add my Id
-			%io:format("[LEADER] Wait for ~p nodes to answer... ", [Cluster_size]),
+			case Debug of 
+			true ->
+				io:format("[LEADER] Wait for ~p nodes to answer... ", [Cluster_size]);
+			false ->
+				ok
+			end,
 			readThresholdMaxDuration({<<"basic_task">>, state_awset}, {cardinality, Cluster_size},TimeOut), %I wait everyone answered. Skip after TimeOut ms waiting
-			%io:format("OK! ~n"),	
+			io:format("OK! ~n"),	
 
 			%Compute Phase
 			RoundTripTime = erlang:system_time(1000)-StartTime,
@@ -536,7 +548,12 @@ continuousMeasurementLoop(Id,MeasurePeriod) ->
 			PreviousConvergenceTime=getSystemConvergenceInfos(),
 			lasp:update({<<"system_convergence">>, state_awset}, {rmv, PreviousConvergenceTime}, self()),
 			lasp:update({<<"system_convergence">>, state_awset}, {add, NewConvergenceInfos}, self()),
-			%io:format("[LEADER] New convergence infos : ~p ~n", [NewConvergenceInfos]),
+			case Debug of 
+			true ->
+				io:format("[LEADER] New convergence infos : ~p ~n", [NewConvergenceInfos]);
+			false ->
+				ok
+			end,
 			%Reset Phase
 			timer:sleep(1000),
 			{ok, PotentialLeadersId}=lasp:query({<<"leader_task">>, state_awset}), %Useful to remove potential previous leader Id if he crashed. 
@@ -548,7 +565,12 @@ continuousMeasurementLoop(Id,MeasurePeriod) ->
 			{ok , RawPreviousTimeStamps2} = lasp:query({<<"basic_task">>, state_awset}),
 			PreviousTimeStamps2 = sets:to_list(RawPreviousTimeStamps2),
 			lasp:update({<<"basic_task">>, state_awset}, {rmv_all, PreviousTimeStamps2}, self()), %Remove in case some node crashed and did not remove its TimeStamp
-			%io:format("[LEADER] Reset is done ! ~n"),
+			case Debug of 
+			true ->
+				io:format("[LEADER] Reset is done ! ~n");
+			false ->
+				ok
+			end,
 
 			LoopEndTime=erlang:system_time(1000),
 			LoopDuration=LoopEndTime-LoopStartTime,
@@ -559,24 +581,44 @@ continuousMeasurementLoop(Id,MeasurePeriod) ->
 	{false,true} ->%I am NOT-LEADER
 
 			%Measure Phase
-			%io:format("[BASIC] Waiting for leader measure signal... "),
+			case Debug of 
+			true ->
+				io:format("[BASIC] Waiting for leader measure signal... ");
+			false ->
+				ok
+			end,
 			readThresholdMaxDuration({<<"leader_task">>, state_awset}, {cardinality, 1},TimeOut), %I wait to detect leader added his Id
-			%io:format("OK! ~n"),
+			case Debug of 
+			true ->
+				io:format("OK ! ~n");
+			false ->
+				ok
+			end,
 			TimeStamp=erlang:system_time(1000),
 			lasp:update({<<"basic_task">>, state_awset}, {add, {Id, TimeStamp}}, self()), %I add my {Id, TimeStamp}
 
 			%Reset Phase
 
 			readThresholdMaxDuration({<<"leader_task">>, state_awset}, {cardinality, -1},TimeOut), %I wait to detect leader removed his Id (reset for next measure)
-			%io:format("[BASIC] Reset is done ! ~n"),
+			case Debug of
+			true ->
+				io:format("[BASIC] Reset is done ! ~n");
+			false ->
+				ok
+			end,
 			lasp:update({<<"basic_task">>, state_awset}, {rmv, {Id, TimeStamp}}, self()); %I remove my {Id, TimeStamp} (reset for next measure)
 
 	{_,false} -> %Cluster is empty, I am alone
-			%io:format ("I am alone ~n"),
+			case Debug of
+			true ->
+				io:format("I am alone (or just booted) ~n");
+			false ->
+				ok
+			end,
 			timer:sleep(500), %Will check for new leader every 500ms
 			ok
 	end,
-	continuousMeasurementLoop(Id, MeasurePeriod).
+	continuousMeasurementLoop(Id, MeasurePeriod, Debug).
 
 
 computeWorstConvergenceTime(TimeStampSet, StartTime) ->
@@ -699,12 +741,27 @@ readThresholdMaxDuration(CRDT_Id, Threshold, MaxDuration) ->
 %% Other small tests:
 %% ===================================================================
 
-addition_compute_time() ->
-	lasp:declare({<<"special_set">>, state_awset}, state_awset),
+addition_awset_time() ->
+	lasp:declare({<<"special_awset_measure">>, state_awset}, state_awset),
 	Start = erlang:system_time(1000),
-	lasp:update({<<"special_set">>, state_awset}, {add , 5}, self()),
+	lasp:update({<<"special_awset_measure">>, state_awset}, {add , 5}, self()),
 	Duration = erlang:system_time(1000) - Start,
-	io:format("Computation duration to add a simple little element ~p ~n", [Duration]).
+	io:format("Computation duration to add a simple little element to an empty awset: ~p ms. ~n", [Duration]).
+
+addition_orset_time() ->
+	lasp:declare({<<"special_orset_measure">>, state_orset}, state_orset),
+	Start = erlang:system_time(1000),
+	lasp:update({<<"special_orset_measure">>, state_orset}, {add , 5}, self()),
+	Duration = erlang:system_time(1000) - Start,
+	io:format("Computation duration to add a simple little element to an empty orset: ~p ms. ~n", [Duration]).
+
+addition_gcount_time() ->
+	lasp:declare({"<<special_gcounter_measure>>", state_gcounter}, state_gcounter),
+	Start = erlang:system_time(1000),
+	lasp:update({"<<special_gcounter_measure>>", state_gcounter}, increment, self()),
+	Duration = erlang:system_time(1000) - Start,
+	io:format("Computation duration to increment a starting gcounter: ~p ms. ~n", [Duration]).
+
 
 simpleAddition() ->
  
