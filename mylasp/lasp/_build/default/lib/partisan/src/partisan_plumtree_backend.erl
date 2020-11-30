@@ -221,7 +221,7 @@ code_change(_OldVsn, State, _Extra) ->
 schedule_heartbeat() ->
     case partisan_config:get(broadcast, false) of
         true ->
-            Interval = partisan_config:get(broadcast_heartbeat_interval, 10000),
+            Interval = partisan_config:get(broadcast_heartbeat_interval, 1000),
             timer:send_after(Interval, heartbeat);
         false ->
             ok

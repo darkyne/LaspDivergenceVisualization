@@ -1,0 +1,39 @@
+As explained, with the basic Lasp given on https://github.com/lasp-lang/lasp , I encounter an important delay (about 8sec even on very small cluster).
+This is because of a wait-interval causing the nodes to send their state to peers only after a certain time.
+Modifying this interval should logically be a simple paramter to modify somewhere in lasp files.
+Focusing on this idea, I tried modifying different values but it did not show any difference in practice. Of course, everytime I modified a value, I recompiled the entire project with its libraries.
+
+Here are the values I tried to modify (I tried modifying some of these even if they were obviously not the correct ones just in case):
+
+1) lasp/include/lasp.hrl:
+	PLUMTREE_PEER_REFRESH_INTERVAL from 10000 to 1000
+	STATE_SYNC_INTERVAL from 10000 to 1000
+	MEMORY_UTILIZATION_INTERVAL from 10000 to 1000
+	PLUMTREE_MEMORY_INTERVAL from 10000 to 1000
+	STATE_INTERVAL from 10000 to 1000
+	IMPRESSION_INTERVAL from 10000 to 1000
+	STATUS_INTERVAL from 10000 to 1000
+	LOG_INTERVAL from 10000 to 1000
+
+2) lasp/_build/default/lib/partisan/include/partisan.hrl:
+	PERIODIC_INTERVAL from 10000 to 1000
+	OVERRIDE_PERIODIC_INTERVAL from 10000 to 1000
+	DEFAULT_LAZY_TICK_PERIOD from 10000 to 1000
+	DEFAULT_EXCHANGE_TICK_PERIOD from 10000 to 1000
+
+3) lasp/_build/default/lib/partisan/partisan_pluggable_peer_service_manager:
+	distance_interval from 10000 to 1000
+
+4) lasp/_build/default/lib/partisan/partisan_config.erl:
+	passive_view_shuffle_period from 10000 to 1000
+	periodic_interval from 10000 to 1000
+
+5) lasp/_build/default/lib/partisan/partisan_plumtree_backend:
+	broadcast_heartbeat_interval from 10000 to 1000
+
+6) lasp/_build/default/lib/plumtree/plumtree.hrl:
+	DEFAULT_EXCHANGE_TICK_PERIOD from 10000 to 1000
+
+None of these modification showed any difference in practice when launching a little cluster and checking for convergence delays.
+This looks strange to me. If by any case, some of you found a way to reduce the time interval between state exchanges, let me know.
+

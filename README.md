@@ -129,4 +129,9 @@ mesure pour ajouter un simple élément (un chiffre: 5) dans:
 -un gcounter à 0: environ 20 ms (10 à 30ms)
 
 
+## RDV11 01-12-2020 14 (Teams)
+Création poster.
+Tracing du add pour comprendre ce qui le rend si lent.
+Mise au point d'une API pour modifier le temps de convergence.
+
 

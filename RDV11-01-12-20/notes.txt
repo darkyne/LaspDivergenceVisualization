@@ -1,0 +1,50 @@
+TODO:
+
+Poster: OK
+Comprendre pourqoi le add est si lent: En cours
+API pour modifier le convergence time: En cours
+
+ADDITION IS SLOW:
+-Ce n'est pas erlang:system_time(1000) qui est lent (il prend moins de 1ms).
+-fprof: voir les deux images. Il semblerait que ce soit "suspend" qui prend le plus de temps (de l'ordre de 15ms) mais je ne comprends pas vraiment ce que c'est.
+
+
+SENDING PERIOD:
+1) Je pense qu'en modifiant ceraines valeurs dans include/lasp.hrl il doit y avoir moyen de modifier ça. Jai sauvegardé le fichier initial ici au cas où. J'ai testé en mettant des valeurs plus petites mais ça n'a rien changé (même en recompilant). 
+En details:
+PLUMTREE_PEER_REFRESH_INTERVAL passé de 10000 à 1000
+STATE_SYNC_INTERVAL passé de 10000 à 1000
+MEMORY_UTILIZATION_INTERVAL passé de 10000 à 1000
+PLUMTREE_MEMORY_INTERVAL passé de 10000 à 1000
+%Simulation helpers:
+STATE_INTERVAL passé de 10000 à 1000
+IMPRESSION_INTERVAL passé de 10000 à 1000
+STATUS_INTERVAL passé de 10000 à 1000
+LOG_INTERVAL, passé de 10000 à 1000
+Sans effet apparent. (Set1 prend toujours environ 8secondes pour converger)
+
+2) partisan.hrl (dossier include dans partisan) semble aussi prometteur:
+En details:
+PERIODIC_INTERVAL passé de 10000 à 1000
+OVERRIDE_PERIODIC_INTERVAL passé de 10000 à 1000
+DEFAULT_LAZY_TICK_PERIOD passé de 10000 à 1000
+DEFAULT_EXCHANGE_TICK_PERIOD passé de 10000 à 1000
+Sans effet apparent
+
+3) Dans partisan_pluggable_peer_service_manager, j'ai tenté de modifier:
+DistanceInterval = partisan_config:get(distance_interval, 1000), de 10000 à 1000
+Sans effet apparent.
+
+4) Dans partisan_config.erl, j'ai modifié:
+{passive_view_shuffle_period, 1000}, de 10000 à 1000
+{periodic_interval, 1000}, de 10000 à 1000
+Sans effet apparent
+
+5) Dans partisan_plumtree_backend, j'ai modifié:
+Interval = partisan_config:get(broadcast_heartbeat_interval, 1000), de 10000 à 1000
+Sans effet apparent
+
+6) Dans plumtree.hrl, j'ai modifié:
+DEFAULT_EXCHANGE_TICK_PERIOD de 10000 à 1000
+Sans effet apparent
+

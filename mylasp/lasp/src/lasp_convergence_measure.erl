@@ -744,9 +744,14 @@ readThresholdMaxDuration(CRDT_Id, Threshold, MaxDuration) ->
 addition_awset_time() ->
 	lasp:declare({<<"special_awset_measure">>, state_awset}, state_awset),
 	Start = erlang:system_time(1000),
+	fprof:trace(start),
 	lasp:update({<<"special_awset_measure">>, state_awset}, {add , 5}, self()),
-	Duration = erlang:system_time(1000) - Start,
+	fprof:trace(stop),
+	EndAdd = erlang:system_time(1000),
+	Duration = EndAdd - Start,
 	io:format("Computation duration to add a simple little element to an empty awset: ~p ms. ~n", [Duration]).
+
+
 
 addition_orset_time() ->
 	lasp:declare({<<"special_orset_measure">>, state_orset}, state_orset),

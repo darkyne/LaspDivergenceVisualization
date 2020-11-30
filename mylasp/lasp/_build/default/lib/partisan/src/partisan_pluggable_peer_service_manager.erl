@@ -1271,7 +1271,7 @@ handle_message(Message,
 schedule_distance() ->
     case partisan_config:get(distance_enabled, false) of 
         true ->
-            DistanceInterval = partisan_config:get(distance_interval, 10000),
+            DistanceInterval = partisan_config:get(distance_interval, 1000),
             erlang:send_after(DistanceInterval, ?MODULE, distance);
         false ->
             ok

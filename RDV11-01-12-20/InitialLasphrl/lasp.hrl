@@ -35,19 +35,19 @@
 -define(DELTA_GC_INTERVAL, 60000).
 
 %% Plumtree peer refresh interval.
--define(PLUMTREE_PEER_REFRESH_INTERVAL, 1000).
+-define(PLUMTREE_PEER_REFRESH_INTERVAL, 10000).
 
 %% Default mode.
 -define(DEFAULT_MODE, state_based).
 
 %% Synchronize state interval.
--define(STATE_SYNC_INTERVAL, 1000).
+-define(STATE_SYNC_INTERVAL, 10000).
 
 %% Report interval.
--define(MEMORY_UTILIZATION_INTERVAL, 1000).
+-define(MEMORY_UTILIZATION_INTERVAL, 10000).
 
 %% Report interval.
--define(PLUMTREE_MEMORY_INTERVAL, 1000).
+-define(PLUMTREE_MEMORY_INTERVAL, 10000).
 
 %% General timeout value.
 -define(TIMEOUT, 100000).
@@ -181,10 +181,10 @@
         {?SIM_STATUS_TRACKING, ?SIM_STATUS_STRUCTURE}).
 
 %% Simulation helpers.
--define(STATE_INTERVAL, 1000).
--define(IMPRESSION_INTERVAL, 1000). %% initially 10 seconds
--define(STATUS_INTERVAL, 1000).
--define(LOG_INTERVAL, 1000).
+-define(STATE_INTERVAL, 10000).
+-define(IMPRESSION_INTERVAL, 10000). %% 10 seconds
+-define(STATUS_INTERVAL, 10000).
+-define(LOG_INTERVAL, 10000).
 -define(ADS_NUMBER, 1).
 
 %% Storage backend.

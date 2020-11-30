@@ -19,4 +19,4 @@
 %% -------------------------------------------------------------------
 
 -define(DEFAULT_LAZY_TICK_PERIOD, 1000).
--define(DEFAULT_EXCHANGE_TICK_PERIOD, 10000).
+-define(DEFAULT_EXCHANGE_TICK_PERIOD, 1000).
