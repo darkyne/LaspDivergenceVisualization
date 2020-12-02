@@ -21,3 +21,24 @@ I already did some measures, they have, for now, some really big variations but 
 On going:
 Test more extreme cases
 Improve the API to allow user to modify convergence time.
+
+Commentaires:
+-Moins de texte
+-Expliquer: Plutôt que database, on va utiliser convergence, une façon automatique de mettre à jour sur tous les nodes. Mettre en avant l'idée de convergence qui est une nouvelle façon.
+-Lasp ne donne pas assez de contrôle.
+-Rendre plus simple (éviter les notions compliquées)
+-Dire developpeur plutôt que user.
+
+-histoire: Contexte, problème, ce que je fais pour le résoudre.
+Donner l'intuition du udpate speed vs convergence speed. Ca ne sert à rien de converger super vite si on met à jour très lentement car ça va simplement surcharger le réseau. Il ne faut pas non plus que ça converge trop lentement.
+Quelques logos d'entreprises qui utilisent le CRDT.
+
+Insistuer sur le fait que la convergence c'est bien, beaucoup plus facile qu'avec consensus.
+
+Pour demain soir, je refais une nouvelle version et je vous l'envois (en paysage).
+
+Appeler Partisan directement sans passer par Lasp pour tester.
+Terminer la partie sherlock pour modifier temps d'interval et porquoi add si lent.
+
+Insister sur convergence, le fait que ça soit super, que ce soit récent (seulement depuis 2011), etc. Que ça révolutionne le système habituel avec consensus.
+
