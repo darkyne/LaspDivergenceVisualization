@@ -125,6 +125,7 @@ handle_call({propagate, ObjectFilterFun}, _From,
 
     %% Remove ourself and compute exchange peers.
     Peers = ?SYNC_BACKEND:compute_exchange(?SYNC_BACKEND:without_me(Members)),
+	%io:format("sending ? ~n"),
 
     case length(Peers) > 0 of
          true ->
@@ -153,7 +154,7 @@ handle_call({blocking_sync, ObjectFilterFun}, From,
             {ok, Members1} = ?SYNC_BACKEND:membership(),
             Members1
     end,
-
+	io:format("sending ? ~n"),
     %% Remove ourself and compute exchange peers.
     Peers = ?SYNC_BACKEND:compute_exchange(?SYNC_BACKEND:without_me(Members)),
 
@@ -210,7 +211,7 @@ handle_cast({state_ack, From, Id, {Id, _Type, _Metadata, Value}},
 handle_cast({state_send, From, {Id, Type, _Metadata, Value}, AckRequired},
             #state{store=Store, actor=Actor}=State) ->
     lasp_marathon_simulations:log_message_queue_size("state_send"),
-
+	%io:format("is this receiving or sending ? ~n"),
     {ok, Object} = ?CORE:receive_value(Store, {state_send,
                                        From,
                                        {Id, Type, _Metadata, Value},
@@ -322,6 +323,7 @@ code_change(_OldVsn, State, _Extra) ->
 
 %% @private
 schedule_state_synchronization() ->
+	%io:format("trying to synchro ? ~n"),
     ShouldSync = true
             andalso (
               ?SYNC_BACKEND:peer_to_peer_mode()
@@ -335,7 +337,8 @@ schedule_state_synchronization() ->
 
     case ShouldSync of
         true ->
-            Interval = lasp_config:get(state_interval, 10000),
+            %Interval = lasp_config:get(state_interval, 1000),
+			Interval = 100,
             ObjectFilterFun = fun(_, _) -> true end,
             case lasp_config:get(jitter, false) of
                 true ->

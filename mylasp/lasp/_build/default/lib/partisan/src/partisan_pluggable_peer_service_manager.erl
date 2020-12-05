@@ -1291,6 +1291,7 @@ schedule_periodic() ->
     case partisan_config:get(periodic_enabled, false) of 
         true ->
             PeriodicInterval = partisan_config:get(periodic_interval, ?PERIODIC_INTERVAL),
+			%I come here every second (even if I put period interval to 10000)
             erlang:send_after(PeriodicInterval, ?MODULE, periodic);
         false ->
             ok
@@ -1337,6 +1338,7 @@ do_send_message(Node, Channel, PartitionKey, Message, Connections, Options, PreI
         {ok, Entries} ->
             Pid = partisan_util:dispatch_pid(PartitionKey, Channel, Entries),
             gen_server:cast(Pid, {send_message, Message});
+			%io:format("sending message ~p ~n", [Message]); % TO REMOVE
         {error, not_found} ->
             %% Tracing.
             case partisan_config:get(tracing, ?TRACING) of 

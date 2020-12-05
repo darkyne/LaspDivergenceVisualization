@@ -157,6 +157,8 @@ query({?TYPE, {DotStore, _CausalContext}}) ->
 %%      `state_causal_type' common library.
 -spec merge(state_awset(), state_awset()) -> state_awset().
 merge({?TYPE, AWSet1}, {?TYPE, AWSet2}) ->
+	%Timer = erlang:system_time(1000), % TO REMOVE
+	%io:format("!!! MERGING ~n"), % TO REMOVE
     AWSet = state_causal_type:merge({dot_map, dot_set},
                                     AWSet1,
                                     AWSet2),

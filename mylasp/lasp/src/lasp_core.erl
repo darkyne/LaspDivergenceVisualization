@@ -493,6 +493,7 @@ bind_var(Origin, Id, Value, MetadataFun, Store) ->
                 _ ->
                 %% Merge may throw for invalid types.
                 try
+					%io:format("trying to merge ~n"),
                     Merged = lasp_type:merge(Type, Value0, Value),
                     case lasp_type:is_strict_inflation(Type, Value0, Merged) of
                         true ->
@@ -928,6 +929,7 @@ reply_to_all([{threshold, read, From, Type, Threshold}=H|T],
                     gen_server:reply({Address, Ref},
                                      {ok, {Id, Type, Metadata, Value}});
                 {fsm, undefined, Address} ->
+					%io:format("sending ? ~n"),
                     gen_fsm_compat:send_event(Address,
                                        {ok, undefined,
                                         {Id, Type, Metadata, Value}});
@@ -951,6 +953,7 @@ reply_to_all([{threshold, wait, From, Type, Threshold}=H|T],
                 {server, undefined, {Address, Ref}} ->
                     gen_server:reply({Address, Ref}, {ok, RThreshold});
                 {fsm, undefined, Address} ->
+					%io:format("sending ? ~n"),
                     gen_fsm_compat:send_event(Address,
                                        {ok, undefined, RThreshold});
                 {Address, Ref} ->
@@ -968,6 +971,7 @@ reply_to_all([From|T], StillWaiting, Result) ->
         {server, undefined, {Address, Ref}} ->
             gen_server:reply({Address, Ref}, Result);
         {fsm, undefined, Address} ->
+			%io:format("sending ? ~n"),
             gen_fsm_compat:send_event(Address, Result);
         {Address, Ref} ->
             gen_server:reply({Address, Ref}, Result);
@@ -994,6 +998,7 @@ receive_value(Store, {state_send, Origin, {Id, Type, Metadata, Value},
                       MetadataFunBind, MetadataFunDeclare}) ->
     case do(get, [Store, Id]) of
         {ok, _Object} ->
+			%io:format("received state message ~n"),
             {ok, _} = bind(Origin, Id, Value, MetadataFunBind, Store);
         {error, not_found} ->
             {ok, _} = declare(Id, Type, MetadataFunDeclare, Store),

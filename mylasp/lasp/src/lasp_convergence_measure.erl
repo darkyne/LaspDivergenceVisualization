@@ -591,6 +591,8 @@ continuousMeasurementLoop(Id,MeasurePeriod, Debug) ->
 			case Debug of 
 			true ->
 				io:format("OK ! ~n");
+				%Timer = erlang:system_time(1000),
+				%io:format("at ~p", [Timer]); % TO REMOVE
 			false ->
 				ok
 			end,
