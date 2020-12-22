@@ -116,12 +116,22 @@ handle_call({get, Id}, _From, #state{ref=Ref}=State) ->
     Result = do_get(Ref, Id),
     {reply, Result, State};
 handle_call({put, Id, Record}, _From, #state{ref=Ref}=State) ->
+	%io:format("put ~n"),
     Result = do_put(Ref, Id, Record),
     {reply, Result, State};
 handle_call({update, Id, Function}, _From, #state{ref=Ref}=State) ->
+	%io:format("update ~n"),
+	%io:format("update from ~p ~n", [_From]),
+	%{From_PID,_} = _From,
+	%Info = erlang:process_info(From_PID),
+	%io:format("which is ~p ~n", [Info]),
     Result = case do_get(Ref, Id) of
         {ok, Value} ->
             {NewValue, InnerResult} = Function(Value),
+			io:format("Ref ~p ~n", [Ref]),
+			io:format("Id ~p ~n", [Id]),
+			io:format("value ~p ~n", [Value]),
+			%io:format("new value to put ~p ~n", [NewValue]),
             case do_put(Ref, Id, NewValue) of
                 ok ->
                     InnerResult
@@ -131,6 +141,7 @@ handle_call({update, Id, Function}, _From, #state{ref=Ref}=State) ->
     end,
     {reply, Result, State};
 handle_call({update_all, Function}, _From, #state{ref=Ref}=State) ->
+	%io:format("update all ~n"),
     Result = ets:foldl(
         fun({Id, _}=Value, Acc) ->
             {NewValue, InnerResult} = Function(Value),
@@ -190,4 +201,7 @@ do_get(Ref, Id) ->
 -spec do_put(ref(), id(), variable()) -> ok.
 do_put(Ref, Id, Record) ->
     true = ets:insert(Ref, {Id, Record}),
+	%io:format("inserting in ets ! ~n"),
+	%io:format("process info: ~p ~n", [ erlang:process_info(self()) ] ),
+	%io:format("inserting ~p ~n", [Record]),
     ok.

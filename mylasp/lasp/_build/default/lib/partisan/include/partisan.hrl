@@ -25,7 +25,7 @@
 -define(GOSSIP_GC_MIN_SIZE, 10).
 
 %% Pluggable manager.
--define(PERIODIC_INTERVAL, 1000).
+-define(PERIODIC_INTERVAL, 10000).
 
 %% Scamp protocol.
 -define(SCAMP_C_VALUE, 5). %% TODO: FIX ME.
@@ -52,11 +52,11 @@
 
 -define(SUPPORT, partisan_support).
 
--define(OVERRIDE_PERIODIC_INTERVAL, 1000).
+-define(OVERRIDE_PERIODIC_INTERVAL, 10000).
 
 -define(UTIL, partisan_plumtree_util).
--define(DEFAULT_LAZY_TICK_PERIOD, 1000).
--define(DEFAULT_EXCHANGE_TICK_PERIOD, 1000).
+-define(DEFAULT_LAZY_TICK_PERIOD, 10000).
+-define(DEFAULT_EXCHANGE_TICK_PERIOD, 10000).
 
 -define(XBOT_MIN_INTERVAL, 5000).
 -define(XBOT_RANGE_INTERVAL, 60000).

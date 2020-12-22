@@ -1,5 +1,5 @@
 
-echo "Launching some simple nodes running Talkative Continuous Measures"
+echo "Launching some simple nodes running Silent Continuous Measures as background task"
 cd ../..
 duration=300 #5 min
 
@@ -7,7 +7,7 @@ Node=$(sed -n 1p Memoire/AppsToLaunch/IpAddress.txt)
 Ip=$(cut -d "@" -f2- <<< "$Node")
 
 
-cp Memoire/AppsToLaunch/ContinuousMeasuresTalkative/lasp_app.erl src/lasp_app.erl
+cp Memoire/AppsToLaunch/ContinuousMemoryMeasures/lasp_app.erl src/lasp_app.erl
 
 
 

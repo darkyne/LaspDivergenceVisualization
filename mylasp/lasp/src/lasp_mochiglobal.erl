@@ -45,6 +45,7 @@ get(_K, Default, Mod) ->
 -spec put(atom(), any()) -> ok.
 %% @doc Store term V at K, replaces an existing term if present.
 put(K, V) ->
+	%io:format("put ?"),
     put(K, V, key_to_module(K)).
 
 put(_K, V, Mod) ->

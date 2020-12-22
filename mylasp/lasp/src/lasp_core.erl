@@ -321,6 +321,7 @@ declare(Id, Type, MetadataFun, MetadataNew, Store) ->
                 false ->
                     ok
             end,
+			%io:format("declaring ~n"),
             ok = do(put, [Store, NewId, #dv{value=Value,
                                             type=Type,
                                             metadata=Metadata,

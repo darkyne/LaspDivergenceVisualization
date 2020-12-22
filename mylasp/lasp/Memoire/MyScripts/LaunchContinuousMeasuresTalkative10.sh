@@ -1,5 +1,5 @@
 
-echo "Launching some simple nodes running Talkative Continuous Measures as background task"
+echo "Launching some simple nodes running Talkative Continuous Measures"
 cd ../..
 duration=300 #5 min
 

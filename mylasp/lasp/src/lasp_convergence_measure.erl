@@ -18,7 +18,8 @@
 		 getConvergenceTime/1,
 		 addition_awset_time/0,
 		 addition_orset_time/0,
-		 addition_gcount_time/0
+		 addition_gcount_time/0,
+		 continuousMeasurementLoop/3
          ]).
 
 
@@ -538,7 +539,12 @@ continuousMeasurementLoop(Id,MeasurePeriod, Debug) ->
 				ok
 			end,
 			readThresholdMaxDuration({<<"basic_task">>, state_awset}, {cardinality, Cluster_size},TimeOut), %I wait everyone answered. Skip after TimeOut ms waiting
-			io:format("OK! ~n"),	
+			case Debug of 
+			true ->
+				io:format("OK! ~n");
+			false ->
+				ok
+			end,	
 
 			%Compute Phase
 			RoundTripTime = erlang:system_time(1000)-StartTime,

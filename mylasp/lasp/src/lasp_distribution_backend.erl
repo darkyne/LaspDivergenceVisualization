@@ -126,6 +126,7 @@ query(Id) ->
 %%
 -spec update(id(), operation(), actor()) -> {ok, var()} | error().
 update(Id, Operation, Actor) ->
+	%io:format("update ? ~n"),
     gen_server:call(?MODULE, {update, Id, Operation, Actor}, infinity).
 
 %% @doc Bind a dataflow variable to a value.
@@ -364,6 +365,7 @@ handle_call({interested, Topic}, _From,
     Myself = partisan_peer_service_manager:myself(),
     Id = ?INTERESTS_ID,
     Operation = {apply, Myself, {add, Topic}},
+	%io:format("update 1"),
     Result0 = ?CORE:update(Id, Operation, Actor, ?CLOCK_INCR(Actor),
                             ?CLOCK_INIT(Actor), Store),
     Final = {ok, {_, _, Metadata, _}} = declare_if_not_found(Result0, Id, State, ?CORE, update,
@@ -393,6 +395,7 @@ handle_call({disinterested, Topic}, _From,
     Myself = partisan_peer_service_manager:myself(),
     Id = ?INTERESTS_ID,
     Operation = {apply, Myself, {rmv, Topic}},
+	%io:format("update 2"),
     Result0 = ?CORE:update(Id, Operation, Actor, ?CLOCK_INCR(Actor),
                             ?CLOCK_INIT(Actor), Store),
     Final = {ok, {_, _, Metadata, _}} = declare_if_not_found(Result0, Id, State, ?CORE, update,
@@ -434,7 +437,7 @@ handle_call({set_topic, Id, Topic}, _From,
                 orddict:store(topics, TopicSet, Metadata)
         end
     end,
-
+	%io:format("update 3"),
     {ok, _} = ?CORE:update_metadata(Id, Actor, MetadataFun, MetadataFunDeclare, Store),
 
     {reply, ok, State};
@@ -459,7 +462,7 @@ handle_call({remove_topic, Id, Topic}, _From,
                 orddict:store(topics, TopicSet, Metadata)
         end
     end,
-
+	%io:format("update 4"),
     {ok, _} = ?CORE:update_metadata(Id, Actor, MetadataFun, MetadataFunDeclare, Store),
 
     {reply, ok, State};
@@ -568,10 +571,11 @@ handle_call({bind_to, Id, DVId}, _From, #state{store=Store}=State) ->
 handle_call({update, Id, Operation, CRDTActor}, _From,
             #state{store=Store, actor=Actor}=State) ->
     lasp_marathon_simulations:log_message_queue_size("update"),
-
+	
     Result = case lasp_config:get(intermediary_node_modification,
                                   ?INTERMEDIARY_NODE_MODIFICATION) of
         true ->
+			%io:format("update 5"),
             Result0 = ?CORE:update(Id, Operation, CRDTActor, ?CLOCK_INCR(Actor),
                                    ?CLOCK_INIT(Actor), Store),
             Final = {ok, {_, _, Metadata, _}} = declare_if_not_found(Result0, Id, State, ?CORE, update,
@@ -600,6 +604,7 @@ handle_call({update, Id, Operation, CRDTActor}, _From,
                 false ->
                     {error, {intermediary_not_modification_prohibited, Id}};
                 true ->
+					%io:format("update 6"),
                     Result0 = ?CORE:update(Id, Operation, CRDTActor, ?CLOCK_INCR(Actor),
                                            ?CLOCK_INIT(Actor), Store),
                     Final = {ok, {_, _, Metadata, _}} = declare_if_not_found(Result0, Id, State, ?CORE, update,

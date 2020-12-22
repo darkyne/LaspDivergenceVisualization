@@ -1,0 +1,37 @@
+Done:
+
+-Comprendre pourquoi j'ai du mal à descendre sous 100 ms de convergence time. Voir s'il y a moyen de descendre en dessous. EN COURS.
+
+-API pour modifier le convergence time. Concept général: on peut facilement modifier localement mais si on veut que tous les autres nodes du cluster se mettent sur la même fréquence d'envoi, il faut une variable partagée. Du coup j'ai une valeur par défaut de base ensuite j'ai une valeur partagée en CRDT. L'API permet de modifier la valeur sur le CRDT et le code a été modifié pr qu'il prenne la valeur du CRDT (ou défault s'il ne trouve pas de valeur dans le CRDT). Du coup si je décide de modifier le convergence time, il faudra attendre un (ancien) convergence time pour que tous les nodes se soient adaptés à la nouvelle vitesse.
+
+-Modifier l'algo de mesures en continue pour qu'il mesure aussi l'utilisation réseau (nombre de messages par seconde). En diminuant l'interval d'envoi on réduit le convergence time mais je ne savais pas mesurer l'impact sur le réseau, c'est maintenant réglé.
+
+-Refaire les mesures que j'avais déjà fait avec le scénario initial (environ 8sec de convergence time) mais avec un interval beaucoup plus court et donc normalement écart type plus petit.
+
+-Problème toujours à régler: les nodes saturent vite à cause des states reçus. Avant ça bugait au bout de 10minutes maintenant c'est plutôt au bout de 30-60sec. Essayer delta-state ou jsais pas quoi pour éviter d'envoyer des messages inutiles. Il faut vraiment trouver une solution à ce problème.
+
+
+Expliquer à mon promoteur:
+
+J'avais déjà eu le coup une ou deux fois quand je laissais tourner des nodes longtemps, ça avait finit par crash. Mais vraiment si je laissais les nodes tourner style 30min sans les couper.(unable to allocate heap... avec ordi qui freeze)
+Mais je n'y avais pas plus prêté attention que ça.
+
+En diminuant le interval d'envoi des states style 10ms ou 100ms plutôt que 10000, je rencontre le problème de crash bien plus rapidement (style au bout de 2-3 min).
+Me demandant si c'était un souci lié à mon algorythme de mesures: J'ai fait un nouveau dossier propre directement clone du github officiel, si je laisse de simples nodes tourner 20 min ça finit par crash avec unable to allocate XXXXX bytes on heap.
+En cherchant sur github j'ai vu un topic qui, je pense, parlait de ça.
+
+
+Regarder la taille du processus augmantant en direct.
+Faire un processus qui a accès à l'ets et qui voit la taille.
+
+essayer avec un simple gcounter et regarder si ça crash.
+
+Regarder si ça n'essayerait pas de log chaque state du CRDT reçu.
+Monitorer la taille du processus.
+Regarder quand on ajoute des données dans le ets.
+
+Il faudra écrire aussi là-dessus (sur le fait que de miniuer l'interval à provoquer un autre problèem de memory leak).
+
+Mardi 22 14h.
+Avoir résolu le problème de memory leak.
+

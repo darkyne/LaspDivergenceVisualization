@@ -81,10 +81,12 @@ start_link(Identifier) ->
 
 %% @doc Write a record to the backend.
 put(Ref, Id, Record) ->
+	%io:format("put ?"),
     gen_server:call(Ref, {put, Id, Record}, infinity).
 
 %% @doc In-place update given a mutation function.
 update(Ref, Id, Function) ->
+	%io:format("update 7 ~n"),
     gen_server:call(Ref, {update, Id, Function}, infinity).
 
 %% @doc Update all objects given a mutation function.
@@ -133,9 +135,11 @@ handle_call({get, Id}, _From, #state{store=Store}=State) ->
     Result = gen_server:call(Store, {get, Id}, infinity),
     {reply, Result, State};
 handle_call({put, Id, Record}, _From, #state{store=Store}=State) ->
+	%io:format("put 1 ? ~n"),
     Result = gen_server:call(Store, {put, Id, Record}, infinity),
     {reply, Result, State};
 handle_call({update, Id, Function}, _From, #state{store=Store}=State) ->
+	%io:format("update 8 ~n"),
     Result = gen_server:call(Store, {update, Id, Function}, infinity),
     {reply, Result, State};
 handle_call({update_all, Function}, _From, #state{store=Store}=State) ->

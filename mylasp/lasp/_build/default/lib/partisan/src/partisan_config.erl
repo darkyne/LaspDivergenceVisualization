@@ -127,7 +127,7 @@ init() ->
                            {peer_ip, DefaultPeerIP},
                            {peer_port, DefaultPeerPort},
                            {periodic_enabled, ?PERIODIC_ENABLED},
-                           {periodic_interval, 1000},
+                           {periodic_interval, 10000},
                            {pid_encoding, true},
                            {ref_encoding, true},
                            {membership_strategy_tracing, ?MEMBERSHIP_STRATEGY_TRACING},

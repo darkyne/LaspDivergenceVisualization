@@ -16,3 +16,11 @@ EN MODIFIANT Interval (directement ne hardcodant) dans lasp_state_based_synchron
 Par contre ça a tendance à être gourmand, faudrait que je remette toutes les autres valeurs comme avant et ne modifier que cette valeur là pour tester.
 
 
+Actual:
+
+J'ai remis les autres valeurs par défaut en modifiant uniquement la valeur dans lasp_state_based_synchronization_backend.
+C'est plus rapide qu'avant (style 300ms de convergence time) mais ça crash assez vite car les nodes se retrouvent submergés assez vite par les states reçus.
+Idée: Tester awset_ps plutôt que awset pour si ça change quelque chose.
+
+
+

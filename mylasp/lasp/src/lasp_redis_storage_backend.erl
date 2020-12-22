@@ -65,6 +65,7 @@ start_link(Prefix) ->
 %% @doc Write a record to the backend.
 -spec put(eredis(), id(), variable()) -> ok | {error, atom()}.
 put(Eredis, Id, Record) ->
+	%io:format("put ?"),
     gen_server:call(Eredis, {put, Id, Record}, infinity).
 
 %% @doc In-place update given a mutation function.
