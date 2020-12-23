@@ -593,6 +593,7 @@ continuousMeasurementLoop(Id,MeasurePeriod, Debug) ->
 			false ->
 				ok
 			end,
+			%io:format("put strings to try to figure out when read is timing out"),
 			readThresholdMaxDuration({<<"leader_task">>, state_awset}, {cardinality, 1},TimeOut), %I wait to detect leader added his Id
 			case Debug of 
 			true ->
@@ -740,7 +741,9 @@ readThresholdMaxDuration(CRDT_Id, Threshold, MaxDuration) ->
 	receive
 		{_PidSpawned, ok} -> ok
 	after
-		MaxDuration -> erlang:exit(_Pid, kill)
+		MaxDuration -> 
+			io:format("time out! ~n"),
+			erlang:exit(_Pid, kill)
 	end.
 
 

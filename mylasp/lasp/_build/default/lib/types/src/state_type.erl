@@ -122,6 +122,7 @@ new({Type, _Payload}) ->
 -spec mutate(type:operation(), type:id(), crdt()) ->
     {ok, crdt()} | {error, type:error()}.
 mutate(Op, Actor, {Type, _}=CRDT) ->
+	%io:format("MUTATE ~n"),
     case Type:delta_mutate(Op, Actor, CRDT) of
         {ok, {Type, Delta}} ->
             {ok, Type:merge({Type, Delta}, CRDT)};

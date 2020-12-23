@@ -154,7 +154,7 @@ handle_call({blocking_sync, ObjectFilterFun}, From,
             {ok, Members1} = ?SYNC_BACKEND:membership(),
             Members1
     end,
-	io:format("sending ? ~n"),
+	%io:format("sending ? ~n"),
     %% Remove ourself and compute exchange peers.
     Peers = ?SYNC_BACKEND:compute_exchange(?SYNC_BACKEND:without_me(Members)),
 
@@ -338,7 +338,7 @@ schedule_state_synchronization() ->
     case ShouldSync of
         true ->
             %Interval = lasp_config:get(state_interval, 10000),
-			Interval = 1000,
+			Interval = 100,
             ObjectFilterFun = fun(_, _) -> true end,
             case lasp_config:get(jitter, false) of
                 true ->
@@ -346,6 +346,7 @@ schedule_state_synchronization() ->
                     JitterPercent = lasp_config:get(jitter_percent, 1) * 0.01,
                     MinimalInterval = round(Interval * JitterPercent),
 
+					%io:format("ObjectFilterFun ~p ~n", [ObjectFilterFun]),
                     case MinimalInterval of
                         0 ->
                             %% No jitter.
@@ -355,6 +356,7 @@ schedule_state_synchronization() ->
                             timer:send_after(Interval + Jitter, {state_sync, ObjectFilterFun})
                     end;
                 false ->
+					%io:format("ObjectFilterFun ~p ~n", [ObjectFilterFun]),
                     timer:send_after(Interval, {state_sync, ObjectFilterFun})
             end;
         false ->

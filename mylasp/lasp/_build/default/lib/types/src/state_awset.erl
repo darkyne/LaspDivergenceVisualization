@@ -84,6 +84,7 @@ mutate(Op, Actor, {?TYPE, _AWSet}=CRDT) ->
 
 %% @doc Adds a single element to `state_awset()'.
 delta_mutate({add, Elem}, Actor, {?TYPE, {DotStore, CausalContext}}) ->
+	%io:format("delta mutate ~n"),
     NextDot = causal_context:next_dot(Actor, CausalContext),
 
     DeltaDotSet = dot_set:add_dot(NextDot, dot_set:new()),

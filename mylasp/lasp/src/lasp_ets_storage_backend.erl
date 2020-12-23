@@ -128,10 +128,11 @@ handle_call({update, Id, Function}, _From, #state{ref=Ref}=State) ->
     Result = case do_get(Ref, Id) of
         {ok, Value} ->
             {NewValue, InnerResult} = Function(Value),
-			io:format("Ref ~p ~n", [Ref]),
-			io:format("Id ~p ~n", [Id]),
-			io:format("value ~p ~n", [Value]),
+			%io:format("Ref ~p ~n", [Ref]),
+			%io:format("Id ~p ~n", [Id]),
+			%io:format("value ~p ~n", [Value]),
 			%io:format("new value to put ~p ~n", [NewValue]),
+			%ets:delete(Ref, Id),
             case do_put(Ref, Id, NewValue) of
                 ok ->
                     InnerResult
@@ -200,8 +201,25 @@ do_get(Ref, Id) ->
 %% @doc Write a record to the backend.
 -spec do_put(ref(), id(), variable()) -> ok.
 do_put(Ref, Id, Record) ->
-    true = ets:insert(Ref, {Id, Record}),
+	FilteredRecord = myFilter(Record),
+    %true = ets:insert(Ref, {Id, Record}),
+	true = ets:insert(Ref, {Id, FilteredRecord}),
+	%Ets_info = ets:info(Ref),
+	%io:format("ets table info: ~p ~n", [Ets_info]),
+	%ets:i(Ref),
 	%io:format("inserting in ets ! ~n"),
 	%io:format("process info: ~p ~n", [ erlang:process_info(self()) ] ),
 	%io:format("inserting ~p ~n", [Record]),
     ok.
+
+myFilter(Record) -> 	
+	{A1, {A2, {A3, {References, A4}}}, A5, A6, A7, A8, A9, A10, A11, A12} = Record,
+	FilteredReferences = lists:usort(References),
+	NewRecord = {A1, {A2, {A3, {FilteredReferences, A4}}}, A5, A6, A7, A8, A9, A10, A11, A12},
+	%io:format("old Record: ~p ~n", [Record]),
+	%io:format("new Record: ~p ~n", [NewRecord]),
+	NewRecord.
+	%Record.
+
+
+
