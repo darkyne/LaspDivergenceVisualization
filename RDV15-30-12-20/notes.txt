@@ -1,0 +1,11 @@
+QUESTIONS:
+
+Consignes spécifiques pour le manuscrit?
+Nombre de pages, taille de police à utiliser...?
+
+=================================================
+
+Pourquoi ne pas rename "convergence visualization" ?
+Ou alors il faut que je mette l'accent sur le fait qu'on veut trouver les limites. Le fait que le temps de convergence concrètement c'est un temps pour lequel le système est inconsistant.
+Expliquer que si le udpate speed est bcp plus haut que le convergence time, concrètement ça peut aller vers une divergence puisque ça ne va jamais catchup ?
+
