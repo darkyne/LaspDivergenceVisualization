@@ -499,6 +499,8 @@ startLoop(Range,AddIndex, CRDT_Id, SendingPeriod, Path) ->
 launchContinuousMeasures(MeasurePeriod, TimeOut, Debug) -> %MeasurePeriod should be at minimum convergenceTime*4 (ex avec le basic 8sec, on fait au mieux une mesure tous les 32 sec)
 io:format("Continuous Measures Started ! ~n"),
 	Id=list_to_integer( lists:nth(2,string:split(lists:nth(1,string:split(atom_to_list(erlang:node()),"@")), "e")) ),
+	NetworkPath="Memoire/Mesures/Network/Node"++integer_to_list(Id)++".txt",
+	file:delete(NetworkPath),
 	Self = self(),
 			_Pid = spawn (fun() -> 
 						continuousMeasurementLoop(Id, MeasurePeriod, TimeOut, Debug),
@@ -548,8 +550,8 @@ continuousMeasurementLoop(Id,MeasurePeriod, TimeOut, Debug) ->
 			%Compute Phase
 			RoundTripTime = erlang:system_time(1000)-StartTime,
 			{ok, TimeStampSet}=lasp:query({<<"basic_task">>, state_awset}),
-			{WorstConvergenceTime, IndividualConvergenceTimes} = computeWorstConvergenceTime(TimeStampSet, StartTime),
-			NewConvergenceInfos = #{roundTripTime => RoundTripTime, worstConvergenceTime => WorstConvergenceTime, individualConvergenceTimes => IndividualConvergenceTimes},
+			{WorstConvergenceTime, IndividualConvergenceTimes, RatioMsg} = computeWorstConvergenceTime(TimeStampSet, StartTime),
+			NewConvergenceInfos = #{roundTripTime => RoundTripTime, worstConvergenceTime => WorstConvergenceTime, individualConvergenceTimes => IndividualConvergenceTimes, networkUsage => RatioMsg},
 			PreviousConvergenceTime=getSystemConvergenceInfos(),
 			lasp:update({<<"system_convergence">>, state_awset}, {rmv, PreviousConvergenceTime}, self()),
 			lasp:update({<<"system_convergence">>, state_awset}, {add, NewConvergenceInfos}, self()),
@@ -592,6 +594,7 @@ continuousMeasurementLoop(Id,MeasurePeriod, TimeOut, Debug) ->
 			false ->
 				ok
 			end,
+			StartWaiting = erlang:system_time(1000),
 			%io:format("put strings to try to figure out when read is timing out"),
 			readThresholdMaxDuration({<<"leader_task">>, state_awset}, {cardinality, 1},TimeOut), %I wait to detect leader added his Id
 			case Debug of 
@@ -603,8 +606,10 @@ continuousMeasurementLoop(Id,MeasurePeriod, TimeOut, Debug) ->
 				ok
 			end,
 			TimeStamp=erlang:system_time(1000),
-			lasp:update({<<"basic_task">>, state_awset}, {add, {Id, TimeStamp}}, self()), %I add my {Id, TimeStamp}
-
+			WaitedTime = TimeStamp - StartWaiting,
+			Basic_MessageRatio = computeNetworkUsage(Id, WaitedTime),
+			%lasp:update({<<"basic_task">>, state_awset}, {add, {Id, TimeStamp}}, self()), %I add my {Id, TimeStamp}
+			lasp:update({<<"basic_task">>, state_awset}, {add, {Id, TimeStamp, Basic_MessageRatio}}, self()), %WHY THIS LINE MAKES IT TIME OUT??
 			%Reset Phase
 
 			readThresholdMaxDuration({<<"leader_task">>, state_awset}, {cardinality, -1},TimeOut), %I wait to detect leader removed his Id (reset for next measure)
@@ -614,7 +619,7 @@ continuousMeasurementLoop(Id,MeasurePeriod, TimeOut, Debug) ->
 			false ->
 				ok
 			end,
-			lasp:update({<<"basic_task">>, state_awset}, {rmv, {Id, TimeStamp}}, self()); %I remove my {Id, TimeStamp} (reset for next measure)
+			lasp:update({<<"basic_task">>, state_awset}, {rmv, {Id, TimeStamp, Basic_MessageRatio}}, self()); %I remove my {Id, TimeStamp} (reset for next measure)
 
 	{_,false} -> %Cluster is empty, I am alone
 			case Debug of
@@ -634,13 +639,17 @@ computeWorstConvergenceTime(TimeStampSet, StartTime) ->
 	case length(TimeStampList) of
 	0 ->
 		WorstConvergenceTime=nan,
-		OrderedConvergenceTimes = [];
+		OrderedConvergenceTimes = [],
+		MessagesRatio=nan;
 	_ -> 
-		ConvergenceTimes = lists:map(fun({A,B}) -> #{id => A, convergenceTime => B-StartTime} end, TimeStampList),
+		ConvergenceTimes = lists:map(fun({A,B,_}) -> #{id => A, convergenceTime => B-StartTime} end, TimeStampList),
 		OrderedConvergenceTimes = lists:sort( fun(A,B) -> maps:get(convergenceTime, A) =< maps:get(convergenceTime, B) end, ConvergenceTimes),
-		WorstConvergenceTime = lists:nth(length(OrderedConvergenceTimes), OrderedConvergenceTimes)
+		WorstConvergenceTime = lists:nth(length(OrderedConvergenceTimes), OrderedConvergenceTimes),
+		MessagesNumbers = lists:map(fun({_,_,C}) -> C end, TimeStampList),
+		Sum = lists:sum(MessagesNumbers),
+		MessagesRatio = Sum
 	end,
-	{WorstConvergenceTime, OrderedConvergenceTimes}.
+	{WorstConvergenceTime, OrderedConvergenceTimes, MessagesRatio}.
 
 
 
@@ -745,6 +754,12 @@ readThresholdMaxDuration(CRDT_Id, Threshold, MaxDuration) ->
 			erlang:exit(_Pid, kill)
 	end.
 
+computeNetworkUsage(Id, Period) ->
+	NetworkPath="Memoire/Mesures/Network/Node"++integer_to_list(Id)++".txt",
+	ReceivedMessages = count_line(NetworkPath),
+	MessagesPerSec = round( (ReceivedMessages*1000) / Period),
+	file:delete(NetworkPath),
+	MessagesPerSec.
 
 
 %% ===================================================================
