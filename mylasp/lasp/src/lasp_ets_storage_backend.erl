@@ -213,13 +213,11 @@ do_put(Ref, Id, Record) ->
     ok.
 
 myFilter(Record) -> 	
-	{A1, {A2, {A3, {References, A4}}}, A5, A6, A7, A8, A9, A10, A11, A12} = Record,
-	FilteredReferences = lists:usort(References),
-	NewRecord = {A1, {A2, {A3, {FilteredReferences, A4}}}, A5, A6, A7, A8, A9, A10, A11, A12},
-	%io:format("old Record: ~p ~n", [Record]),
-	%io:format("new Record: ~p ~n", [NewRecord]),
-	NewRecord.
-	%Record.
+	%{A1, {A2, {A3, {References, A4}}}, A5, A6, A7, A8, A9, A10, A11, A12} = Record,
+	%FilteredReferences = lists:usort(References),
+	%NewRecord = {A1, {A2, {A3, {FilteredReferences, A4}}}, A5, A6, A7, A8, A9, A10, A11, A12},
+	%NewRecord.
+	Record.
 
 
 

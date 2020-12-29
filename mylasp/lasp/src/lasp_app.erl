@@ -41,7 +41,9 @@ start(_StartType, _StartArgs) ->
 			IpAddress=list_to_atom( unicode:characters_to_list(string:trim(ReadIpAddress,trailing, "\n")) ),
 			timer:sleep(2000), %Wait to allow other nodes to boot before joining.
 			lasp_peer_service:join(IpAddress),
-			lasp_convergence_measure:launchContinuousMeasures(40000, false),
+			%lasp_convergence_measure:launchContinuousMeasures(10000, true),
+			Id=list_to_integer( lists:nth(2,string:split(lists:nth(1,string:split(atom_to_list(erlang:node()),"@")), "e")) ),
+			lasp_convergence_measure:continuousMeasurementLoop(Id, 10000, true),
 		    {ok, Pid};
 
         {error, Reason} ->
