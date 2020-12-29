@@ -8,7 +8,7 @@
 		 messageReceived/0,
 		 created/0,
 		 launchExperimentDynamic/4,
-		 launchContinuousMeasures/2,
+		 launchContinuousMeasures/3,
 		 readThresholdMaxDuration/3,
 		 getSystemConvergenceInfos/0,
 		 getSystemConvergenceTime/0,
@@ -19,7 +19,7 @@
 		 addition_awset_time/0,
 		 addition_orset_time/0,
 		 addition_gcount_time/0,
-		 continuousMeasurementLoop/3
+		 continuousMeasurementLoop/4
          ]).
 
 
@@ -496,18 +496,18 @@ startLoop(Range,AddIndex, CRDT_Id, SendingPeriod, Path) ->
 %% launchContinuousMeasures
 %% ===================================================================
 
-launchContinuousMeasures(MeasurePeriod, Debug) -> %MeasurePeriod should be at minimum convergenceTime*4 (ex avec le basic 8sec, on fait au mieux une mesure tous les 32 sec)
+launchContinuousMeasures(MeasurePeriod, TimeOut, Debug) -> %MeasurePeriod should be at minimum convergenceTime*4 (ex avec le basic 8sec, on fait au mieux une mesure tous les 32 sec)
 io:format("Continuous Measures Started ! ~n"),
 	Id=list_to_integer( lists:nth(2,string:split(lists:nth(1,string:split(atom_to_list(erlang:node()),"@")), "e")) ),
 	Self = self(),
 			_Pid = spawn (fun() -> 
-						continuousMeasurementLoop(Id, MeasurePeriod, Debug),
+						continuousMeasurementLoop(Id, MeasurePeriod, TimeOut, Debug),
 						Self ! {self(), ok} end),
 	_Pid.
 
 
 
-continuousMeasurementLoop(Id,MeasurePeriod, Debug) ->
+continuousMeasurementLoop(Id,MeasurePeriod, TimeOut, Debug) ->
 	LoopStartTime = erlang:system_time(1000),
 	{LeaderId, Cluster_size}=lasp_leader_election:checkLeader(20000), %MeasurePeriod must be at least 4*realConvergenceTime
 	case Debug of 
@@ -519,7 +519,6 @@ continuousMeasurementLoop(Id,MeasurePeriod, Debug) ->
 	false ->
 		ok
 	end,
-	TimeOut=30000,
 
 	case {LeaderId==Id, Cluster_size>0} of
 	{true,true} -> %I am LEADER
@@ -627,7 +626,7 @@ continuousMeasurementLoop(Id,MeasurePeriod, Debug) ->
 			timer:sleep(500), %Will check for new leader every 500ms
 			ok
 	end,
-	continuousMeasurementLoop(Id, MeasurePeriod, Debug).
+	continuousMeasurementLoop(Id, MeasurePeriod, TimeOut, Debug).
 
 
 computeWorstConvergenceTime(TimeStampSet, StartTime) ->
