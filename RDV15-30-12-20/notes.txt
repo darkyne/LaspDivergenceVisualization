@@ -9,3 +9,19 @@ Pourquoi ne pas rename "convergence visualization" ?
 Ou alors il faut que je mette l'accent sur le fait qu'on veut trouver les limites. Le fait que le temps de convergence concrètement c'est un temps pour lequel le système est inconsistant.
 Expliquer que si le udpate speed est bcp plus haut que le convergence time, concrètement ça peut aller vers une divergence puisque ça ne va jamais catchup ?
 
+
+METTRE EN AVANT:
+
+Le fait que CRDT permet cohérence (consistancy) sans consensus.
+Si on considère le consensus un peu comme du brut force là où CRDT permet un système beaucoup plus doux (weak synchronization).
+
+Ajouter visuellement approche pratique VS nouvelle approche.
+
+Mettre en avant (quelques phrase) à quel point Lasp est une innovation !
+
+Après les avantages techniques donner l'intuition et les raisons pourquoi c'est super bien. Montrer que c'est de plus en plus utilisé et ce que ça permet.
+
+Si j'ai le temps: conseiller au programmateur, par exemple interval court pour tel truc. Interval plus lent si...
+
+Futur work:
+Permettre de façon dynamique aux mesures d'être utilisées pour adapter le convergene time en continu.
