@@ -323,7 +323,8 @@ code_change(_OldVsn, State, _Extra) ->
 
 %% @private
 schedule_state_synchronization() ->
-	%io:format("trying to synchro ? ~n"),
+	Default_interval=1000,
+
     ShouldSync = true
             andalso (
               ?SYNC_BACKEND:peer_to_peer_mode()
@@ -337,8 +338,11 @@ schedule_state_synchronization() ->
 
     case ShouldSync of
         true ->
-            %Interval = lasp_config:get(state_interval, 10000),
-			Interval = 100,
+            %Interval = lasp_config:get(state_interval, 10000), %This is the original Lasp code
+
+			%Interval = 100,
+			Interval = lasp_convergence_measure:getInternalStateInterval(Default_interval),
+
             ObjectFilterFun = fun(_, _) -> true end,
             case lasp_config:get(jitter, false) of
                 true ->
@@ -362,6 +366,7 @@ schedule_state_synchronization() ->
         false ->
             ok
     end.
+
 
 %% @private
 schedule_plumtree_peer_refresh() ->

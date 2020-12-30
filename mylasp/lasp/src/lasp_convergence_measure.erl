@@ -10,6 +10,7 @@
 		 launchExperimentDynamic/4,
 		 launchContinuousMeasures/3,
 		 readThresholdMaxDuration/3,
+		 readThresholdMaxDurationSilent/3,
 		 getSystemConvergenceInfos/0,
 		 getSystemConvergenceTime/0,
 		 getSystemRoundTrip/0,
@@ -20,7 +21,10 @@
 		 addition_awset_time/0,
 		 addition_orset_time/0,
 		 addition_gcount_time/0,
-		 continuousMeasurementLoop/4
+		 continuousMeasurementLoop/4,
+		 getStateInterval/0,
+		 getInternalStateInterval/1,
+		 setStateInterval/1
          ]).
 
 
@@ -774,12 +778,62 @@ readThresholdMaxDuration(CRDT_Id, Threshold, MaxDuration) ->
 			erlang:exit(_Pid, kill)
 	end.
 
+readThresholdMaxDurationSilent(CRDT_Id, Threshold, MaxDuration) ->
+	Self = self(),
+	_Pid = spawn (fun() -> 
+						lasp:read(CRDT_Id, Threshold),
+						Self ! {self(), ok} end),
+	receive
+		{_PidSpawned, ok} -> ok
+	after
+		MaxDuration -> 
+			erlang:exit(_Pid, kill)
+	end.
+
 computeNetworkUsage(Id, Period) ->
 	NetworkPath="Memoire/Mesures/Network/Node"++integer_to_list(Id)++".txt",
 	ReceivedMessages = count_line(NetworkPath),
 	MessagesPerSec = round( (ReceivedMessages*1000) / Period),
 	file:delete(NetworkPath),
 	MessagesPerSec.
+
+setStateInterval(NewInterval) ->
+	{ok, Interval_query} = lasp:query({<<"state_interval">>, state_awset}),
+	Interval_list = sets:to_list(Interval_query),
+	lasp:update({<<"state_interval">>, state_awset}, {rmv_all, Interval_list}, self()),
+	lasp:update({<<"state_interval">>, state_awset}, {add, NewInterval}, self()),
+	io:format("state sending interval set to: ~p ms. ~n", [NewInterval]).
+
+getInternalStateInterval(Default_interval) ->
+	case (readThresholdMaxDurationSilent({<<"state_interval">>, state_awset}, {cardinality, 1},1)) of %ReadwithMaxDuration of 1ms for booting to select default value instead
+	ok -> Interval = getStateIntervalHelper(Default_interval);
+	true -> Interval = Default_interval
+	end,
+	Interval.
+
+getStateInterval() ->
+	{ok, Interval_query} = lasp:query({<<"state_interval">>, state_awset}),
+	Interval_list = sets:to_list(Interval_query),
+	case length(Interval_list) of
+	1 ->
+		Interval = lists:nth(1, Interval_list);
+	_ ->
+		Interval = default
+	end,
+	Interval.
+
+getStateIntervalHelper(Default_interval) ->
+
+	{ok, Interval_query} = lasp:query({<<"state_interval">>, state_awset}),
+	Interval_list = sets:to_list(Interval_query),
+	case length(Interval_list) of
+	1 ->
+		Interval = lists:nth(1, Interval_list);
+	_ ->
+		Interval=Default_interval
+	end,
+	Interval.
+
 
 
 %% ===================================================================
