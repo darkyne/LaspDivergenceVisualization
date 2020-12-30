@@ -684,7 +684,7 @@ getSystemWorstNodeId() ->
 	case length(InfosList) of
 	1 ->
 		Infos = lists:nth(1, InfosList),
-		Node = maps:get(id ,maps:get(wostConvergenceTime, Infos));
+		Node = maps:get(id ,maps:get(worstConvergenceTime, Infos));
 	_ ->
 		Node = noValue
 	end,
