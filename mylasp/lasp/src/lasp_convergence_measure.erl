@@ -14,6 +14,7 @@
 		 getSystemConvergenceTime/0,
 		 getSystemRoundTrip/0,
 		 getSystemWorstNodeId/0,
+		 getSystemNetworkUsage/0,
 		 getIndividualConvergenceTimes/0,
 		 getConvergenceTime/1,
 		 addition_awset_time/0,
@@ -497,7 +498,14 @@ startLoop(Range,AddIndex, CRDT_Id, SendingPeriod, Path) ->
 %% ===================================================================
 
 launchContinuousMeasures(MeasurePeriod, TimeOut, Debug) -> %MeasurePeriod should be at minimum convergenceTime*4 (ex avec le basic 8sec, on fait au mieux une mesure tous les 32 sec)
-io:format("Continuous Measures Started ! ~n"),
+
+	case Debug of 
+	true ->
+		io:format("Continuous Measures Started in Talkative mode ~n");
+	false ->
+		io:format("Continuous Measures Started in Silent mode ~n")
+	end,
+
 	Id=list_to_integer( lists:nth(2,string:split(lists:nth(1,string:split(atom_to_list(erlang:node()),"@")), "e")) ),
 	NetworkPath="Memoire/Mesures/Network/Node"++integer_to_list(Id)++".txt",
 	file:delete(NetworkPath),
@@ -714,6 +722,18 @@ getIndividualConvergenceTimes() ->
 		IndividualTimes = noValue
 	end,
 	IndividualTimes.
+
+getSystemNetworkUsage() ->
+	{ok, RawInfos} = lasp:query({<<"system_convergence">>, state_awset}),
+	InfosList = sets:to_list(RawInfos),
+	case length(InfosList) of
+	1 ->
+		Infos = lists:nth(1, InfosList),
+		NetworkUsage = maps:get(networkUsage, Infos);
+	_ ->
+		NetworkUsage = noValue
+	end,
+	NetworkUsage.
 
 getConvergenceTime(Id) -> %VERIFIER QUON NA PAS UN TRUC VIDE
 	{LeaderId, _ }=lasp_leader_election:checkLeader(20000),
