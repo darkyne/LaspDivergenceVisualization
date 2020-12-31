@@ -28,4 +28,4 @@ Expliquer l'effort que j'ai fait pour tracer et trouver des bugs dans Lasp.
 Problème de memory leak résolu: désormais le process reste à 0MB.
 Solution utilisée: je uSort sur les références avant de mettre dans ets pour ne pas recopier des références identiques.
 Nouveau problème: je rencontre maintenant (parfois, pas toujours) des timeout (dans continuousMeasure).
-
+Timeouts résolus (correction dans continuousMeasures)
