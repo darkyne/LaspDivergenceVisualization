@@ -25,3 +25,6 @@ Si j'ai le temps: conseiller au programmateur, par exemple interval court pour t
 
 Futur work:
 Permettre de façon dynamique aux mesures d'être utilisées pour adapter le convergene time en continu.
+
+
+Remarque: je pense que je devrais rassembler Measures and results en un seul chapitre. Et là dedans je dis voilà tel paramètre, analysé grâce à tel script décrit en section machin, voici les résultats. Puis une section analyse dans ce chapitre.
