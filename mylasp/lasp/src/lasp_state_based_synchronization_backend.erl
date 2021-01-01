@@ -323,7 +323,7 @@ code_change(_OldVsn, State, _Extra) ->
 
 %% @private
 schedule_state_synchronization() ->
-	Default_interval=1000,
+	Default_interval=100,
 
     ShouldSync = true
             andalso (
