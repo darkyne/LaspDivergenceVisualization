@@ -24,7 +24,8 @@
 		 continuousMeasurementLoop/4,
 		 getStateInterval/0,
 		 getInternalStateInterval/1,
-		 setStateInterval/1
+		 setStateInterval/1,
+		 partitionHelper/0
          ]).
 
 
@@ -882,6 +883,17 @@ simpleAddition() ->
 	io:format("I added 1000 elements ~n"),
 	lasp:read({<<"set99">>, state_awset}, {cardinality, 5000}).
 	
+
+partitionHelper() ->
+
+timer:sleep(5000),
+lasp_peer_service:join('node1@127.0.0.1'),
+StartTime=erlang:system_time(1000),
+lasp:read({<<"partition">>, state_awset}, {cardinality, 1}),
+Duration=erlang:system_time(1000) - StartTime,
+io:format("Duration to catchup with the cluster: ~p ~n", [Duration]).
+
+
 %This is called by the partisan when the node receives a message!
 %I must make it able to modify a global variable (related to this file)
 %That way I will be available to print information about it in the output file.
