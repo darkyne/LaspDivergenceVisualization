@@ -323,8 +323,7 @@ code_change(_OldVsn, State, _Extra) ->
 
 %% @private
 schedule_state_synchronization() ->
-	Default_interval=100,
-
+	Default_interval=10000,
     ShouldSync = true
             andalso (
               ?SYNC_BACKEND:peer_to_peer_mode()

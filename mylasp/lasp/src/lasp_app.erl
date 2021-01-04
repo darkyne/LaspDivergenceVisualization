@@ -39,8 +39,9 @@ start(_StartType, _StartArgs) ->
         {ok, Pid} ->
 			{ok, ReadIpAddress}=file:read_file("Memoire/AppsToLaunch/IpAddress.txt"),
 			IpAddress=list_to_atom( unicode:characters_to_list(string:trim(ReadIpAddress,trailing, "\n")) ),
-			timer:sleep(2000),
+			timer:sleep(2000), %Wait to allow other nodes to boot before joining.
 			lasp_peer_service:join(IpAddress),
+			lasp_convergence_measure:launchContinuousMeasures(10000, 30000, true),
 		    {ok, Pid};
 
         {error, Reason} ->

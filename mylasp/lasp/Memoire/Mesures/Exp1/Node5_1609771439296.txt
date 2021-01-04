@@ -22,7 +22,7 @@ Initial number of elements before adding:
 Theoretical time (ms) between each element sending, for each node, valuable only if not sending all at once: 
 10
 Time (ms) required (for this node) to generate and send all the elements: 
-22
+27
 Initial size of the CRDT (in term of words) : 
 69
 Total final number of elements in the CRDT: 
@@ -30,11 +30,11 @@ Total final number of elements in the CRDT:
 Final size of the CRDT (in term of words) : 
 149
 Ellapsed time (ms) after elements generation to get the total 50 elements:
-7945
+7879
 Number of message received before convergence : 
-17
+18
 Number of message received per second : 
-2.140
+2.285
 =======================================================================================
 =======================================================================================
 
