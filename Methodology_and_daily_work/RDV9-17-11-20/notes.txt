@@ -1,0 +1,42 @@
+TODO for rdv9:
+
+Terminer tâche dynamique.
+Savoir lancer les expériences avec la VM INGI.
+Savoir lancer l'algo de mesures en continu en tâche de fond.
+
+
+REMARQUES:
+Lorsque je lance l'expérience de add/remove/dump le CRDT grandit lentement en taille. Ca semble lier au fait que les adds convergeraient plus vite que les removes...?
+Globalement il prend plus vite les adds que les removes. Du coup la taille du CRDT a tendance à augmenter assez vite au début puis c'est ratrappé par les remove et ça se stabilise petit à petit.
+Par exemple pour 5 nodes avec 500datas chacun, ça commence à 2.500 puis vu que chacun fait add/remove, ça augmente (jusque 2.800) avant de redescendre aux alentours de 2550 et si on arrête les add/remove et qu'on attend suffisemment longtemps, ça redescend à 2.500.
+OK problème résolu, c'était lié à la range trop petite pour chaque node, or awset = add win set donc logique qu'il y avait au final plus de add que de remove. C'est réglé.
+Maintenant, on a bien size +ou- constante.
+
+ANALYSE cas dynamique:
+Pour l'instant, qu'on fasse 2 opérations/sec sur chaque node ou 20 opérations/sec sur chaque node, cela n'a pas l'air de vrm influencer fortement la vitesse de convergence qui reste vers 8sec.
+Remarque: La puissance de calcul ne permet pas aux nodes de descendre en dessous de 20 opérations/sec (20 add et remove par seconde).
+
+REMARQUE IMPORTANTE CONCERNANT MES RESULTATS:
+Le nombre de messages/sec concerne les valeurs pour un node (moyenne, médiane etc) donc s'il y a 5 nodes et qu'on veut connaître l'utilisation réseau, il faut faire x5.
+
+Le nombre d'opérations/sec ne semble pas influencer sur la vitesse de convergence et la nombre de messages/sec car de toute façon il attend 8sec avant d'envoyer donc ça ne change pas grand chose.
+Par contre le nombre de nodes et la durée du treshold entre deux envois influence directement le nombre de messages et la vitesse de convergence.
+
+Experience dynamique et analyse: OK
+
+12-11-20: Il me reste à run:
+cas statique Set6 (20nodes remove 10,100 -> 4experiences) Lancer 10nodes ma machine et 10nodes ucl. Si nécessaire: write to file without waiting expe to finish on every node.
+cas dynamique Set8 (10nodes, add-remove -> 5experiences) Impossibilité (j'ai test) de lancer 10nodes qui font ça sur ma machine. => Lancer 5 sur ma machine et 5 sur ucl.
+
+
+COMMENT SAVOIR COMBIEN DE NODES ACTIFS DANS LE CLUSER:
+{ok, Connected}=partisan_pluggable_peer_service_manager:connections().
+dict:size(Connected) donne le nombre de nodes actuellement connectés au cluster. Si un node quitte le cluster (crash par exemple), la valeur est mise à jour (donc à chaque boucle il faut refaire appel à partisan_pluggable_peer_service_manager:onnections(). )
+Implémentation algo de mesures en tâche de fond: en cours.
+
+Pour mardi:
+-Avancer un peu sur l'algo de mesure continue.
+-Mesurer combien de temps ça prend pour lancer sur la VM pour pouvoir lancer des expériences avec en partie UCL et en partie ma machine.
+
+
+

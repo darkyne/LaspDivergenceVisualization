@@ -43,14 +43,19 @@
 %Specify the Total Number of Nodes taking part of the experiment
 %Specify the Sending Speed (as the number of ms between each send, considering one node), 0 means the fastest possible
 %Specify the Number of Values each node will have to generate and send on the CRDT
-%Specify (with a boolean) if you want the node to join the cluster then generate and send values. Or rather generate and send values on the isolated CRDT (as if it was under partition) then join.
-%Specify (with a boolean) if you want all the values to be added at once or gradually via All_At_Once. If set to false, it will use SendingSpeed to send gradually the values.
+%Specify (with a boolean) if you want the node to join the cluster then generate and send values. Or rather generate 
+%and send values on the isolated CRDT (as if it was under partition) then join.
+%Specify (with a boolean) if you want all the values to be added at once or gradually via All_At_Once. If set to false,
+% it will use SendingSpeed to send gradually the values.
 % OUT:
 %The node will generate the number of values and send them, trying to achieve the specified Sending Speed.
 %It will join the cluster before or after sending the values based on GeneratingUnderPartition
-%The time required to generate and send the values, the time required after the generation to reach convergence and all the paramters are written to a file
+%The time required to generate and send the values, the time required after the generation to reach convergence and all
+% the paramters are written to a file
 %The file name will be in the folder /lasp/Memoire/Mesures with the name Exp+ExperimentNumber+_Node+NodeId
-launchExperimentAdding(ExperimentNumber, NodeToJoin, CRDT_Id, TotalNumberOfNodes, All_At_Once, SendingSpeed, NumberOfValues, GeneratingUnderPartition) -> 
+
+launchExperimentAdding(ExperimentNumber, NodeToJoin, CRDT_Id, TotalNumberOfNodes, All_At_Once, SendingSpeed,
+ NumberOfValues, GeneratingUnderPartition) -> 
 	%---------------------------------------	
 	%Little setup
 	%---------------------------------------
@@ -129,7 +134,8 @@ launchExperimentAdding(ExperimentNumber, NodeToJoin, CRDT_Id, TotalNumberOfNodes
 	ExperimentEndTime = erlang:system_time(1000),
 	TotalExperimentTime = ExperimentEndTime - ExperimentStartTime,
 	io:format("Total experiment duration : ~p ~n", [TotalExperimentTime]),
-	generateFileAdd(ExperimentNumber, Id, NodeToJoin, CRDT_Type_String, TotalNumberOfNodes, SendingSpeed, NumberOfValues, Threshold, EllapsedTime, GeneratingUnderPartition, SendingTime, All_At_Once, Initial_CRDT_Size, Final_CRDT_Size),
+	generateFileAdd(ExperimentNumber, Id, NodeToJoin, CRDT_Type_String, TotalNumberOfNodes, SendingSpeed,	NumberOfValues,
+	Threshold, EllapsedTime, GeneratingUnderPartition, SendingTime, All_At_Once, Initial_CRDT_Size, Final_CRDT_Size),
 	io:format("Done. ~n"),
 	io:format("~n"),
 	file:delete(NetworkPath),
@@ -146,7 +152,8 @@ launchExperimentAdding(ExperimentNumber, NodeToJoin, CRDT_Id, TotalNumberOfNodes
 
 
 %Generate the file to save measurements
-generateFileAdd (ExperimentNumber, Id, NodeToJoin, CRDT_Type_String, TotalNumberOfNodes, SendingSpeed, NumberOfValues, Threshold, EllapsedTime, GeneratingUnderPartition, SendingTime, All_At_Once,Initial_CRDT_Size, Final_CRDT_Size) ->
+generateFileAdd (ExperimentNumber, Id, NodeToJoin, CRDT_Type_String, TotalNumberOfNodes, SendingSpeed, NumberOfValues,
+ Threshold, EllapsedTime, GeneratingUnderPartition, SendingTime, All_At_Once,Initial_CRDT_Size, Final_CRDT_Size) ->
 	UniqueValue = integer_to_list(erlang:system_time(1000)),
 	Path = "Memoire/Mesures/Exp"++integer_to_list(ExperimentNumber)++"/Node"++integer_to_list(Id)++"_"++UniqueValue++".txt",
 	{ok, File} = file:open(Path, [write]),
@@ -157,7 +164,8 @@ generateFileAdd (ExperimentNumber, Id, NodeToJoin, CRDT_Type_String, TotalNumber
 		Partition = "false"
 	end,
 	ExperimentName = "Launching " ++integer_to_list(TotalNumberOfNodes) ++ " nodes at the same time, each generating a total of "
-							   ++integer_to_list(NumberOfValues)++  " elements (while under partition = " ++ Partition ++ ") " ++" then start timer and wait until all the elements converged",
+							   ++integer_to_list(NumberOfValues)++  " elements (while under partition = " ++ Partition ++ ") " 
+								 ++" then start timer and wait until all the elements converged",
 	io:format(File, "~s~n", [ExperimentName]),
 	io:format(File, "~s~n", [""]), 
 	io:format(File, "~s~n", ["============"]), 
@@ -230,7 +238,8 @@ generateValues(Id, CRDT_Id, CRDT_Type, NumberOfValues, Period, All_At_Once) ->
 		io:format("Adding the ~p generated elements, ", [NumberOfValues]),
 		io:format("all at once ~n")
 	end,
-	generateValues_helper2(CRDT_Id, Values, Period, 1, NumberOfValues, CRDT_Type, All_At_Once). %start counter at 2 to avoid sending the initial 0
+	generateValues_helper2(CRDT_Id, Values, Period, 1, NumberOfValues, CRDT_Type, All_At_Once). 
+	%start counter at 2 to avoid sending the initial 0
 	
 
 
@@ -256,7 +265,8 @@ generateValues_helper2(CRDT_Id, ValuesArray, PeriodMs, Counter, NumberOfValues, 
 %% launchExperimentRemoving:
 %% ===================================================================
 
-launchExperimentRemoving(ExperimentNumber, NodeToJoin, CRDT_Id, TotalNumberOfNodes, All_At_Once, RemovingSpeed, NumberOfValues, RemovingUnderPartition) -> 
+launchExperimentRemoving(ExperimentNumber, NodeToJoin, CRDT_Id, TotalNumberOfNodes, All_At_Once, RemovingSpeed, 
+NumberOfValues, RemovingUnderPartition) -> 
 	%---------------------------------------	
 	%Little setup (putting initial elements)
 	%---------------------------------------
@@ -276,8 +286,10 @@ launchExperimentRemoving(ExperimentNumber, NodeToJoin, CRDT_Id, TotalNumberOfNod
 	io:format("EXPERIMENT ~p ", [ExperimentNumber]),
 	io:format("Node ~p (Removing elements) ~n", [Id]),
 	Threshold = 0,	
-	ValuesArray = lists:seq(0, ((TotalNumberOfNodes*NumberOfValues)-1) ),  % Valeurs de 0 à XX9 dont les indices vont de 1 à 1XX
-	lasp:update({CRDT_Id, CRDT_Type}, {add_all, ValuesArray}, <<04760>>), %They consider all the initial values are from the same actor, that way they start with exactly the same CRDT
+	ValuesArray = lists:seq(0, ((TotalNumberOfNodes*NumberOfValues)-1) ),  
+	% Valeurs de 0 à XX9 dont les indices vont de 1 à 1XX
+	lasp:update({CRDT_Id, CRDT_Type}, {add_all, ValuesArray}, <<04760>>), 
+	%They consider all the initial values are from the same actor, that way they start with exactly the same CRDT
 	io:format("Initial ~p values are set ~n", [TotalNumberOfNodes*NumberOfValues]),
 	Initial_CRDT_Size = erts_debug:flat_size(  lasp:query({CRDT_Id, CRDT_Type})  ),
 	io:format("Initial CRDT size: ~p (words) ~n", [Initial_CRDT_Size]),
@@ -313,7 +325,8 @@ launchExperimentRemoving(ExperimentNumber, NodeToJoin, CRDT_Id, TotalNumberOfNod
 	%---------------------------------------
 	io:format("Waiting for convergence... ~n"),
 	InitialTimer = erlang:system_time(1000),
-	lasp:read({CRDT_Id, CRDT_Type}, {cardinality, -1}),	%Ajouter une fonction dans state_awset pour cardinalityG et cardinalityS (bigger et smaller)
+	lasp:read({CRDT_Id, CRDT_Type}, {cardinality, -1}),	% argument -1 corresponds to detect it is empty
+	%Ajouter une fonction dans state_awset pour cardinalityG et cardinalityS (bigger et smaller)
 	EndTimer = erlang:system_time(1000),
 	ConvergedTime = EndTimer - InitialTimer,
 	file:copy(NetworkPath, NetworkPath2),
@@ -335,7 +348,8 @@ launchExperimentRemoving(ExperimentNumber, NodeToJoin, CRDT_Id, TotalNumberOfNod
 	ExperimentEndTime = erlang:system_time(1000),
 	TotalExperimentTime = ExperimentEndTime - ExperimentStartTime,
 	io:format("Total experiment duration : ~p ~n", [TotalExperimentTime]),
-	generateFileRmv (ExperimentNumber, Id, NodeToJoin, CRDT_Type_String, TotalNumberOfNodes, RemovingSpeed, NumberOfValues, Threshold, ConvergedTime, RemovingUnderPartition, RemovingTime, All_At_Once, Initial_CRDT_Size, Final_CRDT_Size),
+	generateFileRmv (ExperimentNumber, Id, NodeToJoin, CRDT_Type_String, TotalNumberOfNodes, RemovingSpeed, 
+	NumberOfValues, Threshold, ConvergedTime, RemovingUnderPartition, RemovingTime, All_At_Once, Initial_CRDT_Size, Final_CRDT_Size),
 	io:format("Done. ~n"),
 	io:format("~n"),
 	file:delete(NetworkPath),
@@ -377,7 +391,8 @@ removeValues_helper(CRDT_Id, CRDT_Type, NumberOfValues ,ValuesToRemove, Removing
 
 
 
-generateFileRmv (ExperimentNumber, Id, NodeToJoin, CRDT_Type_String, TotalNumberOfNodes, RemovingSpeed, NumberOfValues, Threshold, EllapsedTime, RemovingUnderPartition, RemovingTime, All_At_Once, Initial_CRDT_Size, Final_CRDT_Size) ->
+generateFileRmv (ExperimentNumber, Id, NodeToJoin, CRDT_Type_String, TotalNumberOfNodes, RemovingSpeed,
+ NumberOfValues, Threshold, EllapsedTime, RemovingUnderPartition, RemovingTime, All_At_Once, Initial_CRDT_Size, Final_CRDT_Size) ->
 
 	UniqueValue = integer_to_list(erlang:system_time(1000)),
 	Path = "Memoire/Mesures/Exp"++integer_to_list(ExperimentNumber)++"/Node"++integer_to_list(Id)++"_"++UniqueValue++".txt",
@@ -389,8 +404,10 @@ generateFileRmv (ExperimentNumber, Id, NodeToJoin, CRDT_Type_String, TotalNumber
 	false ->
 		Partition = "false"
 	end,
-	ExperimentName = "Launching " ++integer_to_list(TotalNumberOfNodes) ++ " nodes at the same time with a common filled CRDT, each removing a total of "
-							   ++integer_to_list(NumberOfValues)++  " elements (while under partition = " ++ Partition ++ ") " ++" then start timer and wait until it converged",
+	ExperimentName = "Launching " ++integer_to_list(TotalNumberOfNodes) 
+									++ " nodes at the same time with a common filled CRDT, each removing a total of "
+							   ++integer_to_list(NumberOfValues)++  " elements (while under partition = " ++ Partition ++ ") " 
+								 ++" then start timer and wait until it converged",
 	io:format(File, "~s~n", [ExperimentName]),
 	io:format(File, "~s~n", [""]), 
 	io:format(File, "~s~n", ["============"]), 
@@ -502,8 +519,23 @@ startLoop(Range,AddIndex, CRDT_Id, SendingPeriod, Path) ->
 %% launchContinuousMeasures
 %% ===================================================================
 
-launchContinuousMeasures(MeasurePeriod, TimeOut, Debug) -> %MeasurePeriod should be at minimum convergenceTime*4 (ex avec le basic 8sec, on fait au mieux une mesure tous les 32 sec)
+launchContinuousMeasures(MeasurePeriod, TimeOut, Debug) -> 
+%MeasurePeriod should be at minimum state_interal*4 
 
+	Default_interval = 10000,
+	State_interval = lasp_convergence_measure:getInternalStateInterval(Default_interval),
+	BestInterval = 4*State_interval,
+	
+	case (MeasurePeriod < BestInterval) of
+		true ->
+			RealInterval = BestInterval; % if measurePeriod too small, put to ideal interval
+		false ->
+			Reminder = MeasurePeriod rem BestInterval,
+			Offset = State_interval - Reminder,
+			RealInterval = MeasurePeriod + Offset 
+			% if measurePeriod bigger than ideal interval, aff an offset to reach an integer number of state_interval
+	end,
+	
 	case Debug of 
 	true ->
 		io:format("Continuous Measures Started in Talkative mode ~n");
@@ -516,7 +548,7 @@ launchContinuousMeasures(MeasurePeriod, TimeOut, Debug) -> %MeasurePeriod should
 	file:delete(NetworkPath),
 	Self = self(),
 			_Pid = spawn (fun() -> 
-						continuousMeasurementLoop(Id, MeasurePeriod, TimeOut, Debug),
+						continuousMeasurementLoop(Id, RealInterval, TimeOut, Debug),
 						Self ! {self(), ok} end),
 	_Pid.
 
@@ -541,7 +573,8 @@ continuousMeasurementLoop(Id,MeasurePeriod, TimeOut, Debug) ->
 			%Leader starts by removing TimeStamps in case previous leader crashed and did not remove them.
 			{ok , RawPreviousTimeStamps} = lasp:query({<<"basic_task">>, state_awset}),
 			PreviousTimeStamps = sets:to_list(RawPreviousTimeStamps),
-			lasp:update({<<"basic_task">>, state_awset}, {rmv_all, PreviousTimeStamps}, self()), %Remove in case some node crashed and did not remove its TimeStamp
+			lasp:update({<<"basic_task">>, state_awset}, {rmv_all, PreviousTimeStamps}, self()), 
+			%Remove in case some node crashed and did not remove its TimeStamp
 
 			%Measure Phase
 			StartTime=erlang:system_time(1000),
@@ -552,7 +585,8 @@ continuousMeasurementLoop(Id,MeasurePeriod, TimeOut, Debug) ->
 			false ->
 				ok
 			end,
-			readThresholdMaxDuration({<<"basic_task">>, state_awset}, {cardinality, Cluster_size},TimeOut), %I wait everyone answered. Skip after TimeOut ms waiting
+			readThresholdMaxDuration({<<"basic_task">>, state_awset}, {cardinality, Cluster_size},TimeOut), 
+			%I wait everyone answered. Skip after TimeOut ms waiting
 			case Debug of 
 			true ->
 				io:format("OK! ~n");
@@ -564,7 +598,8 @@ continuousMeasurementLoop(Id,MeasurePeriod, TimeOut, Debug) ->
 			RoundTripTime = erlang:system_time(1000)-StartTime,
 			{ok, TimeStampSet}=lasp:query({<<"basic_task">>, state_awset}),
 			{WorstConvergenceTime, IndividualConvergenceTimes, RatioMsg} = computeWorstConvergenceTime(TimeStampSet, StartTime),
-			NewConvergenceInfos = #{roundTripTime => RoundTripTime, worstConvergenceTime => WorstConvergenceTime, individualConvergenceTimes => IndividualConvergenceTimes, networkUsage => RatioMsg},
+			NewConvergenceInfos = #{roundTripTime => RoundTripTime, worstConvergenceTime => WorstConvergenceTime, 
+			individualConvergenceTimes => IndividualConvergenceTimes, networkUsage => RatioMsg},
 			PreviousConvergenceTime=getSystemConvergenceInfos(),
 			lasp:update({<<"system_convergence">>, state_awset}, {rmv, PreviousConvergenceTime}, self()),
 			lasp:update({<<"system_convergence">>, state_awset}, {add, NewConvergenceInfos}, self()),
@@ -580,11 +615,13 @@ continuousMeasurementLoop(Id,MeasurePeriod, TimeOut, Debug) ->
 			ListPotentialLeadersId=sets:to_list(PotentialLeadersId), %Thus we remove ListOfPotentialLeadersId and not simply my own Id.
 
 			lasp:update({<<"leader_task">>, state_awset}, {rmv_all, ListPotentialLeadersId}, self()), %I remove my Id (reset for next measure)
-			readThresholdMaxDuration({<<"basic_task">>, state_awset}, {cardinality, -1}, TimeOut), %I wait everyone removed its TimeStamp (reset for next measure). Skip after TimeOut msec waiting
+			readThresholdMaxDuration({<<"basic_task">>, state_awset}, {cardinality, -1}, TimeOut), 
+			%I wait everyone removed its TimeStamp (reset for next measure). Skip after TimeOut msec waiting
 																								 
 			{ok , RawPreviousTimeStamps2} = lasp:query({<<"basic_task">>, state_awset}),
 			PreviousTimeStamps2 = sets:to_list(RawPreviousTimeStamps2),
-			lasp:update({<<"basic_task">>, state_awset}, {rmv_all, PreviousTimeStamps2}, self()), %Remove in case some node crashed and did not remove its TimeStamp
+			lasp:update({<<"basic_task">>, state_awset}, {rmv_all, PreviousTimeStamps2}, self()), 
+			%Remove in case some node crashed and did not remove its TimeStamp
 			case Debug of 
 			true ->
 				io:format("[LEADER] Reset is done ! ~n");
@@ -806,7 +843,8 @@ setStateInterval(NewInterval) ->
 	io:format("state sending interval set to: ~p ms. ~n", [NewInterval]).
 
 getInternalStateInterval(Default_interval) ->
-	case (readThresholdMaxDurationSilent({<<"state_interval">>, state_awset}, {cardinality, 1},1)) of %ReadwithMaxDuration of 1ms for booting to select default value instead
+	case (readThresholdMaxDurationSilent({<<"state_interval">>, state_awset}, {cardinality, 1},1)) of 
+	%ReadwithMaxDuration of 1ms for booting to select default value instead
 	ok -> Interval = getStateIntervalHelper(Default_interval);
 	true -> Interval = Default_interval
 	end,
@@ -925,4 +963,10 @@ count_line(IoDevice, Count) ->
         eof     -> Count
     end.
 
+wait_threshold(UnixTimeThreshold) ->
+	Current = erlang:system_time(1000),
+	case (Current < UnixTimeThreshold) of
+		true -> wait_threshold(UnixTimeThreshold);
+		false -> ok
+	end.
 

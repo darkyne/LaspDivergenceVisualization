@@ -1,0 +1,44 @@
+Lasp is a group of Erlang libraries allowing the development of large distributed applications focusing on CRDTs and peer-to-peer.
+
+CRDTs are for conflictfree distributed data types. They are a good compromise from the CAP theorem allowing Strong Availability, Partition tolerance and Eventually Strong Consistency.
+It consists of a datastructure containing values and metadatas. Every node will have a copy, its local state. From time to time nodes will send it to their peers. When receiving such state from peers, they merge it with their own local state in a clever way allowing to represent only the most recent modifications. This datastructure allowing such deterministic convergent merges is called CRDT.
+
+Let's have a little example; we have 2 nodes and a kind of CRDT acting like a bag. As you can see, they add or remove elements, send their state from time to time and at the end and finally they end up with the same state. 
+
+Good features: no need for consensus algorithm (causality handled by metadatas) or specific scheduler (message order has no impact). Easy to use for end user.
+
+GOALS:
+Develop an API to allow user to see information about the convergence time.
+I already implemented this with a little algorithm: 
+Leader election
+Leader sends a signal via a CRDT
+Nodes answer with timeStamp
+Information is available from every node via an API
+
+Measure the impact of some parameters such as number of nodes, distance between them, network traffic, number of elements in the CRDT, etc...
+I already did some measures, they have, for now, some really big variations but already tend to show some influences.
+
+On going:
+Test more extreme cases
+Improve the API to allow user to modify convergence time.
+
+Commentaires:
+-Moins de texte
+-Expliquer: Plutôt que database, on va utiliser convergence, une façon automatique de mettre à jour sur tous les nodes. Mettre en avant l'idée de convergence qui est une nouvelle façon.
+-Lasp ne donne pas assez de contrôle.
+-Rendre plus simple (éviter les notions compliquées)
+-Dire developpeur plutôt que user.
+
+-histoire: Contexte, problème, ce que je fais pour le résoudre.
+Donner l'intuition du udpate speed vs convergence speed. Ca ne sert à rien de converger super vite si on met à jour très lentement car ça va simplement surcharger le réseau. Il ne faut pas non plus que ça converge trop lentement.
+Quelques logos d'entreprises qui utilisent le CRDT.
+
+Insistuer sur le fait que la convergence c'est bien, beaucoup plus facile qu'avec consensus.
+
+Pour demain soir, je refais une nouvelle version et je vous l'envois (en paysage).
+
+Appeler Partisan directement sans passer par Lasp pour tester.
+Terminer la partie sherlock pour modifier temps d'interval et porquoi add si lent.
+
+Insister sur convergence, le fait que ça soit super, que ce soit récent (seulement depuis 2011), etc. Que ça révolutionne le système habituel avec consensus.
+

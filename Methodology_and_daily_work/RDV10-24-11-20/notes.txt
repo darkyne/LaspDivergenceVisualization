@@ -1,0 +1,92 @@
+RDV10 24/11/20
+
+TODO:
+-Pourquoi le orswot est si lent à réaliser des opérations?
+-Partir sur d'autres CRDT si besoin
+-Vérifier le temps requis pr add un élément sur un tout petit CRDT (voir même vide)
+-Terminer mesures en continue:
+							-Si un basic node crache alors qu'il avais mis son timeStamp, il faut que le leader retire tous les TimeStamp qui pourraient rester. OK
+							-Si le leader meurt pendant que les basic nodes sont bloqués, aucun ne passera leader, il faut leur mettre des ReadThresholdMaxDuration. OK
+							-Si le leader change, il doit nettoyer le truc des TimeStamp au cas où il en resterait. OK
+							-Tranformer le contenu du system_convergence CRDT en un format map pour facilement choper les infos. OK
+ACTUEL:
+-Si un node crash, ça continue normalement. OK
+-Si un node se rajoute, ça continue normalement. OK
+-Si le leader crash, les autres restent bloqués et du coup aucun nouveua leader n'est choisi. OK
+
+-Si je retire un node, le leader, sur ce round, va faire un timeout et continuer. Il semble que sur le long terme ça fasse cracher mon ordi...? OK
+
+Tout est résolu.
+Les nodes peuvent lancer les mesures en continue avec launchContinuousMeasures(Period) ensuite ils peuvent facilement accéder à des données via des getters.
+
+Questions:
+1)
+Un cycle de mesure complet nécessite minimum 2 round-trip.
+Est-ce que je permets à l'utilisateur de donner en argument la période qu'il souhaite (entre 2 mesures)?
+Sachant que si c'est inférieur à 2round-trip, le système fera de toute façon 2round-trip entre 2 mesures.
+Est-ce que je ne permet pas à l'utilisateur de rentrer cet argument et le système fait de lui-même une nouvelle mesure tous les 2round trip.
+Je pense que la première solution est meilleure notamment si on a un système rapide (qui converge en quelques ms) pour éviter de over-use les nodes CPU.
+Pareil pour le timeout.
+
+2)
+Une fois un node créé, il envoit son local states tous les X secondes (environ 8secondes pr l'instant). Ce qui signifie que si on modifie le state juste avant qu'il envoit, ça convergera très vite.
+Si on modifie le state juste après son envoi, ça convergera très lentement. En gros le moment où on modifie le state influence sur la durée requise pr que ce state converge sur les autres nodes.
+Le round-trip en revanche semble être plus indépendant et constant.
+
+3)
+Les nodes peuvent accéder à la dernière mesure réalisée.
+Serait-il mieux de calculer des statistiques sur base des dernières mesures plutôt que d'afficher simplement la dernière mesure ?
+Par exemple dans le CRDT il y aurait la dernière mesure comme c'est le cas pour l'instant mais aussi la moyenne des 10 dernières mesures par exemple ?
+
+
+4)
+Mesures en continue en tâche de fond, je mesure uniquement les temps. Faudrait-il que j'essaye de mesurer également l'utilisation réseau? (nombre de messages/sec)
+Si oui, je pense qu'il suffirait, quand un node met son TimeStamp, il met aussi un champs pour le nombre de messagse reçus depuis la dernière mesure.
+Pour faire ça, il suffit de regarder combien de ligne dans le fichier Network et de reset ce fichier. Le mieux serait de calculer localement au niveau du node combien de messages/sec et d'envoyer ça dans le crdt avec le timeStamp. Ca ne devrait pas être trop difficile car le node sait quand il reset le fichier et il sait quand il décide de compter le nombre de lignes. Par contre ça demande probablement de rajouter un argument dans la loop et checker plusieurs trucs (style que se passe-t-il si tu passes leader, etc...).
+
+AJOUTER MESURE RESEAU
+
+Prochaine étape:
+-Répondre/résoudre ces différentes questions
+-Permettre au user d'adapter le convergence time en jouant sur la laps de temps entre deux envois. Ca se joue probablement au niveau du partisan_pluggable_peer_service_manager.
+
+
+Pour petite présentation orale:
+-LASP et CRDT (l'idée générale)
+-Convergence time (peut être influencé par le nombre de nodes, le réseau, la taille des CRDT, des partitions, etc...).
+-Explication de quelques mesures que j'ai déjà réalisées (statique add, remove et dynamique)
+-Explication rapide de mon système de mesures en continue en background (Le leader met un élement et mesure combien de temps pour que tous les autres nodes aient vu cet élément).
+-Ce qu'il reste à faire: 	-Permettre à l'utilisateur de modifier la vitesse de convergence (modifier la period entre chaque envoi)
+							-Réaliser des mesures plus intéressantes (notamment pour la partie dynamique) en poussant le système à ses limites
+							-Analyse de ces résultats et mise en corrélation avec le code de Lasp
+							-Ecriture du rapport complet
+Mettre en avant le fait de faire un graphe 2D avec un côté la vitesse de mise à jour et de l'autre la vitesse de convergence. Même si je n'ai pas encore les mesures, montrer un exemple de ce qu'on image obtenir comme graphe.
+
+
+ATTENTION:
+Verifier le lead election, il semblerait que j'ai rencontré un bug avec le code 10nodes talkative, ils ne prennaient pas le même leader. 
+
+Il faut tracer ce que fait lasp pour comprendre pourquoi un update prend autant de temps.
+C'est important de tracer ça. Erlang a des outils pour tracer ça. Style tracer ou profiler.
+
+Important;
+Le côté motivation est très important pour le mémoire (motiver pourquoi c'est intéressant etc).
+Expliquer que c'est déjà utilisé depuis peu dans des entreprises etc. Par exemple le truc de BET365 etc.
+TOut ça dans le premier chapitre: motivations et quelles sont mes contributions.
+chap1: motivations
+chap2: expliquer les principes CRDT, LASP, etc...
+chap3: ce que j'ai fait moi
+chap4: résultats
+chap5: conclusions et explications ou ouverture vers travaux futurs
+Langue: anglais
+
+Pour mardi 01/12 14h lui montrer mon poster.
+
+
+TODO FOR NEXT WEEK:
+Pouvoir modifier le temps entre chaque envoi.
+Tracer la raison pour laquelle update est si lent.
+Le poster
+
+Etienne Rivière et Igor Ravalishin. IMPORTANT: Mettre en avant les motivations.
+

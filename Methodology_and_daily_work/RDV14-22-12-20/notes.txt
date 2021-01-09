@@ -1,0 +1,31 @@
+Mesures de lasp_ets_storage_backend pendant Launchcontinuousmeasuresilent5:
+Ca ne fait que augmenter. En stat_interval=10000 ça monte assez lentement mais en state_interval=1000 ça monte assez rapidement à plusieurs centaines de millions de bytes de memory usage.
+Donc rapidement plusieurs centaines de Mo de memory RAM utilisée pour chaque node. 
+
+
+J'ai fait un module qui mesure l'utilisation mémoire de lasp_ets_storage_backend.
+J'ai un script LaunchContinuousMemoryMeasure5.sh qui permet de faire tourner les mesures continues tout en mesurant l'utilisation mémoire de lasp_ets_storage_backend.
+On voit bien que ça grandit avec le temps. Quand chaque node utilise de l'ordre de 200 Mb ça crash.
+
+En réalisant un petit cluster 5 avec juste un crdt qui n'est pas mis à jour, on remarque que le record mis en ets ne fait que grandir.
+Voir image, tous les quelques itérations, une référence (redondante) est ajoutée, grossissant donc petit à petit.
+Dans l'exemple, c'est le node1 qui déclare un awset avec la valeur "5" dedans.
+En fait c'est la référence de node5 (celui qui a modifié le crdt) qui va être répétée de plus en plus de fois dans le awset metadatas.
+Comment régler ce problème? C'est comme s'il y avait un genre d'historique dans le CRDT mais ça n'a aucun sens car ça ne fait que répéter en boucle la même référence.
+
+
+Deux approches pour régler le problème:
+
+-Au niveau du state_awset: S'arranger pour que ça ne duplique pas la référence du node à l'origine de la modification.
+	Au niveau de ets_storage_backend: le update j'avais l'impression que ça ajoutait dans ets sans supprimer la version précédente. J'ai changé ça mais ça n'a apparemment eu aucun effet...
+
+
+-Remettre le state-interval à 10000ms mais mettre propagate_on_update à true.
+
+
+Expliquer l'effort que j'ai fait pour tracer et trouver des bugs dans Lasp.
+
+Problème de memory leak résolu: désormais le process reste à 0MB.
+Solution utilisée: je uSort sur les références avant de mettre dans ets pour ne pas recopier des références identiques.
+Nouveau problème: je rencontre maintenant (parfois, pas toujours) des timeout (dans continuousMeasure).
+Timeouts résolus (correction dans continuousMeasures)

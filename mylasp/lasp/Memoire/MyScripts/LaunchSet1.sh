@@ -2,18 +2,20 @@
 
 #Set1 5nodes, 6experiments, 50iterations, 60sec duration
 
-#This Script launchs 5nodes that will add elements and measure convergence time, CRDT memory size and number of messages received
+#This Script launchs 5nodes that will add elements and measure convergence time,
+#CRDT memory size and number of messages received
 #You may need to modify IpAddress, put it to 127.0.0.1 for local tests.s
 
 decalage=0 #decalage=pi_booting_time - pc_booting_time = 8.32
 initialNode=1
 localNodes=5
 iterations=50
-experiments=6
-duration=60
+experiments=6 #number of different parameter values
+duration=60 #number of seconds for each iteration
 
 #IpAddress is set via Memoire/AppsToLaunch/IpAddress file
 
+#ipAdress will be taken from config file
 #For local tets:
 #ipAddress=127.0.0.1
 
@@ -23,7 +25,11 @@ duration=60
 #on Pi:
 #ipAddress=192.168.1.62
 
+#on Ingi:
+#ipAddress=130.104.221.134
 
+
+#Path to get the correct app to launch
 sourcePath=Memoire/AppsToLaunch/Set1/measure
 sourcePath2=/lasp_app.erl
 destinationPath=src
@@ -55,12 +61,12 @@ rm Memoire/Mesures/Network/*.txt
 #============================================================================================
 #============================================================================================
 
-Node=$(sed -n 1p Memoire/AppsToLaunch/IpAddress.txt)
+Node=$(sed -n 1p Memoire/AppsToLaunch/IpAddress.txt) #get Ip from config file
 Ip=$(cut -d "@" -f2- <<< "$Node")
 
 
 echo "LAUNCHING THE NEW EXPERIMENTS SET"
-sleep $decalage #Wait initial decallage related to raspberry pi slow nodes booting
+sleep $decalage #Initial shift related to raspberry pi slow nodes booting. Generally not required
 
 
 for k in $(seq 1 1 "$experiments")  #number of different expriments

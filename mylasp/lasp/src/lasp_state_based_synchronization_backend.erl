@@ -338,9 +338,7 @@ schedule_state_synchronization() ->
     case ShouldSync of
         true ->
             %Interval = lasp_config:get(state_interval, 10000), %This is the original Lasp code
-
-			%Interval = 100,
-			Interval = lasp_convergence_measure:getInternalStateInterval(Default_interval),
+						Interval = lasp_convergence_measure:getInternalStateInterval(Default_interval),
 
             ObjectFilterFun = fun(_, _) -> true end,
             case lasp_config:get(jitter, false) of

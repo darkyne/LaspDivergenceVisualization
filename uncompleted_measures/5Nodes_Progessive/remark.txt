@@ -1,3 +1,0 @@
-Here I tried to measure experiments where adding or removing progressively.
-Thus I did not know when to start exactly the timmer.
-The results are not very interesting.

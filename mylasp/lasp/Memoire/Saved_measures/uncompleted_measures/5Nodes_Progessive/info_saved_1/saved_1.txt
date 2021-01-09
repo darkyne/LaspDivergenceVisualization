@@ -1,0 +1,43 @@
+General FORME:
+1-10: launchExperimentAdding(ExperimentNumber, NodeToJoin, CRDT_Id, TotalNumberOfNodes, All_At_Once, SendingSpeed, NumberOfValues, GeneratingUnderPartition) 
+
+
+Measure1: basic case (all at once, 100 values, no partition)
+lasp_convergence_measure:launchExperimentAdding(1, 'node1@192.168.1.39', <<"set1">>, 5, true, 10, 100, false),
+
+Measure2: under partition
+lasp_convergence_measure:launchExperimentAdding(2, 'node1@192.168.1.39', <<"set1">>, 5, true, 10, 100, true),
+
+Measure3: progessive (100/sec)
+lasp_convergence_measure:launchExperimentAdding(3, 'node1@192.168.1.39', <<"set1">>, 5, false, 10, 100, false),
+
+Measure4: progressive, under partition
+lasp_convergence_measure:launchExperimentAdding(4, 'node1@192.168.1.39', <<"set1">>, 5, false, 10, 100, true),
+
+Measure5: progressive faster
+lasp_convergence_measure:launchExperimentAdding(5, 'node1@192.168.1.39', <<"set1">>, 5, false, 0, 100, false),
+
+Measure6: progressive slower
+lasp_convergence_measure:launchExperimentAdding(6, 'node1@192.168.1.39', <<"set1">>, 5, false, 100, 100, false),
+
+Measure7: 1000 values
+lasp_convergence_measure:launchExperimentAdding(7, 'node1@192.168.1.39', <<"set1">>, 5, true, 0, 1000, false),
+
+Measure8: progressive 1000 values
+lasp_convergence_measure:launchExperimentAdding(8, 'node1@192.168.1.39', <<"set1">>, 5, false, 5, 1000, false),
+
+Measure9: progressive 1000 values under partition
+lasp_convergence_measure:launchExperimentAdding(9, 'node1@192.168.1.39', <<"set1">>, 5, false, 5, 1000, true),
+
+Measure10: 10 values
+lasp_convergence_measure:launchExperimentAdding(10, 'node1@192.168.1.39', <<"set1">>, 5, true, 0, 10, false),
+
+Conclusion:
+Les mesures en progessive ne sont pas vraiment intéressantes. Car à quel moment on commence à regarder la convergence? Une fois qu'on a finit de tout add? Peu d'intérêt.
+Donc on a les mesures 1,2,7,10 qui sont valables.
+Ca permet de voir 10,100,1000 éléments (all_at_once) et le fait de join avant ou après le add ne change rien. Globalement, ça semble très constant.
+
+Globalement:
+Je trouve que ces mesures ne sont pas ouf, notamment car que 4 des 10 sont vraiment utiles.
+De plus les mesures réseau ne sont pas ouf non plus. 
+Je devrais relancer de meilleures mesures.
