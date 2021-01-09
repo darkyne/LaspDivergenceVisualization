@@ -1,4 +1,4 @@
-#Ce dossier contient mes notes personnelles rédigées chaque semaine concernant mon avancée.
+# Ce dossier contient mes notes personnelles rédigées chaque semaine concernant mon avancée.
 
 # Les RDV
 Chaque semaine, j'ai écrit un compte-rendu de ce que je réalisais chaque jour, progressivement.
