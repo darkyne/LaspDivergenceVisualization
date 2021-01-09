@@ -1,4 +1,4 @@
-# Lasp Divergence Visualization
+# Lasp Convergence visualization
 
 # mylasp
 Ce dossier contient l'implémentation de lasp, tirée de la page github officielle.
