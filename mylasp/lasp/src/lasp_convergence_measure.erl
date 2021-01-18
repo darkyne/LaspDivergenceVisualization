@@ -282,7 +282,6 @@ NumberOfValues, RemovingUnderPartition) ->
 	1 -> lasp:declare({CRDT_Id, CRDT_Type}, CRDT_Type);
 	_ -> ok
 	end,
-	timer:sleep(1000),
 	io:format("EXPERIMENT ~p ", [ExperimentNumber]),
 	io:format("Node ~p (Removing elements) ~n", [Id]),
 	Threshold = 0,	
